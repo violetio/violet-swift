@@ -15,17 +15,14 @@ open class OrdersAPI {
     /**
      Get Orders
      
-     - parameter xVioletToken: (header)  
-     - parameter xVioletAppSecret: (header)  
-     - parameter xVioletAppId: (header)  
      - parameter page: (query)  (optional, default to 1)
      - parameter size: (query)  (optional, default to 20)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func ordersGet(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, page: Int? = nil, size: Int? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: PageOrder?, _ error: Error?) -> Void)) -> RequestTask {
-        return ordersGetWithRequestBuilder(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size).execute(apiResponseQueue) { result in
+    open class func ordersGet(page: Int? = nil, size: Int? = nil, apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: PageOrder?, _ error: Error?) -> Void)) -> RequestTask {
+        return ordersGetWithRequestBuilder(page: page, size: size).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -39,16 +36,13 @@ open class OrdersAPI {
      Get Orders
      - GET /orders
      - Returns a paginated list of orders. <br><br>Orders are limited to those placed by your app.
-     - parameter xVioletToken: (header)  
-     - parameter xVioletAppSecret: (header)  
-     - parameter xVioletAppId: (header)  
      - parameter page: (query)  (optional, default to 1)
      - parameter size: (query)  (optional, default to 20)
      - returns: RequestBuilder<PageOrder> 
      */
-    open class func ordersGetWithRequestBuilder(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, page: Int? = nil, size: Int? = nil) -> RequestBuilder<PageOrder> {
+    open class func ordersGetWithRequestBuilder(page: Int? = nil, size: Int? = nil) -> RequestBuilder<PageOrder> {
         let localVariablePath = "/orders"
-        let localVariableURLString = VioletPublicClientAPIAPI.basePath + localVariablePath
+        let localVariableURLString = VioletProxyClientAPIAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -58,14 +52,12 @@ open class OrdersAPI {
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
-            "X-Violet-Token": xVioletToken.encodeToJSON(),
-            "X-Violet-App-Secret": xVioletAppSecret.encodeToJSON(),
-            "X-Violet-App-Id": xVioletAppId.encodeToJSON(),
+            :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PageOrder>.Type = VioletPublicClientAPIAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PageOrder>.Type = VioletProxyClientAPIAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
@@ -73,16 +65,13 @@ open class OrdersAPI {
     /**
      Get Order by ID
      
-     - parameter xVioletToken: (header)  
-     - parameter xVioletAppSecret: (header)  
-     - parameter xVioletAppId: (header)  
      - parameter orderId: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func ordersOrderIdGet(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, orderId: Int64, apiResponseQueue: DispatchQueue = VioletPublicClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: Order?, _ error: Error?) -> Void)) -> RequestTask {
-        return ordersOrderIdGetWithRequestBuilder(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, orderId: orderId).execute(apiResponseQueue) { result in
+    open class func ordersOrderIdGet(orderId: Int64, apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: Order?, _ error: Error?) -> Void)) -> RequestTask {
+        return ordersOrderIdGetWithRequestBuilder(orderId: orderId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -96,31 +85,26 @@ open class OrdersAPI {
      Get Order by ID
      - GET /orders/{order_id}
      - Retrieves a single order by ID.
-     - parameter xVioletToken: (header)  
-     - parameter xVioletAppSecret: (header)  
-     - parameter xVioletAppId: (header)  
      - parameter orderId: (path)  
      - returns: RequestBuilder<Order> 
      */
-    open class func ordersOrderIdGetWithRequestBuilder(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, orderId: Int64) -> RequestBuilder<Order> {
+    open class func ordersOrderIdGetWithRequestBuilder(orderId: Int64) -> RequestBuilder<Order> {
         var localVariablePath = "/orders/{order_id}"
         let orderIdPreEscape = "\(APIHelper.mapValueToPathItem(orderId))"
         let orderIdPostEscape = orderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{order_id}", with: orderIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = VioletPublicClientAPIAPI.basePath + localVariablePath
+        let localVariableURLString = VioletProxyClientAPIAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
-            "X-Violet-Token": xVioletToken.encodeToJSON(),
-            "X-Violet-App-Secret": xVioletAppSecret.encodeToJSON(),
-            "X-Violet-App-Id": xVioletAppId.encodeToJSON(),
+            :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Order>.Type = VioletPublicClientAPIAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Order>.Type = VioletProxyClientAPIAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
@@ -128,9 +112,6 @@ open class OrdersAPI {
     /**
      Search Orders
      
-     - parameter xVioletToken: (header)  
-     - parameter xVioletAppSecret: (header)  
-     - parameter xVioletAppId: (header)  
      - parameter page: (query)  (optional, default to 1)
      - parameter size: (query)  (optional, default to 20)
      - parameter body: (body)  (optional)
@@ -138,8 +119,8 @@ open class OrdersAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func ordersSearchPost(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, page: Int? = nil, size: Int? = nil, body: OrderSearchRequest? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: PageOrder?, _ error: Error?) -> Void)) -> RequestTask {
-        return ordersSearchPostWithRequestBuilder(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, body: body).execute(apiResponseQueue) { result in
+    open class func ordersSearchPost(page: Int? = nil, size: Int? = nil, body: OrderSearchRequest? = nil, apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: PageOrder?, _ error: Error?) -> Void)) -> RequestTask {
+        return ordersSearchPostWithRequestBuilder(page: page, size: size, body: body).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -153,17 +134,14 @@ open class OrdersAPI {
      Search Orders
      - POST /orders/search
      - Performs a paginated search of all orders. Orders can be searched by 'merchant_id', 'user_id', or a combination of both. <br><br>Orders are limited to those placed by your app.
-     - parameter xVioletToken: (header)  
-     - parameter xVioletAppSecret: (header)  
-     - parameter xVioletAppId: (header)  
      - parameter page: (query)  (optional, default to 1)
      - parameter size: (query)  (optional, default to 20)
      - parameter body: (body)  (optional)
      - returns: RequestBuilder<PageOrder> 
      */
-    open class func ordersSearchPostWithRequestBuilder(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, page: Int? = nil, size: Int? = nil, body: OrderSearchRequest? = nil) -> RequestBuilder<PageOrder> {
+    open class func ordersSearchPostWithRequestBuilder(page: Int? = nil, size: Int? = nil, body: OrderSearchRequest? = nil) -> RequestBuilder<PageOrder> {
         let localVariablePath = "/orders/search"
-        let localVariableURLString = VioletPublicClientAPIAPI.basePath + localVariablePath
+        let localVariableURLString = VioletProxyClientAPIAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -173,14 +151,12 @@ open class OrdersAPI {
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
-            "X-Violet-Token": xVioletToken.encodeToJSON(),
-            "X-Violet-App-Secret": xVioletAppSecret.encodeToJSON(),
-            "X-Violet-App-Id": xVioletAppId.encodeToJSON(),
+            :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PageOrder>.Type = VioletPublicClientAPIAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PageOrder>.Type = VioletProxyClientAPIAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }

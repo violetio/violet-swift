@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **size** | **Int** |  | [optional] 
 **content** | [Order] |  | [optional] 
 **number** | **Int** |  | [optional] 
-**sort** | [**AnyCodable**](.md) |  | [optional] 
+**sort** | **AnyCodable** |  | [optional] 
 **first** | **Bool** |  | [optional] [default to false]
 **last** | **Bool** |  | [optional] [default to false]
 **numberOfElements** | **Int** |  | [optional] 

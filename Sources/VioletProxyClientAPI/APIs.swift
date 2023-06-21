@@ -6,15 +6,15 @@
 
 import Foundation
 
-// We reverted the change of VioletPublicClientAPIAPI to VioletPublicClientAPI introduced in https://github.com/OpenAPITools/openapi-generator/pull/9624
+// We reverted the change of VioletProxyClientAPIAPI to VioletProxyClientAPI introduced in https://github.com/OpenAPITools/openapi-generator/pull/9624
 // Because it was causing the following issue https://github.com/OpenAPITools/openapi-generator/issues/9953
 // If you are affected by this issue, please consider removing the following two lines,
 // By setting the option removeMigrationProjectNameClass to true in the generator
-@available(*, deprecated, renamed: "VioletPublicClientAPIAPI")
-public typealias VioletPublicClientAPI = VioletPublicClientAPIAPI
+@available(*, deprecated, renamed: "VioletProxyClientAPIAPI")
+public typealias VioletProxyClientAPI = VioletProxyClientAPIAPI
 
-open class VioletPublicClientAPIAPI {
-    public static var basePath = "https://sandbox-api.violet.io:443/v1"
+open class VioletProxyClientAPIAPI {
+    public static var basePath = "http://localhost:8020/v1"
     public static var customHeaders: [String: String] = [:]
     public static var credential: URLCredential?
     public static var requestBuilderFactory: RequestBuilderFactory = URLSessionRequestBuilderFactory()
@@ -42,7 +42,7 @@ open class RequestBuilder<T> {
         self.headers = headers
         self.requiresAuthentication = requiresAuthentication
 
-        addHeaders(VioletPublicClientAPIAPI.customHeaders)
+        addHeaders(VioletProxyClientAPIAPI.customHeaders)
     }
 
     open func addHeaders(_ aHeaders: [String: String]) {
@@ -52,7 +52,7 @@ open class RequestBuilder<T> {
     }
 
     @discardableResult
-    open func execute(_ apiResponseQueue: DispatchQueue = VioletPublicClientAPIAPI.apiResponseQueue, _ completion: @escaping (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void) -> RequestTask {
+    open func execute(_ apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, _ completion: @escaping (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void) -> RequestTask {
         return requestTask
     }
 
@@ -64,7 +64,7 @@ open class RequestBuilder<T> {
     }
 
     open func addCredential() -> Self {
-        credential = VioletPublicClientAPIAPI.credential
+        credential = VioletProxyClientAPIAPI.credential
         return self
     }
 }

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Int64** |  | 
+**id** | **Int64** |  | [optional] 
 **offerId** | **Int64** | ID of the Offer | 
 **merchantId** | **Int** | ID of the Merchant | 
 **externalId** | **String** | ID of the SKU on the External Ecom Platform | [optional] 

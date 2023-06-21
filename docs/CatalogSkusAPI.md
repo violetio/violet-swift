@@ -1,6 +1,6 @@
 # CatalogSkusAPI
 
-All URIs are relative to *https://sandbox-api.violet.io:443/v1*
+All URIs are relative to *http://localhost:8020/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **catalogSkusSkuIdGet**
 ```swift
-    open class func catalogSkusSkuIdGet(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, skuId: Int64, completion: @escaping (_ data: Sku?, _ error: Error?) -> Void)
+    open class func catalogSkusSkuIdGet(skuId: Int64, completion: @escaping (_ data: Sku?, _ error: Error?) -> Void)
 ```
 
 Get Sku by ID
@@ -19,15 +19,12 @@ Retreives a single SKU by ID.
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let skuId = 987 // Int64 | 
 
 // Get Sku by ID
-CatalogSkusAPI.catalogSkusSkuIdGet(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, skuId: skuId) { (response, error) in
+CatalogSkusAPI.catalogSkusSkuIdGet(skuId: skuId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -43,9 +40,6 @@ CatalogSkusAPI.catalogSkusSkuIdGet(xVioletToken: xVioletToken, xVioletAppSecret:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **skuId** | **Int64** |  | 
 
 ### Return type

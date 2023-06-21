@@ -1,6 +1,6 @@
 # CheckoutPaymentAPI
 
-All URIs are relative to *https://sandbox-api.violet.io:443/v1*
+All URIs are relative to *http://localhost:8020/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **checkoutCartCartIdPaymentPost**
 ```swift
-    open class func checkoutCartCartIdPaymentPost(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, cartId: Int64, priceCart: Bool? = nil, body: PaymentMethodRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func checkoutCartCartIdPaymentPost(cartId: Int64, priceCart: Bool? = nil, body: PaymentMethodRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Apply Payment Method
@@ -18,17 +18,14 @@ Apply Payment Method
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let cartId = 987 // Int64 | 
 let priceCart = true // Bool |  (optional) (default to false)
 let body = PaymentMethodRequest(token: "token_example", intentBasedCapture: false, cardNumber: "cardNumber_example", cardCvc: 123, cardExpMonth: 123, cardExpYear: 123, cardPostalCode: "cardPostalCode_example", completeCheckout: false, appOrderId: "appOrderId_example") // PaymentMethodRequest |  (optional)
 
 // Apply Payment Method
-CheckoutPaymentAPI.checkoutCartCartIdPaymentPost(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutPaymentAPI.checkoutCartCartIdPaymentPost(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -44,9 +41,6 @@ CheckoutPaymentAPI.checkoutCartCartIdPaymentPost(xVioletToken: xVioletToken, xVi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **cartId** | **Int64** |  | 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **body** | [**PaymentMethodRequest**](PaymentMethodRequest.md) |  | [optional] 
@@ -68,7 +62,7 @@ No authorization required
 
 # **checkoutPaymentTokenGet**
 ```swift
-    open class func checkoutPaymentTokenGet(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, completion: @escaping (_ data: CurrentPaymentToken?, _ error: Error?) -> Void)
+    open class func checkoutPaymentTokenGet(completion: @escaping (_ data: CurrentPaymentToken?, _ error: Error?) -> Void)
 ```
 
 Get Stripe Public Token
@@ -78,14 +72,11 @@ Obtain the current Stripe Publishable Key for use in tokenizing payment card dat
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 
 // Get Stripe Public Token
-CheckoutPaymentAPI.checkoutPaymentTokenGet(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CheckoutPaymentAPI.checkoutPaymentTokenGet() { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -98,12 +89,7 @@ CheckoutPaymentAPI.checkoutPaymentTokenGet(xVioletToken: xVioletToken, xVioletAp
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
+This endpoint does not need any parameter.
 
 ### Return type
 

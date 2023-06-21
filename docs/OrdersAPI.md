@@ -1,6 +1,6 @@
 # OrdersAPI
 
-All URIs are relative to *https://sandbox-api.violet.io:443/v1*
+All URIs are relative to *http://localhost:8020/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **ordersGet**
 ```swift
-    open class func ordersGet(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, page: Int? = nil, size: Int? = nil, completion: @escaping (_ data: PageOrder?, _ error: Error?) -> Void)
+    open class func ordersGet(page: Int? = nil, size: Int? = nil, completion: @escaping (_ data: PageOrder?, _ error: Error?) -> Void)
 ```
 
 Get Orders
@@ -21,16 +21,13 @@ Returns a paginated list of orders. <br><br>Orders are limited to those placed b
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
 
 // Get Orders
-OrdersAPI.ordersGet(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size) { (response, error) in
+OrdersAPI.ordersGet(page: page, size: size) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -46,9 +43,6 @@ OrdersAPI.ordersGet(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecr
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
 
@@ -69,7 +63,7 @@ No authorization required
 
 # **ordersOrderIdGet**
 ```swift
-    open class func ordersOrderIdGet(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, orderId: Int64, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func ordersOrderIdGet(orderId: Int64, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Get Order by ID
@@ -79,15 +73,12 @@ Retrieves a single order by ID.
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let orderId = 987 // Int64 | 
 
 // Get Order by ID
-OrdersAPI.ordersOrderIdGet(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, orderId: orderId) { (response, error) in
+OrdersAPI.ordersOrderIdGet(orderId: orderId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -103,9 +94,6 @@ OrdersAPI.ordersOrderIdGet(xVioletToken: xVioletToken, xVioletAppSecret: xViolet
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **orderId** | **Int64** |  | 
 
 ### Return type
@@ -125,7 +113,7 @@ No authorization required
 
 # **ordersSearchPost**
 ```swift
-    open class func ordersSearchPost(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, page: Int? = nil, size: Int? = nil, body: OrderSearchRequest? = nil, completion: @escaping (_ data: PageOrder?, _ error: Error?) -> Void)
+    open class func ordersSearchPost(page: Int? = nil, size: Int? = nil, body: OrderSearchRequest? = nil, completion: @escaping (_ data: PageOrder?, _ error: Error?) -> Void)
 ```
 
 Search Orders
@@ -135,17 +123,14 @@ Performs a paginated search of all orders. Orders can be searched by 'merchant_i
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
 let body = OrderSearchRequest(userId: 123, merchantId: 123, referralId: "referralId_example") // OrderSearchRequest |  (optional)
 
 // Search Orders
-OrdersAPI.ordersSearchPost(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, body: body) { (response, error) in
+OrdersAPI.ordersSearchPost(page: page, size: size, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -161,9 +146,6 @@ OrdersAPI.ordersSearchPost(xVioletToken: xVioletToken, xVioletAppSecret: xViolet
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
  **body** | [**OrderSearchRequest**](OrderSearchRequest.md) |  | [optional] 

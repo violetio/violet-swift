@@ -1,6 +1,6 @@
 # CatalogOffersAPI
 
-All URIs are relative to *https://sandbox-api.violet.io:443/v1*
+All URIs are relative to *http://localhost:8020/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **catalogOffersMerchantsMerchantIdGet**
 ```swift
-    open class func catalogOffersMerchantsMerchantIdGet(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, merchantId: Int64, page: Int? = nil, size: Int? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
+    open class func catalogOffersMerchantsMerchantIdGet(merchantId: Int64, page: Int? = nil, size: Int? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
 ```
 
 Get Offers by merchant_id
@@ -20,17 +20,14 @@ Retrieves a page of offers by Merchant ID.
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let merchantId = 987 // Int64 | 
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
 
 // Get Offers by merchant_id
-CatalogOffersAPI.catalogOffersMerchantsMerchantIdGet(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, merchantId: merchantId, page: page, size: size) { (response, error) in
+CatalogOffersAPI.catalogOffersMerchantsMerchantIdGet(merchantId: merchantId, page: page, size: size) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -46,9 +43,6 @@ CatalogOffersAPI.catalogOffersMerchantsMerchantIdGet(xVioletToken: xVioletToken,
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **merchantId** | **Int64** |  | 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
@@ -70,7 +64,7 @@ No authorization required
 
 # **catalogOffersOfferIdGet**
 ```swift
-    open class func catalogOffersOfferIdGet(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, offerId: Int64, completion: @escaping (_ data: Offer?, _ error: Error?) -> Void)
+    open class func catalogOffersOfferIdGet(offerId: Int64, completion: @escaping (_ data: Offer?, _ error: Error?) -> Void)
 ```
 
 Get Offer by ID
@@ -80,15 +74,12 @@ Retrieves a single offer by ID.
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let offerId = 987 // Int64 | 
 
 // Get Offer by ID
-CatalogOffersAPI.catalogOffersOfferIdGet(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, offerId: offerId) { (response, error) in
+CatalogOffersAPI.catalogOffersOfferIdGet(offerId: offerId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -104,9 +95,6 @@ CatalogOffersAPI.catalogOffersOfferIdGet(xVioletToken: xVioletToken, xVioletAppS
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **offerId** | **Int64** |  | 
 
 ### Return type

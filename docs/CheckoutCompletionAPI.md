@@ -1,6 +1,6 @@
 # CheckoutCompletionAPI
 
-All URIs are relative to *https://sandbox-api.violet.io:443/v1*
+All URIs are relative to *http://localhost:8020/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **checkoutCartCartIdPriceGet**
 ```swift
-    open class func checkoutCartCartIdPriceGet(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, cartId: Int64, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func checkoutCartCartIdPriceGet(cartId: Int64, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Price Cart
@@ -20,15 +20,12 @@ Prices the cart. This includes the calculation of shipping and tax rates. Before
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let cartId = 987 // Int64 | 
 
 // Price Cart
-CheckoutCompletionAPI.checkoutCartCartIdPriceGet(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, cartId: cartId) { (response, error) in
+CheckoutCompletionAPI.checkoutCartCartIdPriceGet(cartId: cartId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -44,9 +41,6 @@ CheckoutCompletionAPI.checkoutCartCartIdPriceGet(xVioletToken: xVioletToken, xVi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **cartId** | **Int64** |  | 
 
 ### Return type
@@ -66,7 +60,7 @@ No authorization required
 
 # **checkoutCartCartIdSubmitPost**
 ```swift
-    open class func checkoutCartCartIdSubmitPost(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, cartId: Int64, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func checkoutCartCartIdSubmitPost(cartId: Int64, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Submit Cart
@@ -76,15 +70,12 @@ Submits a cart. For each unique bag in your cart an order will be submitted to t
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let cartId = 987 // Int64 | 
 
 // Submit Cart
-CheckoutCompletionAPI.checkoutCartCartIdSubmitPost(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, cartId: cartId) { (response, error) in
+CheckoutCompletionAPI.checkoutCartCartIdSubmitPost(cartId: cartId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -100,9 +91,6 @@ CheckoutCompletionAPI.checkoutCartCartIdSubmitPost(xVioletToken: xVioletToken, x
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **cartId** | **Int64** |  | 
 
 ### Return type

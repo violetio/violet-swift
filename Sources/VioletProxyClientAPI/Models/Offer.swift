@@ -65,7 +65,7 @@ public struct Offer: Codable, JSONEncodable, Hashable {
         case meters = "METERS"
         case yards = "YARDS"
     }
-    public var id: Int64
+    public var id: Int64?
     /** The parent/container product ID */
     public var productId: String
     /** External ID */
@@ -125,7 +125,7 @@ public struct Offer: Codable, JSONEncodable, Hashable {
     /** Size Unit */
     public var sizeUnit: SizeUnit?
 
-    public init(id: Int64, productId: String, externalId: String? = nil, externalUrl: String? = nil, name: String, description: String? = nil, source: Source, seller: String? = nil, vendor: String? = nil, merchantId: Int, available: Bool = false, visible: Bool = false, minPrice: Int, maxPrice: Int? = nil, commissionRate: Double? = nil, specialCommissionRate: Bool? = false, currency: String? = nil, sourceCategoryName: String? = nil, meta: [Meta]? = nil, variants: [Variant]? = nil, skus: [Sku]? = nil, albums: [Album]? = nil, threeDEnables: Bool? = false, threeDResource: String? = nil, type: ModelType? = nil, status: Status? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, weightUnit: WeightUnit? = nil, sizeUnit: SizeUnit? = nil) {
+    public init(id: Int64? = nil, productId: String, externalId: String? = nil, externalUrl: String? = nil, name: String, description: String? = nil, source: Source, seller: String? = nil, vendor: String? = nil, merchantId: Int, available: Bool = false, visible: Bool = false, minPrice: Int, maxPrice: Int? = nil, commissionRate: Double? = nil, specialCommissionRate: Bool? = false, currency: String? = nil, sourceCategoryName: String? = nil, meta: [Meta]? = nil, variants: [Variant]? = nil, skus: [Sku]? = nil, albums: [Album]? = nil, threeDEnables: Bool? = false, threeDResource: String? = nil, type: ModelType? = nil, status: Status? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, weightUnit: WeightUnit? = nil, sizeUnit: SizeUnit? = nil) {
         self.id = id
         self.productId = productId
         self.externalId = externalId
@@ -195,7 +195,7 @@ public struct Offer: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
+        try container.encodeIfPresent(id, forKey: .id)
         try container.encode(productId, forKey: .productId)
         try container.encodeIfPresent(externalId, forKey: .externalId)
         try container.encodeIfPresent(externalUrl, forKey: .externalUrl)

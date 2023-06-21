@@ -1,6 +1,6 @@
 # WebhooksAPI
 
-All URIs are relative to *https://sandbox-api.violet.io:443/v1*
+All URIs are relative to *http://localhost:8020/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 # **appsAppIdWebhooksGet**
 ```swift
-    open class func appsAppIdWebhooksGet(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, appId: Int64, event: String? = nil, completion: @escaping (_ data: [Webhook]?, _ error: Error?) -> Void)
+    open class func appsAppIdWebhooksGet(appId: Int64, event: String? = nil, completion: @escaping (_ data: [Webhook]?, _ error: Error?) -> Void)
 ```
 
 List Webhooks
@@ -23,16 +23,13 @@ Retrieves a list of previously created webhooks.
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let appId = 987 // Int64 | 
 let event = "event_example" // String |  (optional)
 
 // List Webhooks
-WebhooksAPI.appsAppIdWebhooksGet(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId, event: event) { (response, error) in
+WebhooksAPI.appsAppIdWebhooksGet(appId: appId, event: event) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -48,9 +45,6 @@ WebhooksAPI.appsAppIdWebhooksGet(xVioletToken: xVioletToken, xVioletAppSecret: x
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **appId** | **Int64** |  | 
  **event** | **String** |  | [optional] 
 
@@ -71,7 +65,7 @@ No authorization required
 
 # **appsAppIdWebhooksPost**
 ```swift
-    open class func appsAppIdWebhooksPost(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, appId: Int64, body: Webhook? = nil, completion: @escaping (_ data: Webhook?, _ error: Error?) -> Void)
+    open class func appsAppIdWebhooksPost(appId: Int64, body: Webhook? = nil, completion: @escaping (_ data: Webhook?, _ error: Error?) -> Void)
 ```
 
 Create Webhook
@@ -81,16 +75,13 @@ Creates a new webhook for the desired event. The remote endpoint must be HTTPS.<
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let appId = 987 // Int64 | 
 let body = Webhook(id: 123, appId: 123, event: "event_example", remoteEndpoint: "remoteEndpoint_example", status: "status_example", dateCreated: Date(), dateLastModified: Date()) // Webhook |  (optional)
 
 // Create Webhook
-WebhooksAPI.appsAppIdWebhooksPost(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId, body: body) { (response, error) in
+WebhooksAPI.appsAppIdWebhooksPost(appId: appId, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -106,9 +97,6 @@ WebhooksAPI.appsAppIdWebhooksPost(xVioletToken: xVioletToken, xVioletAppSecret: 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **appId** | **Int64** |  | 
  **body** | [**Webhook**](Webhook.md) |  | [optional] 
 
@@ -129,7 +117,7 @@ No authorization required
 
 # **appsAppIdWebhooksWebhookIdDelete**
 ```swift
-    open class func appsAppIdWebhooksWebhookIdDelete(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, appId: Int64, webhookId: Int64, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func appsAppIdWebhooksWebhookIdDelete(appId: Int64, webhookId: Int64, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Delete Webhook
@@ -139,16 +127,13 @@ Removes a webhook. Events will immedietly stop posting to this endpoint upon del
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let appId = 987 // Int64 | 
 let webhookId = 987 // Int64 | 
 
 // Delete Webhook
-WebhooksAPI.appsAppIdWebhooksWebhookIdDelete(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId, webhookId: webhookId) { (response, error) in
+WebhooksAPI.appsAppIdWebhooksWebhookIdDelete(appId: appId, webhookId: webhookId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -164,9 +149,6 @@ WebhooksAPI.appsAppIdWebhooksWebhookIdDelete(xVioletToken: xVioletToken, xViolet
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **appId** | **Int64** |  | 
  **webhookId** | **Int64** |  | 
 
@@ -187,7 +169,7 @@ No authorization required
 
 # **appsAppIdWebhooksWebhookIdGet**
 ```swift
-    open class func appsAppIdWebhooksWebhookIdGet(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, appId: Int64, webhookId: Int64, completion: @escaping (_ data: Webhook?, _ error: Error?) -> Void)
+    open class func appsAppIdWebhooksWebhookIdGet(appId: Int64, webhookId: Int64, completion: @escaping (_ data: Webhook?, _ error: Error?) -> Void)
 ```
 
 Get Webhook by ID
@@ -197,16 +179,13 @@ Retrieves a single webhook by ID.
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let appId = 987 // Int64 | 
 let webhookId = 987 // Int64 | 
 
 // Get Webhook by ID
-WebhooksAPI.appsAppIdWebhooksWebhookIdGet(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId, webhookId: webhookId) { (response, error) in
+WebhooksAPI.appsAppIdWebhooksWebhookIdGet(appId: appId, webhookId: webhookId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -222,9 +201,6 @@ WebhooksAPI.appsAppIdWebhooksWebhookIdGet(xVioletToken: xVioletToken, xVioletApp
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **appId** | **Int64** |  | 
  **webhookId** | **Int64** |  | 
 
@@ -245,7 +221,7 @@ No authorization required
 
 # **appsAppIdWebhooksWebhookIdPut**
 ```swift
-    open class func appsAppIdWebhooksWebhookIdPut(xVioletToken: String, xVioletAppSecret: String, xVioletAppId: Int64, appId: Int64, webhookId: Int64, body: Webhook? = nil, completion: @escaping (_ data: Webhook?, _ error: Error?) -> Void)
+    open class func appsAppIdWebhooksWebhookIdPut(appId: Int64, webhookId: Int64, body: Webhook? = nil, completion: @escaping (_ data: Webhook?, _ error: Error?) -> Void)
 ```
 
 Update Webhook
@@ -255,17 +231,14 @@ Modifies an existing webhook by ID.
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClientAPI
+import VioletProxyClientAPI
 
-let xVioletToken = "xVioletToken_example" // String | 
-let xVioletAppSecret = "xVioletAppSecret_example" // String | 
-let xVioletAppId = 987 // Int64 | 
 let appId = 987 // Int64 | 
 let webhookId = 987 // Int64 | 
 let body = Webhook(id: 123, appId: 123, event: "event_example", remoteEndpoint: "remoteEndpoint_example", status: "status_example", dateCreated: Date(), dateLastModified: Date()) // Webhook |  (optional)
 
 // Update Webhook
-WebhooksAPI.appsAppIdWebhooksWebhookIdPut(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId, webhookId: webhookId, body: body) { (response, error) in
+WebhooksAPI.appsAppIdWebhooksWebhookIdPut(appId: appId, webhookId: webhookId, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -281,9 +254,6 @@ WebhooksAPI.appsAppIdWebhooksWebhookIdPut(xVioletToken: xVioletToken, xVioletApp
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | 
- **xVioletAppSecret** | **String** |  | 
- **xVioletAppId** | **Int64** |  | 
  **appId** | **Int64** |  | 
  **webhookId** | **Int64** |  | 
  **body** | [**Webhook**](Webhook.md) |  | [optional] 
