@@ -15,6 +15,9 @@ open class CatalogProductsAPI {
     /**
      Get Products
      
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter page: (query)  (optional, default to 1)
      - parameter size: (query)  (optional, default to 20)
      - parameter excludePublic: (query) Excludes all publicly available products that are not part of your curated catalog. In sandbox this should be left as false as there are no merchant &lt;-&gt; developer relationships and all products are publically available to all developers. (optional, default to false)
@@ -22,8 +25,8 @@ open class CatalogProductsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func catalogProductsGet(page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: PageProduct?, _ error: Error?) -> Void)) -> RequestTask {
-        return catalogProductsGetWithRequestBuilder(page: page, size: size, excludePublic: excludePublic).execute(apiResponseQueue) { result in
+    open class func catalogProductsGet(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: PageProduct?, _ error: Error?) -> Void)) -> RequestTask {
+        return catalogProductsGetWithRequestBuilder(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, excludePublic: excludePublic).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -37,14 +40,17 @@ open class CatalogProductsAPI {
      Get Products
      - GET /catalog/products
      - Retreives a paginated list of all products in ascending order since date of creation.
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter page: (query)  (optional, default to 1)
      - parameter size: (query)  (optional, default to 20)
      - parameter excludePublic: (query) Excludes all publicly available products that are not part of your curated catalog. In sandbox this should be left as false as there are no merchant &lt;-&gt; developer relationships and all products are publically available to all developers. (optional, default to false)
      - returns: RequestBuilder<PageProduct> 
      */
-    open class func catalogProductsGetWithRequestBuilder(page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil) -> RequestBuilder<PageProduct> {
+    open class func catalogProductsGetWithRequestBuilder(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil) -> RequestBuilder<PageProduct> {
         let localVariablePath = "/catalog/products"
-        let localVariableURLString = VioletProxyClientAPIAPI.basePath + localVariablePath
+        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -55,12 +61,14 @@ open class CatalogProductsAPI {
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
-            :
+            "X-Violet-Token": xVioletToken?.encodeToJSON(),
+            "X-Violet-App-Secret": xVioletAppSecret?.encodeToJSON(),
+            "X-Violet-App-Id": xVioletAppId?.encodeToJSON(),
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PageProduct>.Type = VioletProxyClientAPIAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PageProduct>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
@@ -69,12 +77,15 @@ open class CatalogProductsAPI {
      Get Product by ID
      
      - parameter productId: (path)  
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func catalogProductsProductIdGet(productId: String, apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: Product?, _ error: Error?) -> Void)) -> RequestTask {
-        return catalogProductsProductIdGetWithRequestBuilder(productId: productId).execute(apiResponseQueue) { result in
+    open class func catalogProductsProductIdGet(productId: String, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: Product?, _ error: Error?) -> Void)) -> RequestTask {
+        return catalogProductsProductIdGetWithRequestBuilder(productId: productId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -89,25 +100,30 @@ open class CatalogProductsAPI {
      - GET /catalog/products/{product_id}
      - Retrieves a single product by ID. This request will include all offers of that product.
      - parameter productId: (path)  
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - returns: RequestBuilder<Product> 
      */
-    open class func catalogProductsProductIdGetWithRequestBuilder(productId: String) -> RequestBuilder<Product> {
+    open class func catalogProductsProductIdGetWithRequestBuilder(productId: String, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil) -> RequestBuilder<Product> {
         var localVariablePath = "/catalog/products/{product_id}"
         let productIdPreEscape = "\(APIHelper.mapValueToPathItem(productId))"
         let productIdPostEscape = productIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{product_id}", with: productIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = VioletProxyClientAPIAPI.basePath + localVariablePath
+        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
-            :
+            "X-Violet-Token": xVioletToken?.encodeToJSON(),
+            "X-Violet-App-Secret": xVioletAppSecret?.encodeToJSON(),
+            "X-Violet-App-Id": xVioletAppId?.encodeToJSON(),
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Product>.Type = VioletProxyClientAPIAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Product>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
@@ -115,6 +131,9 @@ open class CatalogProductsAPI {
     /**
      Get Random Products
      
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter page: (query)  (optional, default to 1)
      - parameter size: (query)  (optional, default to 20)
      - parameter excludePublic: (query) Excludes all publicly available products that are not part of your curated catalog. In sandbox this should be left as false as there are no merchant &lt;-&gt; developer relationships and all products are publically available to all developers. (optional, default to false)
@@ -122,8 +141,8 @@ open class CatalogProductsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func catalogProductsRandomGet(page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: PageProduct?, _ error: Error?) -> Void)) -> RequestTask {
-        return catalogProductsRandomGetWithRequestBuilder(page: page, size: size, excludePublic: excludePublic).execute(apiResponseQueue) { result in
+    open class func catalogProductsRandomGet(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: PageProduct?, _ error: Error?) -> Void)) -> RequestTask {
+        return catalogProductsRandomGetWithRequestBuilder(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, excludePublic: excludePublic).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -137,14 +156,17 @@ open class CatalogProductsAPI {
      Get Random Products
      - GET /catalog/products/random
      - Retreives a paginated list of products in random order. The original random order is maintained through pagination.
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter page: (query)  (optional, default to 1)
      - parameter size: (query)  (optional, default to 20)
      - parameter excludePublic: (query) Excludes all publicly available products that are not part of your curated catalog. In sandbox this should be left as false as there are no merchant &lt;-&gt; developer relationships and all products are publically available to all developers. (optional, default to false)
      - returns: RequestBuilder<PageProduct> 
      */
-    open class func catalogProductsRandomGetWithRequestBuilder(page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil) -> RequestBuilder<PageProduct> {
+    open class func catalogProductsRandomGetWithRequestBuilder(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil) -> RequestBuilder<PageProduct> {
         let localVariablePath = "/catalog/products/random"
-        let localVariableURLString = VioletProxyClientAPIAPI.basePath + localVariablePath
+        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -155,12 +177,14 @@ open class CatalogProductsAPI {
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
-            :
+            "X-Violet-Token": xVioletToken?.encodeToJSON(),
+            "X-Violet-App-Secret": xVioletAppSecret?.encodeToJSON(),
+            "X-Violet-App-Id": xVioletAppId?.encodeToJSON(),
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PageProduct>.Type = VioletProxyClientAPIAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PageProduct>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
@@ -168,6 +192,9 @@ open class CatalogProductsAPI {
     /**
      Search Products
      
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter page: (query)  (optional, default to 1)
      - parameter size: (query)  (optional, default to 20)
      - parameter excludePublic: (query) Excludes all publicly available products that are not part of your curated catalog. In sandbox this should be left as false as there are no merchant &lt;-&gt; developer relationships and all products are publically available to all developers. (optional, default to false)
@@ -176,8 +203,8 @@ open class CatalogProductsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func catalogProductsSearchPost(page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, body: SearchRequest? = nil, apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: PageProduct?, _ error: Error?) -> Void)) -> RequestTask {
-        return catalogProductsSearchPostWithRequestBuilder(page: page, size: size, excludePublic: excludePublic, body: body).execute(apiResponseQueue) { result in
+    open class func catalogProductsSearchPost(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, body: SearchRequest? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: PageProduct?, _ error: Error?) -> Void)) -> RequestTask {
+        return catalogProductsSearchPostWithRequestBuilder(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, excludePublic: excludePublic, body: body).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -191,15 +218,18 @@ open class CatalogProductsAPI {
      Search Products
      - POST /catalog/products/search
      - Search the complete product catalog by using the available filters in the request body.
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter page: (query)  (optional, default to 1)
      - parameter size: (query)  (optional, default to 20)
      - parameter excludePublic: (query) Excludes all publicly available products that are not part of your curated catalog. In sandbox this should be left as false as there are no merchant &lt;-&gt; developer relationships and all products are publically available to all developers. (optional, default to false)
      - parameter body: (body)  (optional)
      - returns: RequestBuilder<PageProduct> 
      */
-    open class func catalogProductsSearchPostWithRequestBuilder(page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, body: SearchRequest? = nil) -> RequestBuilder<PageProduct> {
+    open class func catalogProductsSearchPostWithRequestBuilder(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, body: SearchRequest? = nil) -> RequestBuilder<PageProduct> {
         let localVariablePath = "/catalog/products/search"
-        let localVariableURLString = VioletProxyClientAPIAPI.basePath + localVariablePath
+        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -210,12 +240,14 @@ open class CatalogProductsAPI {
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
-            :
+            "X-Violet-Token": xVioletToken?.encodeToJSON(),
+            "X-Violet-App-Secret": xVioletAppSecret?.encodeToJSON(),
+            "X-Violet-App-Id": xVioletAppId?.encodeToJSON(),
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PageProduct>.Type = VioletProxyClientAPIAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PageProduct>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }

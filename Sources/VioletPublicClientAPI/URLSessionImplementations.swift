@@ -25,7 +25,7 @@ class URLSessionRequestBuilderFactory: RequestBuilderFactory {
     }
 }
 
-public typealias VioletProxyClientAPIAPIChallengeHandler = ((URLSession, URLSessionTask, URLAuthenticationChallenge) -> (URLSession.AuthChallengeDisposition, URLCredential?))
+public typealias VioletPublicClientAPIChallengeHandler = ((URLSession, URLSessionTask, URLAuthenticationChallenge) -> (URLSession.AuthChallengeDisposition, URLCredential?))
 
 // Store the URLSession's delegate to retain its reference
 private let sessionDelegate = SessionDelegate()
@@ -34,7 +34,7 @@ private let sessionDelegate = SessionDelegate()
 private let defaultURLSession = URLSession(configuration: .default, delegate: sessionDelegate, delegateQueue: nil)
 
 // Store current taskDidReceiveChallenge for every URLSessionTask
-private var challengeHandlerStore = SynchronizedDictionary<Int, VioletProxyClientAPIAPIChallengeHandler>()
+private var challengeHandlerStore = SynchronizedDictionary<Int, VioletPublicClientAPIChallengeHandler>()
 
 // Store current URLCredential for every URLSessionTask
 private var credentialStore = SynchronizedDictionary<Int, URLCredential>()
@@ -44,7 +44,7 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
     /**
      May be assigned if you want to control the authentication challenges.
      */
-    public var taskDidReceiveChallenge: VioletProxyClientAPIAPIChallengeHandler?
+    public var taskDidReceiveChallenge: VioletPublicClientAPIChallengeHandler?
 
     /**
      May be assigned if you want to do any of those things:
@@ -106,7 +106,7 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
     }
 
     @discardableResult
-    override open func execute(_ apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, _ completion: @escaping (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void) -> RequestTask {
+    override open func execute(_ apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, _ completion: @escaping (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void) -> RequestTask {
         let urlSession = createURLSession()
 
         guard let xMethod = HTTPMethod(rawValue: method) else {
@@ -221,7 +221,7 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
         for (key, value) in headers {
             httpHeaders[key] = value
         }
-        for (key, value) in VioletProxyClientAPIAPI.customHeaders {
+        for (key, value) in VioletPublicClientAPI.customHeaders {
             httpHeaders[key] = value
         }
         return httpHeaders
@@ -325,7 +325,7 @@ open class URLSessionDecodableRequestBuilder<T: Decodable>: URLSessionRequestBui
                 if let headerFileName = getFileName(fromContentDisposition: httpResponse.allHeaderFields["Content-Disposition"] as? String) {
                     requestPath = requestPath.appending("/\(headerFileName)")
                 } else {
-                    requestPath = requestPath.appending("/tmp.VioletProxyClientAPI.\(UUID().uuidString)")
+                    requestPath = requestPath.appending("/tmp.VioletPublicClient.\(UUID().uuidString)")
                 }
 
                 let filePath = cachesDirectory.appendingPathComponent(requestPath)

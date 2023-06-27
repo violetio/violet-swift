@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Int64** |  | [optional] 
+**id** | **Int64** |  | 
 **productId** | **String** | The parent/container product ID | 
 **externalId** | **String** | External ID | [optional] 
 **externalUrl** | **String** | External URL | [optional] 

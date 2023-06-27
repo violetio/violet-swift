@@ -1,36 +1,33 @@
-# CatalogOffersAPI
+# AccessAPI
 
 All URIs are relative to *http://localhost:8020/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**catalogOffersMerchantsMerchantIdGet**](CatalogOffersAPI.md#catalogoffersmerchantsmerchantidget) | **GET** /catalog/offers/merchants/{merchant_id} | Get Offers by merchant_id
-[**catalogOffersOfferIdGet**](CatalogOffersAPI.md#catalogoffersofferidget) | **GET** /catalog/offers/{offer_id} | Get Offer by ID
+[**authTokenGet**](AccessAPI.md#authtokenget) | **GET** /auth/token | Refresh Token
+[**loginPost**](AccessAPI.md#loginpost) | **POST** /login | Login
 
 
-# **catalogOffersMerchantsMerchantIdGet**
+# **authTokenGet**
 ```swift
-    open class func catalogOffersMerchantsMerchantIdGet(merchantId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, page: Int? = nil, size: Int? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
+    open class func authTokenGet(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, completion: @escaping (_ data: RefreshTokenResponse?, _ error: Error?) -> Void)
 ```
 
-Get Offers by merchant_id
+Refresh Token
 
-Retrieves a page of offers by Merchant ID.
+Refreshes a Users token. Pass the \"refresh_token\" value provided in the response body of a login request in the \"X-Violet-Token\" header.
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import VioletPublicClient
 
-let merchantId = 987 // Int64 | 
 let xVioletToken = "xVioletToken_example" // String |  (optional)
 let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
 let xVioletAppId = 987 // Int64 |  (optional)
-let page = 987 // Int |  (optional) (default to 1)
-let size = 987 // Int |  (optional) (default to 20)
 
-// Get Offers by merchant_id
-CatalogOffersAPI.catalogOffersMerchantsMerchantIdGet(merchantId: merchantId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size) { (response, error) in
+// Refresh Token
+AccessAPI.authTokenGet(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -46,16 +43,13 @@ CatalogOffersAPI.catalogOffersMerchantsMerchantIdGet(merchantId: merchantId, xVi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **merchantId** | **Int64** |  | 
  **xVioletToken** | **String** |  | [optional] 
  **xVioletAppSecret** | **String** |  | [optional] 
  **xVioletAppId** | **Int64** |  | [optional] 
- **page** | **Int** |  | [optional] [default to 1]
- **size** | **Int** |  | [optional] [default to 20]
 
 ### Return type
 
-[**PageOffer**](PageOffer.md)
+[**RefreshTokenResponse**](RefreshTokenResponse.md)
 
 ### Authorization
 
@@ -68,27 +62,26 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **catalogOffersOfferIdGet**
+# **loginPost**
 ```swift
-    open class func catalogOffersOfferIdGet(offerId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, completion: @escaping (_ data: Offer?, _ error: Error?) -> Void)
+    open class func loginPost(xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, body: LoginRequest? = nil, completion: @escaping (_ data: LoginResponse?, _ error: Error?) -> Void)
 ```
 
-Get Offer by ID
+Login
 
-Retrieves a single offer by ID.
+Log into an existing Violet account with a username and password. If sucessful an access token will be returned in the response body for use in additional requests against the API.
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import VioletPublicClient
 
-let offerId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
 let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
 let xVioletAppId = 987 // Int64 |  (optional)
+let body = LoginRequest(username: "username_example", password: "password_example") // LoginRequest |  (optional)
 
-// Get Offer by ID
-CatalogOffersAPI.catalogOffersOfferIdGet(offerId: offerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+// Login
+AccessAPI.loginPost(xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -104,14 +97,13 @@ CatalogOffersAPI.catalogOffersOfferIdGet(offerId: offerId, xVioletToken: xViolet
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **offerId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
  **xVioletAppSecret** | **String** |  | [optional] 
  **xVioletAppId** | **Int64** |  | [optional] 
+ **body** | [**LoginRequest**](LoginRequest.md) |  | [optional] 
 
 ### Return type
 
-[**Offer**](Offer.md)
+[**LoginResponse**](LoginResponse.md)
 
 ### Authorization
 
@@ -119,7 +111,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

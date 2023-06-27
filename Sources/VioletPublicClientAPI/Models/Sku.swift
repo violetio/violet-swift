@@ -31,7 +31,7 @@ public struct Sku: Codable, JSONEncodable, Hashable {
         case forDeletion = "FOR_DELETION"
         case archived = "ARCHIVED"
     }
-    public var id: Int64?
+    public var id: Int64
     /** ID of the Offer */
     public var offerId: Int64
     /** ID of the Merchant */
@@ -79,7 +79,7 @@ public struct Sku: Codable, JSONEncodable, Hashable {
     public var dateLastModified: Date?
     public var skuDimensions: SkuDimensions?
 
-    public init(id: Int64? = nil, offerId: Int64, merchantId: Int, externalId: String? = nil, name: String? = nil, asin: String? = nil, gtin: String? = nil, upc: String? = nil, ean: String? = nil, isbn: String? = nil, inStock: Bool? = false, quantityAvailable: Int? = nil, inventoryTracked: Bool? = false, salePrice: Int, retailPrice: Int? = nil, currency: String, taxable: Bool? = false, taxType: TaxType? = nil, albums: [Album]? = nil, variantValues: [SkuVariantValue]? = nil, type: ModelType? = nil, status: Status? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, skuDimensions: SkuDimensions? = nil) {
+    public init(id: Int64, offerId: Int64, merchantId: Int, externalId: String? = nil, name: String? = nil, asin: String? = nil, gtin: String? = nil, upc: String? = nil, ean: String? = nil, isbn: String? = nil, inStock: Bool? = false, quantityAvailable: Int? = nil, inventoryTracked: Bool? = false, salePrice: Int, retailPrice: Int? = nil, currency: String, taxable: Bool? = false, taxType: TaxType? = nil, albums: [Album]? = nil, variantValues: [SkuVariantValue]? = nil, type: ModelType? = nil, status: Status? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, skuDimensions: SkuDimensions? = nil) {
         self.id = id
         self.offerId = offerId
         self.merchantId = merchantId
@@ -139,7 +139,7 @@ public struct Sku: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(id, forKey: .id)
+        try container.encode(id, forKey: .id)
         try container.encode(offerId, forKey: .offerId)
         try container.encode(merchantId, forKey: .merchantId)
         try container.encodeIfPresent(externalId, forKey: .externalId)

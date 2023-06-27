@@ -16,13 +16,16 @@ open class WebhooksAPI {
      List Webhooks
      
      - parameter appId: (path)  
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter event: (query)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func appsAppIdWebhooksGet(appId: Int64, event: String? = nil, apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: [Webhook]?, _ error: Error?) -> Void)) -> RequestTask {
-        return appsAppIdWebhooksGetWithRequestBuilder(appId: appId, event: event).execute(apiResponseQueue) { result in
+    open class func appsAppIdWebhooksGet(appId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, event: String? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: [Webhook]?, _ error: Error?) -> Void)) -> RequestTask {
+        return appsAppIdWebhooksGetWithRequestBuilder(appId: appId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, event: event).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -37,15 +40,18 @@ open class WebhooksAPI {
      - GET /apps/{app_id}/webhooks
      - Retrieves a list of previously created webhooks.
      - parameter appId: (path)  
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter event: (query)  (optional)
      - returns: RequestBuilder<[Webhook]> 
      */
-    open class func appsAppIdWebhooksGetWithRequestBuilder(appId: Int64, event: String? = nil) -> RequestBuilder<[Webhook]> {
+    open class func appsAppIdWebhooksGetWithRequestBuilder(appId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, event: String? = nil) -> RequestBuilder<[Webhook]> {
         var localVariablePath = "/apps/{app_id}/webhooks"
         let appIdPreEscape = "\(APIHelper.mapValueToPathItem(appId))"
         let appIdPostEscape = appIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{app_id}", with: appIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = VioletProxyClientAPIAPI.basePath + localVariablePath
+        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -54,12 +60,14 @@ open class WebhooksAPI {
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
-            :
+            "X-Violet-Token": xVioletToken?.encodeToJSON(),
+            "X-Violet-App-Secret": xVioletAppSecret?.encodeToJSON(),
+            "X-Violet-App-Id": xVioletAppId?.encodeToJSON(),
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[Webhook]>.Type = VioletProxyClientAPIAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<[Webhook]>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
@@ -68,13 +76,16 @@ open class WebhooksAPI {
      Create Webhook
      
      - parameter appId: (path)  
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter body: (body)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func appsAppIdWebhooksPost(appId: Int64, body: Webhook? = nil, apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: Webhook?, _ error: Error?) -> Void)) -> RequestTask {
-        return appsAppIdWebhooksPostWithRequestBuilder(appId: appId, body: body).execute(apiResponseQueue) { result in
+    open class func appsAppIdWebhooksPost(appId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, body: Webhook? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: Webhook?, _ error: Error?) -> Void)) -> RequestTask {
+        return appsAppIdWebhooksPostWithRequestBuilder(appId: appId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, body: body).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -89,26 +100,31 @@ open class WebhooksAPI {
      - POST /apps/{app_id}/webhooks
      - Creates a new webhook for the desired event. The remote endpoint must be HTTPS.<br><br>We currently limit webhooks to one per event per app. If the event is already active on a previously created webhook that existing webhook will be updated with the new endpoint.
      - parameter appId: (path)  
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter body: (body)  (optional)
      - returns: RequestBuilder<Webhook> 
      */
-    open class func appsAppIdWebhooksPostWithRequestBuilder(appId: Int64, body: Webhook? = nil) -> RequestBuilder<Webhook> {
+    open class func appsAppIdWebhooksPostWithRequestBuilder(appId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, body: Webhook? = nil) -> RequestBuilder<Webhook> {
         var localVariablePath = "/apps/{app_id}/webhooks"
         let appIdPreEscape = "\(APIHelper.mapValueToPathItem(appId))"
         let appIdPostEscape = appIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{app_id}", with: appIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = VioletProxyClientAPIAPI.basePath + localVariablePath
+        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
-            :
+            "X-Violet-Token": xVioletToken?.encodeToJSON(),
+            "X-Violet-App-Secret": xVioletAppSecret?.encodeToJSON(),
+            "X-Violet-App-Id": xVioletAppId?.encodeToJSON(),
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Webhook>.Type = VioletProxyClientAPIAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Webhook>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
@@ -118,12 +134,15 @@ open class WebhooksAPI {
      
      - parameter appId: (path)  
      - parameter webhookId: (path)  
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func appsAppIdWebhooksWebhookIdDelete(appId: Int64, webhookId: Int64, apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
-        return appsAppIdWebhooksWebhookIdDeleteWithRequestBuilder(appId: appId, webhookId: webhookId).execute(apiResponseQueue) { result in
+    open class func appsAppIdWebhooksWebhookIdDelete(appId: Int64, webhookId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+        return appsAppIdWebhooksWebhookIdDeleteWithRequestBuilder(appId: appId, webhookId: webhookId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion((), nil)
@@ -139,9 +158,12 @@ open class WebhooksAPI {
      - Removes a webhook. Events will immedietly stop posting to this endpoint upon deletion.
      - parameter appId: (path)  
      - parameter webhookId: (path)  
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - returns: RequestBuilder<Void> 
      */
-    open class func appsAppIdWebhooksWebhookIdDeleteWithRequestBuilder(appId: Int64, webhookId: Int64) -> RequestBuilder<Void> {
+    open class func appsAppIdWebhooksWebhookIdDeleteWithRequestBuilder(appId: Int64, webhookId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil) -> RequestBuilder<Void> {
         var localVariablePath = "/apps/{app_id}/webhooks/{webhook_id}"
         let appIdPreEscape = "\(APIHelper.mapValueToPathItem(appId))"
         let appIdPostEscape = appIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -149,18 +171,20 @@ open class WebhooksAPI {
         let webhookIdPreEscape = "\(APIHelper.mapValueToPathItem(webhookId))"
         let webhookIdPostEscape = webhookIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{webhook_id}", with: webhookIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = VioletProxyClientAPIAPI.basePath + localVariablePath
+        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
-            :
+            "X-Violet-Token": xVioletToken?.encodeToJSON(),
+            "X-Violet-App-Secret": xVioletAppSecret?.encodeToJSON(),
+            "X-Violet-App-Id": xVioletAppId?.encodeToJSON(),
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = VioletProxyClientAPIAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = VioletPublicClientAPI.requestBuilderFactory.getNonDecodableBuilder()
 
         return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
@@ -170,12 +194,15 @@ open class WebhooksAPI {
      
      - parameter appId: (path)  
      - parameter webhookId: (path)  
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func appsAppIdWebhooksWebhookIdGet(appId: Int64, webhookId: Int64, apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: Webhook?, _ error: Error?) -> Void)) -> RequestTask {
-        return appsAppIdWebhooksWebhookIdGetWithRequestBuilder(appId: appId, webhookId: webhookId).execute(apiResponseQueue) { result in
+    open class func appsAppIdWebhooksWebhookIdGet(appId: Int64, webhookId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: Webhook?, _ error: Error?) -> Void)) -> RequestTask {
+        return appsAppIdWebhooksWebhookIdGetWithRequestBuilder(appId: appId, webhookId: webhookId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -191,9 +218,12 @@ open class WebhooksAPI {
      - Retrieves a single webhook by ID.
      - parameter appId: (path)  
      - parameter webhookId: (path)  
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - returns: RequestBuilder<Webhook> 
      */
-    open class func appsAppIdWebhooksWebhookIdGetWithRequestBuilder(appId: Int64, webhookId: Int64) -> RequestBuilder<Webhook> {
+    open class func appsAppIdWebhooksWebhookIdGetWithRequestBuilder(appId: Int64, webhookId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil) -> RequestBuilder<Webhook> {
         var localVariablePath = "/apps/{app_id}/webhooks/{webhook_id}"
         let appIdPreEscape = "\(APIHelper.mapValueToPathItem(appId))"
         let appIdPostEscape = appIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -201,18 +231,20 @@ open class WebhooksAPI {
         let webhookIdPreEscape = "\(APIHelper.mapValueToPathItem(webhookId))"
         let webhookIdPostEscape = webhookIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{webhook_id}", with: webhookIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = VioletProxyClientAPIAPI.basePath + localVariablePath
+        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
-            :
+            "X-Violet-Token": xVioletToken?.encodeToJSON(),
+            "X-Violet-App-Secret": xVioletAppSecret?.encodeToJSON(),
+            "X-Violet-App-Id": xVioletAppId?.encodeToJSON(),
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Webhook>.Type = VioletProxyClientAPIAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Webhook>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
@@ -222,13 +254,16 @@ open class WebhooksAPI {
      
      - parameter appId: (path)  
      - parameter webhookId: (path)  
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter body: (body)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func appsAppIdWebhooksWebhookIdPut(appId: Int64, webhookId: Int64, body: Webhook? = nil, apiResponseQueue: DispatchQueue = VioletProxyClientAPIAPI.apiResponseQueue, completion: @escaping ((_ data: Webhook?, _ error: Error?) -> Void)) -> RequestTask {
-        return appsAppIdWebhooksWebhookIdPutWithRequestBuilder(appId: appId, webhookId: webhookId, body: body).execute(apiResponseQueue) { result in
+    open class func appsAppIdWebhooksWebhookIdPut(appId: Int64, webhookId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, body: Webhook? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: Webhook?, _ error: Error?) -> Void)) -> RequestTask {
+        return appsAppIdWebhooksWebhookIdPutWithRequestBuilder(appId: appId, webhookId: webhookId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, body: body).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -244,10 +279,13 @@ open class WebhooksAPI {
      - Modifies an existing webhook by ID.
      - parameter appId: (path)  
      - parameter webhookId: (path)  
+     - parameter xVioletToken: (header)  (optional)
+     - parameter xVioletAppSecret: (header)  (optional)
+     - parameter xVioletAppId: (header)  (optional)
      - parameter body: (body)  (optional)
      - returns: RequestBuilder<Webhook> 
      */
-    open class func appsAppIdWebhooksWebhookIdPutWithRequestBuilder(appId: Int64, webhookId: Int64, body: Webhook? = nil) -> RequestBuilder<Webhook> {
+    open class func appsAppIdWebhooksWebhookIdPutWithRequestBuilder(appId: Int64, webhookId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, body: Webhook? = nil) -> RequestBuilder<Webhook> {
         var localVariablePath = "/apps/{app_id}/webhooks/{webhook_id}"
         let appIdPreEscape = "\(APIHelper.mapValueToPathItem(appId))"
         let appIdPostEscape = appIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -255,18 +293,20 @@ open class WebhooksAPI {
         let webhookIdPreEscape = "\(APIHelper.mapValueToPathItem(webhookId))"
         let webhookIdPostEscape = webhookIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{webhook_id}", with: webhookIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = VioletProxyClientAPIAPI.basePath + localVariablePath
+        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
-            :
+            "X-Violet-Token": xVioletToken?.encodeToJSON(),
+            "X-Violet-App-Secret": xVioletAppSecret?.encodeToJSON(),
+            "X-Violet-App-Id": xVioletAppId?.encodeToJSON(),
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Webhook>.Type = VioletProxyClientAPIAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Webhook>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
