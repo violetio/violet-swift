@@ -1,2 +1,3 @@
-# violet-swift
-Swift SDK for Violet API
+# VioletPublicClient
+
+A description of this package.
