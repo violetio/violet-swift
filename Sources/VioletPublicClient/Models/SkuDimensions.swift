@@ -10,54 +10,54 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Individual SkuDimensions */
+/** Individual Sku Dimensions */
 public struct SkuDimensions: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {
         case sku = "SKU"
         case shipping = "SHIPPING"
     }
-    /** ID of SKU Dimensions Belong To */
-    public var skuId: Int64?
-    /** Weight of SKU */
-    public var weight: Double?
     /** Height of SKU */
     public var height: Double?
-    /** Width of SKU */
-    public var width: Double?
     /** Length of SKU */
     public var length: Double?
+    /** ID of SKU Dimensions Belong To */
+    public var skuId: Int64?
     /** Dimensions Type */
     public var type: ModelType?
+    /** Weight of SKU */
+    public var weight: Double?
+    /** Width of SKU */
+    public var width: Double?
 
-    public init(skuId: Int64? = nil, weight: Double? = nil, height: Double? = nil, width: Double? = nil, length: Double? = nil, type: ModelType? = nil) {
-        self.skuId = skuId
-        self.weight = weight
+    public init(height: Double? = nil, length: Double? = nil, skuId: Int64? = nil, type: ModelType? = nil, weight: Double? = nil, width: Double? = nil) {
         self.height = height
-        self.width = width
         self.length = length
+        self.skuId = skuId
         self.type = type
+        self.weight = weight
+        self.width = width
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case skuId = "sku_id"
-        case weight
         case height
-        case width
         case length
+        case skuId = "sku_id"
         case type
+        case weight
+        case width
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(skuId, forKey: .skuId)
-        try container.encodeIfPresent(weight, forKey: .weight)
         try container.encodeIfPresent(height, forKey: .height)
-        try container.encodeIfPresent(width, forKey: .width)
         try container.encodeIfPresent(length, forKey: .length)
+        try container.encodeIfPresent(skuId, forKey: .skuId)
         try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(weight, forKey: .weight)
+        try container.encodeIfPresent(width, forKey: .width)
     }
 }
 

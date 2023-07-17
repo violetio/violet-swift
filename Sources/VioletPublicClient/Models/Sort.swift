@@ -12,29 +12,29 @@ import AnyCodable
 
 public struct Sort: Codable, JSONEncodable, Hashable {
 
-    public var unsorted: Bool?
-    public var sorted: Bool?
     public var empty: Bool?
+    public var sorted: Bool?
+    public var unsorted: Bool?
 
-    public init(unsorted: Bool? = nil, sorted: Bool? = nil, empty: Bool? = nil) {
-        self.unsorted = unsorted
-        self.sorted = sorted
+    public init(empty: Bool? = nil, sorted: Bool? = nil, unsorted: Bool? = nil) {
         self.empty = empty
+        self.sorted = sorted
+        self.unsorted = unsorted
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case unsorted
-        case sorted
         case empty
+        case sorted
+        case unsorted
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(unsorted, forKey: .unsorted)
-        try container.encodeIfPresent(sorted, forKey: .sorted)
         try container.encodeIfPresent(empty, forKey: .empty)
+        try container.encodeIfPresent(sorted, forKey: .sorted)
+        try container.encodeIfPresent(unsorted, forKey: .unsorted)
     }
 }
 

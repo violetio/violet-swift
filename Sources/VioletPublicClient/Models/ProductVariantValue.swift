@@ -13,46 +13,46 @@ import AnyCodable
 /** Product Variant Value */
 public struct ProductVariantValue: Codable, JSONEncodable, Hashable {
 
-    public var id: String?
-    /** ID of the Variation */
-    public var variantId: String
-    /** Name */
-    public var name: String?
     /** Display Order */
     public var displayOrder: Int?
-    /** Color/Pattern Swatch URL */
-    public var swatch: String?
     /** Hex Code */
     public var hex: String?
+    public var id: String?
+    /** Name */
+    public var name: String?
+    /** Color/Pattern Swatch URL */
+    public var swatch: String?
+    /** ID of the Variation */
+    public var variantId: String
 
-    public init(id: String? = nil, variantId: String, name: String? = nil, displayOrder: Int? = nil, swatch: String? = nil, hex: String? = nil) {
-        self.id = id
-        self.variantId = variantId
-        self.name = name
+    public init(displayOrder: Int? = nil, hex: String? = nil, id: String? = nil, name: String? = nil, swatch: String? = nil, variantId: String) {
         self.displayOrder = displayOrder
-        self.swatch = swatch
         self.hex = hex
+        self.id = id
+        self.name = name
+        self.swatch = swatch
+        self.variantId = variantId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case id
-        case variantId = "variant_id"
-        case name
         case displayOrder = "display_order"
-        case swatch
         case hex
+        case id
+        case name
+        case swatch
+        case variantId = "variant_id"
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(variantId, forKey: .variantId)
-        try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(displayOrder, forKey: .displayOrder)
-        try container.encodeIfPresent(swatch, forKey: .swatch)
         try container.encodeIfPresent(hex, forKey: .hex)
+        try container.encodeIfPresent(id, forKey: .id)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(swatch, forKey: .swatch)
+        try container.encode(variantId, forKey: .variantId)
     }
 }
 

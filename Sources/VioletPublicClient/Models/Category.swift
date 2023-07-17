@@ -13,41 +13,41 @@ import AnyCodable
 /** Product Category */
 public struct Category: Codable, JSONEncodable, Hashable {
 
+    /** Category Depth */
+    public var depth: Int
     public var id: String?
     /** Category Name */
     public var name: String
-    /** Category Slug */
-    public var slug: String
     /** Parent ID */
     public var parentId: String?
-    /** Category Depth */
-    public var depth: Int
+    /** Category Slug */
+    public var slug: String
 
-    public init(id: String? = nil, name: String, slug: String, parentId: String? = nil, depth: Int) {
+    public init(depth: Int, id: String? = nil, name: String, parentId: String? = nil, slug: String) {
+        self.depth = depth
         self.id = id
         self.name = name
-        self.slug = slug
         self.parentId = parentId
-        self.depth = depth
+        self.slug = slug
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case depth
         case id
         case name
-        case slug
         case parentId = "parent_id"
-        case depth
+        case slug
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(depth, forKey: .depth)
         try container.encodeIfPresent(id, forKey: .id)
         try container.encode(name, forKey: .name)
-        try container.encode(slug, forKey: .slug)
         try container.encodeIfPresent(parentId, forKey: .parentId)
-        try container.encode(depth, forKey: .depth)
+        try container.encode(slug, forKey: .slug)
     }
 }
 

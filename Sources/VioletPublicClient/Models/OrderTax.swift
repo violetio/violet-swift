@@ -13,57 +13,58 @@ import AnyCodable
 /** Taxes belonging to an Order Bag */
 public struct OrderTax: Codable, JSONEncodable, Hashable {
 
-    /** ID of the Order the Tax belongs to */
-    public var orderId: Int64
-    /** ID of the Merchant the Bag belongs to */
-    public var merchantId: Int
-    /** SKUs covered by the Tax */
-    public var skus: [String]?
-    /** State abbreviation */
-    public var state: String
-    /** Postal/Zip Code */
-    public var postalCode: String?
-    /** Tax Rate */
-    public var rate: Double
+    static let descriptionRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     /** Total Tax amount on Bag */
     public var amount: Int
     /** Description of the Tax */
     public var description: String?
+    /** ID of the Merchant the Bag belongs to */
+    public var merchantId: Int
+    /** ID of the Order the Tax belongs to */
+    public var orderId: Int64
+    /** Postal/Zip Code */
+    public var postalCode: String?
+    /** Tax Rate */
+    public var rate: Double
+    /** SKUs covered by the Tax */
+    public var skus: [String]?
+    /** State abbreviation */
+    public var state: String
 
-    public init(orderId: Int64, merchantId: Int, skus: [String]? = nil, state: String, postalCode: String? = nil, rate: Double, amount: Int, description: String? = nil) {
-        self.orderId = orderId
-        self.merchantId = merchantId
-        self.skus = skus
-        self.state = state
-        self.postalCode = postalCode
-        self.rate = rate
+    public init(amount: Int, description: String? = nil, merchantId: Int, orderId: Int64, postalCode: String? = nil, rate: Double, skus: [String]? = nil, state: String) {
         self.amount = amount
         self.description = description
+        self.merchantId = merchantId
+        self.orderId = orderId
+        self.postalCode = postalCode
+        self.rate = rate
+        self.skus = skus
+        self.state = state
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case orderId = "order_id"
-        case merchantId = "merchant_id"
-        case skus
-        case state
-        case postalCode = "postal_code"
-        case rate
         case amount
         case description
+        case merchantId = "merchant_id"
+        case orderId = "order_id"
+        case postalCode = "postal_code"
+        case rate
+        case skus
+        case state
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(orderId, forKey: .orderId)
-        try container.encode(merchantId, forKey: .merchantId)
-        try container.encodeIfPresent(skus, forKey: .skus)
-        try container.encode(state, forKey: .state)
-        try container.encodeIfPresent(postalCode, forKey: .postalCode)
-        try container.encode(rate, forKey: .rate)
         try container.encode(amount, forKey: .amount)
         try container.encodeIfPresent(description, forKey: .description)
+        try container.encode(merchantId, forKey: .merchantId)
+        try container.encode(orderId, forKey: .orderId)
+        try container.encodeIfPresent(postalCode, forKey: .postalCode)
+        try container.encode(rate, forKey: .rate)
+        try container.encodeIfPresent(skus, forKey: .skus)
+        try container.encode(state, forKey: .state)
     }
 }
 

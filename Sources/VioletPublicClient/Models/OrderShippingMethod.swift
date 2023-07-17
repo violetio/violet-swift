@@ -13,91 +13,95 @@ import AnyCodable
 /** Shipping Methods belonging to an Order */
 public struct OrderShippingMethod: Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable {
-        case variable = "VARIABLE"
-        case flatRate = "FLAT_RATE"
-    }
     public enum Carrier: String, Codable, CaseIterable {
-        case ups = "UPS"
-        case usps = "USPS"
-        case fedex = "FEDEX"
-        case dhl = "DHL"
-        case ontrac = "ONTRAC"
-        case other = "OTHER"
+        case ups = "ups"
+        case usps = "usps"
+        case fedex = "fedex"
+        case dhl = "dhl"
+        case ontrac = "ontrac"
     }
-    /** Type of Shipping Method */
-    public var type: ModelType?
+    public enum ModelType: String, Codable, CaseIterable {
+        case variable = "variable"
+        case flatRate = "flat_rate"
+    }
     public var carrier: Carrier?
-    /** Shipping Method Label */
-    public var label: String?
-    /** Total cost of the Shipping Method */
-    public var price: Int
-    /** Minimum Subtotal */
-    public var minSubtotal: Int?
-    public var maxSubtotal: Int?
-    /** Minimum Weight */
-    public var minWeight: Double?
-    /** Maximum Weight */
-    public var maxWeight: Double?
-    public var id: Int64?
-    /** ID of the referenced Shipping Method */
-    public var shippingMethodId: String
     /** ID of the Bag the Shipping Method applies to */
     public var bagId: Int64
+    /** ID(s) on external ecommerce platform */
+    public var externalId: String?
+    public var id: Int64?
+    /** Shipping Method Label */
+    public var label: String?
+    public var maxSubtotal: Int?
+    /** Maximum Weight */
+    public var maxWeight: Double?
     /** ID of the merchant the bag belongs to */
-    public var merchantId: Int?
+    public var merchantId: Int
+    /** Minimum Subtotal */
+    public var minSubtotal: Int?
+    /** Minimum Weight */
+    public var minWeight: Double?
+    /** Total cost of the Shipping Method */
+    public var price: Int
+    /** ID of the referenced Shipping Method */
+    public var shippingMethodId: String
     /** Carrier Tracking Number */
     public var trackingNumber: String?
+    /** Type of Shipping Method */
+    public var type: ModelType
 
-    public init(type: ModelType? = nil, carrier: Carrier? = nil, label: String? = nil, price: Int, minSubtotal: Int? = nil, maxSubtotal: Int? = nil, minWeight: Double? = nil, maxWeight: Double? = nil, id: Int64? = nil, shippingMethodId: String, bagId: Int64, merchantId: Int? = nil, trackingNumber: String? = nil) {
-        self.type = type
+    public init(carrier: Carrier? = nil, bagId: Int64, externalId: String? = nil, id: Int64? = nil, label: String? = nil, maxSubtotal: Int? = nil, maxWeight: Double? = nil, merchantId: Int, minSubtotal: Int? = nil, minWeight: Double? = nil, price: Int, shippingMethodId: String, trackingNumber: String? = nil, type: ModelType) {
         self.carrier = carrier
-        self.label = label
-        self.price = price
-        self.minSubtotal = minSubtotal
-        self.maxSubtotal = maxSubtotal
-        self.minWeight = minWeight
-        self.maxWeight = maxWeight
-        self.id = id
-        self.shippingMethodId = shippingMethodId
         self.bagId = bagId
+        self.externalId = externalId
+        self.id = id
+        self.label = label
+        self.maxSubtotal = maxSubtotal
+        self.maxWeight = maxWeight
         self.merchantId = merchantId
+        self.minSubtotal = minSubtotal
+        self.minWeight = minWeight
+        self.price = price
+        self.shippingMethodId = shippingMethodId
         self.trackingNumber = trackingNumber
+        self.type = type
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case type
-        case carrier
-        case label
-        case price
-        case minSubtotal = "min_subtotal"
-        case maxSubtotal = "max_subtotal"
-        case minWeight = "min_weight"
-        case maxWeight = "max_weight"
-        case id
-        case shippingMethodId = "shipping_method_id"
+        case carrier = "Carrier"
         case bagId = "bag_id"
+        case externalId = "external_id"
+        case id
+        case label
+        case maxSubtotal = "max_subtotal"
+        case maxWeight = "max_weight"
         case merchantId = "merchant_id"
+        case minSubtotal = "min_subtotal"
+        case minWeight = "min_weight"
+        case price
+        case shippingMethodId = "shipping_method_id"
         case trackingNumber = "tracking_number"
+        case type
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(carrier, forKey: .carrier)
-        try container.encodeIfPresent(label, forKey: .label)
-        try container.encode(price, forKey: .price)
-        try container.encodeIfPresent(minSubtotal, forKey: .minSubtotal)
-        try container.encodeIfPresent(maxSubtotal, forKey: .maxSubtotal)
-        try container.encodeIfPresent(minWeight, forKey: .minWeight)
-        try container.encodeIfPresent(maxWeight, forKey: .maxWeight)
-        try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(shippingMethodId, forKey: .shippingMethodId)
         try container.encode(bagId, forKey: .bagId)
-        try container.encodeIfPresent(merchantId, forKey: .merchantId)
+        try container.encodeIfPresent(externalId, forKey: .externalId)
+        try container.encodeIfPresent(id, forKey: .id)
+        try container.encodeIfPresent(label, forKey: .label)
+        try container.encodeIfPresent(maxSubtotal, forKey: .maxSubtotal)
+        try container.encodeIfPresent(maxWeight, forKey: .maxWeight)
+        try container.encode(merchantId, forKey: .merchantId)
+        try container.encodeIfPresent(minSubtotal, forKey: .minSubtotal)
+        try container.encodeIfPresent(minWeight, forKey: .minWeight)
+        try container.encode(price, forKey: .price)
+        try container.encode(shippingMethodId, forKey: .shippingMethodId)
         try container.encodeIfPresent(trackingNumber, forKey: .trackingNumber)
+        try container.encode(type, forKey: .type)
     }
 }
 

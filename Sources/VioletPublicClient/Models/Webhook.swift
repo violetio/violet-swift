@@ -17,7 +17,7 @@ public struct Webhook: Codable, JSONEncodable, Hashable {
         case orderUpdated = "ORDER_UPDATED"
         case orderShipped = "ORDER_SHIPPED"
         case orderCompleted = "ORDER_COMPLETED"
-        case orderCanceled = "ORDER_CANCELED"
+        case orderCancelled = "ORDER_CANCELLED"
         case orderRefunded = "ORDER_REFUNDED"
         case orderReturned = "ORDER_RETURNED"
         case offerCreated = "OFFER_CREATED"
@@ -29,50 +29,50 @@ public struct Webhook: Codable, JSONEncodable, Hashable {
         case active = "ACTIVE"
         case disabled = "DISABLED"
     }
-    public var id: Int64?
-    public var appId: Int64?
+    public var appId: Int?
+    /** Date of creation */
+    public var dateCreated: Date?
+    /** Date of last update */
+    public var dateLastModified: Date?
     /** The event being triggered */
     public var event: Event
+    public var id: Int?
     /** Remote endpoint the webhook posts against. */
     public var remoteEndpoint: String
     /** Status of the webhook */
     public var status: Status?
-    /** Date of webhook creation */
-    public var dateCreated: Date?
-    /** Date of last webhook update */
-    public var dateLastModified: Date?
 
-    public init(id: Int64? = nil, appId: Int64? = nil, event: Event, remoteEndpoint: String, status: Status? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil) {
-        self.id = id
+    public init(appId: Int? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, event: Event, id: Int? = nil, remoteEndpoint: String, status: Status? = nil) {
         self.appId = appId
-        self.event = event
-        self.remoteEndpoint = remoteEndpoint
-        self.status = status
         self.dateCreated = dateCreated
         self.dateLastModified = dateLastModified
+        self.event = event
+        self.id = id
+        self.remoteEndpoint = remoteEndpoint
+        self.status = status
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case id
         case appId = "app_id"
-        case event
-        case remoteEndpoint = "remote_endpoint"
-        case status
         case dateCreated = "date_created"
         case dateLastModified = "date_last_modified"
+        case event
+        case id
+        case remoteEndpoint = "remote_endpoint"
+        case status
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(appId, forKey: .appId)
-        try container.encode(event, forKey: .event)
-        try container.encode(remoteEndpoint, forKey: .remoteEndpoint)
-        try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(dateCreated, forKey: .dateCreated)
         try container.encodeIfPresent(dateLastModified, forKey: .dateLastModified)
+        try container.encode(event, forKey: .event)
+        try container.encodeIfPresent(id, forKey: .id)
+        try container.encode(remoteEndpoint, forKey: .remoteEndpoint)
+        try container.encodeIfPresent(status, forKey: .status)
     }
 }
 

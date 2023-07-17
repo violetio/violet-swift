@@ -13,41 +13,59 @@ import AnyCodable
 /** The Customer Placing the Order */
 public struct OrderCustomer: Codable, JSONEncodable, Hashable {
 
-    /** ID of the User the Order Customer references */
-    public var userId: Int64?
+    public var billingAddress: OrderAddress?
+    /** Email Address of Customer */
+    public var email: String?
+    /** ID of the Customer on the External Platform */
+    public var externalId: String?
     /** First Name */
     public var firstName: String
     /** Last Name */
     public var lastName: String
-    /** Email Address of Customer */
-    public var email: String
     public var name: String?
+    /** Use Same Address for Both */
+    public var sameAddress: Bool?
+    public var shippingAddress: OrderAddress?
+    /** ID of the User the Order Customer references */
+    public var userId: Int64?
 
-    public init(userId: Int64? = nil, firstName: String, lastName: String, email: String, name: String? = nil) {
-        self.userId = userId
+    public init(billingAddress: OrderAddress? = nil, email: String? = nil, externalId: String? = nil, firstName: String, lastName: String, name: String? = nil, sameAddress: Bool? = nil, shippingAddress: OrderAddress? = nil, userId: Int64? = nil) {
+        self.billingAddress = billingAddress
+        self.email = email
+        self.externalId = externalId
         self.firstName = firstName
         self.lastName = lastName
-        self.email = email
         self.name = name
+        self.sameAddress = sameAddress
+        self.shippingAddress = shippingAddress
+        self.userId = userId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case userId = "user_id"
+        case billingAddress = "billing_address"
+        case email
+        case externalId = "external_id"
         case firstName = "first_name"
         case lastName = "last_name"
-        case email
         case name
+        case sameAddress = "same_address"
+        case shippingAddress = "shipping_address"
+        case userId = "user_id"
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(userId, forKey: .userId)
+        try container.encodeIfPresent(billingAddress, forKey: .billingAddress)
+        try container.encodeIfPresent(email, forKey: .email)
+        try container.encodeIfPresent(externalId, forKey: .externalId)
         try container.encode(firstName, forKey: .firstName)
         try container.encode(lastName, forKey: .lastName)
-        try container.encode(email, forKey: .email)
         try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(sameAddress, forKey: .sameAddress)
+        try container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
+        try container.encodeIfPresent(userId, forKey: .userId)
     }
 }
 

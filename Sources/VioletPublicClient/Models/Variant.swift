@@ -13,41 +13,46 @@ import AnyCodable
 /** Variation Data */
 public struct Variant: Codable, JSONEncodable, Hashable {
 
-    /** ID of the Product Variant */
-    public var productVariantId: String?
     /** ID of the Variant on the External Ecommerce Platform */
     public var externalId: String?
+    public var id: Int64?
     /** Variant Name */
     public var name: String?
-    /** Is the variant visual */
-    public var visual: Bool? = false
+    /** ID of the Product Variant */
+    public var productVariantId: String?
+    /** Variant Values */
     public var values: [VariantValue]?
+    /** Is the variant visual */
+    public var visual: Bool?
 
-    public init(productVariantId: String? = nil, externalId: String? = nil, name: String? = nil, visual: Bool? = false, values: [VariantValue]? = nil) {
-        self.productVariantId = productVariantId
+    public init(externalId: String? = nil, id: Int64? = nil, name: String? = nil, productVariantId: String? = nil, values: [VariantValue]? = nil, visual: Bool? = nil) {
         self.externalId = externalId
+        self.id = id
         self.name = name
-        self.visual = visual
+        self.productVariantId = productVariantId
         self.values = values
+        self.visual = visual
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case productVariantId = "product_variant_id"
         case externalId = "external_id"
+        case id
         case name
-        case visual
+        case productVariantId = "product_variant_id"
         case values
+        case visual
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(productVariantId, forKey: .productVariantId)
         try container.encodeIfPresent(externalId, forKey: .externalId)
+        try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(name, forKey: .name)
-        try container.encodeIfPresent(visual, forKey: .visual)
+        try container.encodeIfPresent(productVariantId, forKey: .productVariantId)
         try container.encodeIfPresent(values, forKey: .values)
+        try container.encodeIfPresent(visual, forKey: .visual)
     }
 }
 

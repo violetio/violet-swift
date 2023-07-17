@@ -13,27 +13,27 @@ import AnyCodable
 /** Individual Variation Value for a Sku */
 public struct SkuVariantValue: Codable, JSONEncodable, Hashable {
 
-    /** Variant Name */
-    public var variant: String
     /** Variant Value */
     public var value: String
+    /** Variant Name */
+    public var variant: String
 
-    public init(variant: String, value: String) {
-        self.variant = variant
+    public init(value: String, variant: String) {
         self.value = value
+        self.variant = variant
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case variant
         case value
+        case variant
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(variant, forKey: .variant)
         try container.encode(value, forKey: .value)
+        try container.encode(variant, forKey: .variant)
     }
 }
 

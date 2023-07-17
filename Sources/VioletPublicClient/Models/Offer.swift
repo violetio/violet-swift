@@ -13,6 +13,18 @@ import AnyCodable
 /** Product Offer */
 public struct Offer: Codable, JSONEncodable, Hashable {
 
+    public enum PublishingStatus: String, Codable, CaseIterable {
+        case notPublished = "NOT_PUBLISHED"
+        case published = "PUBLISHED"
+    }
+    public enum SizeUnit: String, Codable, CaseIterable {
+        case millimeters = "MILLIMETERS"
+        case centimeters = "CENTIMETERS"
+        case inches = "INCHES"
+        case feet = "FEET"
+        case meters = "METERS"
+        case yards = "YARDS"
+    }
     public enum Source: String, Codable, CaseIterable {
         case other = "OTHER"
         case shopify = "SHOPIFY"
@@ -28,19 +40,45 @@ public struct Offer: Codable, JSONEncodable, Hashable {
         case volusion = "VOLUSION"
         case prestashop = "PRESTASHOP"
         case threedcart = "THREEDCART"
+        case sylius = "SYLIUS"
+        case wix = "WIX"
+        case swell = "SWELL"
+        case miva = "MIVA"
+        case websphere = "WEBSPHERE"
+        case oraclecc = "ORACLECC"
+        case sapcc = "SAPCC"
+        case squarespace = "SQUARESPACE"
+        case shopware = "SHOPWARE"
+        case commercetools = "COMMERCETOOLS"
+        case medusa = "MEDUSA"
+        case abicart = "ABICART"
+        case spryker = "SPRYKER"
+        case mystore = "MYSTORE"
+        case centra = "CENTRA"
+        case xcart = "XCART"
+        case vtex = "VTEX"
+        case kibo = "KIBO"
+        case saleor = "SALEOR"
+        case vendo = "VENDO"
+        case digitalriver = "DIGITALRIVER"
+        case custom = "CUSTOM"
+    }
+    public enum Status: String, Codable, CaseIterable {
+        case available = "AVAILABLE"
+        case unavailable = "UNAVAILABLE"
+        case disabledAvailable = "DISABLED_AVAILABLE"
+        case disabledUnavailable = "DISABLED_UNAVAILABLE"
+        case archived = "ARCHIVED"
+        case forDeletion = "FOR_DELETION"
+    }
+    public enum SubscriptionStatus: String, Codable, CaseIterable {
+        case notSubscribed = "NOT_SUBSCRIBED"
+        case subscribed = "SUBSCRIBED"
     }
     public enum ModelType: String, Codable, CaseIterable {
         case physical = "PHYSICAL"
         case digital = "DIGITAL"
         case virtual = "VIRTUAL"
-    }
-    public enum Status: String, Codable, CaseIterable {
-        case unavailable = "UNAVAILABLE"
-        case available = "AVAILABLE"
-        case disabledUnavailable = "DISABLED_UNAVAILABLE"
-        case disabledAvailable = "DISABLED_AVAILABLE"
-        case forDeletion = "FOR_DELETION"
-        case archived = "ARCHIVED"
     }
     public enum WeightUnit: String, Codable, CaseIterable {
         case ounces = "OUNCES"
@@ -57,174 +95,185 @@ public struct Offer: Codable, JSONEncodable, Hashable {
         case gallons = "GALLONS"
         case pints = "PINTS"
     }
-    public enum SizeUnit: String, Codable, CaseIterable {
-        case millimeters = "MILLIMETERS"
-        case centimeters = "CENTIMETERS"
-        case inches = "INCHES"
-        case feet = "FEET"
-        case meters = "METERS"
-        case yards = "YARDS"
-    }
-    public var id: Int64
-    /** The parent/container product ID */
-    public var productId: String
-    /** External ID */
-    public var externalId: String?
-    /** External URL */
-    public var externalUrl: String?
-    /** Name of Product in Offer */
-    public var name: String
-    /** Product Description */
-    public var description: String?
-    /** Source Platform */
-    public var source: Source
-    /** Name of Merchant Selling Product */
-    public var seller: String?
-    /** Name of Original Vendor */
-    public var vendor: String?
-    /** Merchant ID */
-    public var merchantId: Int
+    /** Product Albums */
+    public var albums: Set<Album>?
     /** Is Product Available */
-    public var available: Bool = false
-    /** Is Product Visible */
-    public var visible: Bool = false
-    /** Minimum Price the Product sells for */
-    public var minPrice: Int
-    /** Maximum Price the Product sells for */
-    public var maxPrice: Int?
+    public var available: Bool
     /** Amount given by merchant */
     public var commissionRate: Double?
-    /** If the commission rate is unique to this offer. */
-    public var specialCommissionRate: Bool? = false
-    /** Default Currency of Offer */
+    /** Base Currency of Offer */
     public var currency: String?
-    /** Original Category on Source Platform */
-    public var sourceCategoryName: String?
-    /** Additional Meta Data of the Offer */
-    public var meta: [Meta]?
-    /** Product Variations */
-    public var variants: [Variant]?
-    /** Product SKUs */
-    public var skus: [Sku]?
-    /** Product Albums */
-    public var albums: [Album]?
-    /** Is the product 3D Enabled */
-    public var threeDEnables: Bool? = false
-    /** 3D Resource Object */
-    public var threeDResource: String?
-    /** Product Type */
-    public var type: ModelType?
-    /** Status */
-    public var status: Status?
+    /** Symbol representing the desired currency */
+    public var currencySymbol: String?
     /** Date of offer creation */
     public var dateCreated: Date?
     /** Date of last offer update */
     public var dateLastModified: Date?
-    /** Weight Unit */
-    public var weightUnit: WeightUnit?
+    /** Product Description */
+    public var description: String?
+    /** External ID */
+    public var externalId: String?
+    /** External URL */
+    public var externalUrl: String?
+    public var id: Int64?
+    /** Maximum Price the Product sells for */
+    public var maxPrice: Int?
+    /** Merchant ID */
+    public var merchantId: Int
+    /** Additional Meta Data of the Offer */
+    public var meta: Set<Meta>?
+    /** Minimum Price the Product sells for */
+    public var minPrice: Int
+    /** Name of Product in Offer */
+    public var name: String
+    /** The presented currency of this SKU */
+    public var presentedCurrency: String?
+    /** The parent/container product ID */
+    public var productId: String
+    /** Publishing Status */
+    public var publishingStatus: PublishingStatus?
+    /** Name of Merchant Selling Product */
+    public var seller: String?
     /** Size Unit */
     public var sizeUnit: SizeUnit?
+    /** Product SKUs */
+    public var skus: Set<Sku>?
+    /** Source Platform */
+    public var source: Source
+    /** Original Category on Source Platform */
+    public var sourceCategoryName: String?
+    /** Status */
+    public var status: Status?
+    /** Subscription status */
+    public var subscriptionStatus: SubscriptionStatus?
+    public var tags: [String]?
+    /** Is the product 3D Enabled */
+    public var threeDEnables: Bool?
+    /** 3D Resource Object */
+    public var threeDResource: String?
+    /** Product Type */
+    public var type: ModelType?
+    /** Product Variations */
+    public var variants: Set<Variant>?
+    /** Name of Original Vendor */
+    public var vendor: String?
+    /** Is Product Visible */
+    public var visible: Bool
+    /** Weight Unit */
+    public var weightUnit: WeightUnit?
 
-    public init(id: Int64, productId: String, externalId: String? = nil, externalUrl: String? = nil, name: String, description: String? = nil, source: Source, seller: String? = nil, vendor: String? = nil, merchantId: Int, available: Bool = false, visible: Bool = false, minPrice: Int, maxPrice: Int? = nil, commissionRate: Double? = nil, specialCommissionRate: Bool? = false, currency: String? = nil, sourceCategoryName: String? = nil, meta: [Meta]? = nil, variants: [Variant]? = nil, skus: [Sku]? = nil, albums: [Album]? = nil, threeDEnables: Bool? = false, threeDResource: String? = nil, type: ModelType? = nil, status: Status? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, weightUnit: WeightUnit? = nil, sizeUnit: SizeUnit? = nil) {
-        self.id = id
-        self.productId = productId
+    public init(albums: Set<Album>? = nil, available: Bool, commissionRate: Double? = nil, currency: String? = nil, currencySymbol: String? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, description: String? = nil, externalId: String? = nil, externalUrl: String? = nil, id: Int64? = nil, maxPrice: Int? = nil, merchantId: Int, meta: Set<Meta>? = nil, minPrice: Int, name: String, presentedCurrency: String? = nil, productId: String, publishingStatus: PublishingStatus? = nil, seller: String? = nil, sizeUnit: SizeUnit? = nil, skus: Set<Sku>? = nil, source: Source, sourceCategoryName: String? = nil, status: Status? = nil, subscriptionStatus: SubscriptionStatus? = nil, tags: [String]? = nil, threeDEnables: Bool? = nil, threeDResource: String? = nil, type: ModelType? = nil, variants: Set<Variant>? = nil, vendor: String? = nil, visible: Bool, weightUnit: WeightUnit? = nil) {
+        self.albums = albums
+        self.available = available
+        self.commissionRate = commissionRate
+        self.currency = currency
+        self.currencySymbol = currencySymbol
+        self.dateCreated = dateCreated
+        self.dateLastModified = dateLastModified
+        self.description = description
         self.externalId = externalId
         self.externalUrl = externalUrl
-        self.name = name
-        self.description = description
-        self.source = source
-        self.seller = seller
-        self.vendor = vendor
-        self.merchantId = merchantId
-        self.available = available
-        self.visible = visible
-        self.minPrice = minPrice
+        self.id = id
         self.maxPrice = maxPrice
-        self.commissionRate = commissionRate
-        self.specialCommissionRate = specialCommissionRate
-        self.currency = currency
-        self.sourceCategoryName = sourceCategoryName
+        self.merchantId = merchantId
         self.meta = meta
-        self.variants = variants
+        self.minPrice = minPrice
+        self.name = name
+        self.presentedCurrency = presentedCurrency
+        self.productId = productId
+        self.publishingStatus = publishingStatus
+        self.seller = seller
+        self.sizeUnit = sizeUnit
         self.skus = skus
-        self.albums = albums
+        self.source = source
+        self.sourceCategoryName = sourceCategoryName
+        self.status = status
+        self.subscriptionStatus = subscriptionStatus
+        self.tags = tags
         self.threeDEnables = threeDEnables
         self.threeDResource = threeDResource
         self.type = type
-        self.status = status
-        self.dateCreated = dateCreated
-        self.dateLastModified = dateLastModified
+        self.variants = variants
+        self.vendor = vendor
+        self.visible = visible
         self.weightUnit = weightUnit
-        self.sizeUnit = sizeUnit
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case id
-        case productId = "product_id"
+        case albums
+        case available
+        case commissionRate = "commission_rate"
+        case currency
+        case currencySymbol = "currency_symbol"
+        case dateCreated = "date_created"
+        case dateLastModified = "date_last_modified"
+        case description
         case externalId = "external_id"
         case externalUrl = "external_url"
-        case name
-        case description
-        case source
-        case seller
-        case vendor
-        case merchantId = "merchant_id"
-        case available
-        case visible
-        case minPrice = "min_price"
+        case id
         case maxPrice = "max_price"
-        case commissionRate = "commission_rate"
-        case specialCommissionRate = "special_commission_rate"
-        case currency
-        case sourceCategoryName = "source_category_name"
+        case merchantId = "merchant_id"
         case meta
-        case variants
+        case minPrice = "min_price"
+        case name
+        case presentedCurrency = "presented_currency"
+        case productId = "product_id"
+        case publishingStatus = "publishing_status"
+        case seller
+        case sizeUnit = "size_unit"
         case skus
-        case albums
+        case source
+        case sourceCategoryName = "source_category_name"
+        case status
+        case subscriptionStatus = "subscription_status"
+        case tags
         case threeDEnables = "three_d_enables"
         case threeDResource = "three_d_resource"
         case type
-        case status
-        case dateCreated = "date_created"
-        case dateLastModified = "date_last_modified"
+        case variants
+        case vendor
+        case visible
         case weightUnit = "weight_unit"
-        case sizeUnit = "size_unit"
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(productId, forKey: .productId)
+        try container.encodeIfPresent(albums, forKey: .albums)
+        try container.encode(available, forKey: .available)
+        try container.encodeIfPresent(commissionRate, forKey: .commissionRate)
+        try container.encodeIfPresent(currency, forKey: .currency)
+        try container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+        try container.encodeIfPresent(dateCreated, forKey: .dateCreated)
+        try container.encodeIfPresent(dateLastModified, forKey: .dateLastModified)
+        try container.encodeIfPresent(description, forKey: .description)
         try container.encodeIfPresent(externalId, forKey: .externalId)
         try container.encodeIfPresent(externalUrl, forKey: .externalUrl)
-        try container.encode(name, forKey: .name)
-        try container.encodeIfPresent(description, forKey: .description)
-        try container.encode(source, forKey: .source)
-        try container.encodeIfPresent(seller, forKey: .seller)
-        try container.encodeIfPresent(vendor, forKey: .vendor)
-        try container.encode(merchantId, forKey: .merchantId)
-        try container.encode(available, forKey: .available)
-        try container.encode(visible, forKey: .visible)
-        try container.encode(minPrice, forKey: .minPrice)
+        try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(maxPrice, forKey: .maxPrice)
-        try container.encodeIfPresent(commissionRate, forKey: .commissionRate)
-        try container.encodeIfPresent(specialCommissionRate, forKey: .specialCommissionRate)
-        try container.encodeIfPresent(currency, forKey: .currency)
-        try container.encodeIfPresent(sourceCategoryName, forKey: .sourceCategoryName)
+        try container.encode(merchantId, forKey: .merchantId)
         try container.encodeIfPresent(meta, forKey: .meta)
-        try container.encodeIfPresent(variants, forKey: .variants)
+        try container.encode(minPrice, forKey: .minPrice)
+        try container.encode(name, forKey: .name)
+        try container.encodeIfPresent(presentedCurrency, forKey: .presentedCurrency)
+        try container.encode(productId, forKey: .productId)
+        try container.encodeIfPresent(publishingStatus, forKey: .publishingStatus)
+        try container.encodeIfPresent(seller, forKey: .seller)
+        try container.encodeIfPresent(sizeUnit, forKey: .sizeUnit)
         try container.encodeIfPresent(skus, forKey: .skus)
-        try container.encodeIfPresent(albums, forKey: .albums)
+        try container.encode(source, forKey: .source)
+        try container.encodeIfPresent(sourceCategoryName, forKey: .sourceCategoryName)
+        try container.encodeIfPresent(status, forKey: .status)
+        try container.encodeIfPresent(subscriptionStatus, forKey: .subscriptionStatus)
+        try container.encodeIfPresent(tags, forKey: .tags)
         try container.encodeIfPresent(threeDEnables, forKey: .threeDEnables)
         try container.encodeIfPresent(threeDResource, forKey: .threeDResource)
         try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(status, forKey: .status)
-        try container.encodeIfPresent(dateCreated, forKey: .dateCreated)
-        try container.encodeIfPresent(dateLastModified, forKey: .dateLastModified)
+        try container.encodeIfPresent(variants, forKey: .variants)
+        try container.encodeIfPresent(vendor, forKey: .vendor)
+        try container.encode(visible, forKey: .visible)
         try container.encodeIfPresent(weightUnit, forKey: .weightUnit)
-        try container.encodeIfPresent(sizeUnit, forKey: .sizeUnit)
     }
 }
 

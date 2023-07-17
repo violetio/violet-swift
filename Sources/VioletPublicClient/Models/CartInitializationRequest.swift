@@ -13,33 +13,37 @@ import AnyCodable
 /** Optional data to initialize the cart with on creation. */
 public struct CartInitializationRequest: Codable, JSONEncodable, Hashable {
 
-    /** Base currency of cart */
-    public var baseCurrency: String?
-    /** Optional collection of SKUs */
-    public var skus: [OrderSku]?
-    /** Associate the order with a user or affiliate in your system */
-    public var referralId: String?
     /** Map the order in Violet to an order record within your system */
     public var appOrderId: String?
+    /** Base currency of cart */
+    public var baseCurrency: String?
     public var customer: OrderCustomer?
+    /** Optional collection of Discounts */
+    public var discounts: Set<DiscountRequest>?
+    /** Associate the order with a user or affiliate in your system */
+    public var referralId: String?
+    /** Optional collection of SKUs */
+    public var skus: [OrderSku]?
     /** Boolean denoting whether or not this order will be placed through a wallet based payment mechanism such as apple pay */
     public var walletBasedCheckout: Bool?
 
-    public init(baseCurrency: String? = nil, skus: [OrderSku]? = nil, referralId: String? = nil, appOrderId: String? = nil, customer: OrderCustomer? = nil, walletBasedCheckout: Bool? = nil) {
-        self.baseCurrency = baseCurrency
-        self.skus = skus
-        self.referralId = referralId
+    public init(appOrderId: String? = nil, baseCurrency: String? = nil, customer: OrderCustomer? = nil, discounts: Set<DiscountRequest>? = nil, referralId: String? = nil, skus: [OrderSku]? = nil, walletBasedCheckout: Bool? = nil) {
         self.appOrderId = appOrderId
+        self.baseCurrency = baseCurrency
         self.customer = customer
+        self.discounts = discounts
+        self.referralId = referralId
+        self.skus = skus
         self.walletBasedCheckout = walletBasedCheckout
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case baseCurrency = "base_currency"
-        case skus
-        case referralId = "referral_id"
         case appOrderId = "app_order_id"
+        case baseCurrency = "base_currency"
         case customer
+        case discounts
+        case referralId = "referral_id"
+        case skus
         case walletBasedCheckout = "wallet_based_checkout"
     }
 
@@ -47,11 +51,12 @@ public struct CartInitializationRequest: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(baseCurrency, forKey: .baseCurrency)
-        try container.encodeIfPresent(skus, forKey: .skus)
-        try container.encodeIfPresent(referralId, forKey: .referralId)
         try container.encodeIfPresent(appOrderId, forKey: .appOrderId)
+        try container.encodeIfPresent(baseCurrency, forKey: .baseCurrency)
         try container.encodeIfPresent(customer, forKey: .customer)
+        try container.encodeIfPresent(discounts, forKey: .discounts)
+        try container.encodeIfPresent(referralId, forKey: .referralId)
+        try container.encodeIfPresent(skus, forKey: .skus)
         try container.encodeIfPresent(walletBasedCheckout, forKey: .walletBasedCheckout)
     }
 }

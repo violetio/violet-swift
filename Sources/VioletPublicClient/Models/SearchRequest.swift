@@ -10,65 +10,50 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Search Request */
+/** Order Search Request */
 public struct SearchRequest: Codable, JSONEncodable, Hashable {
 
-    /** Query */
-    public var query: String?
-    /** Merchant ID */
-    public var merchantId: Int?
-    /** Category ID */
-    public var categoryId: String?
-    /** Category Slug */
-    public var categorySlug: String?
-    /** Minimum Commission */
-    public var minCommission: Double?
-    /** Maximum Commission */
-    public var maxCommission: Double?
-    /** Minimum Price */
-    public var minPrice: Int?
-    /** Maximum Price */
-    public var maxPrice: Int?
-    /** Include offers with products */
-    public var includeOffers: Bool? = false
+    /** Order ID in the App's System */
+    public var appOrderId: String?
+    /** Bag ID */
+    public var bagId: Int64?
+    /** Order ID in the External Commerce Platform */
+    public var externalOrderId: String?
+    /** Order ID */
+    public var orderId: Int64?
+    /** Referral ID */
+    public var referralId: String?
+    /** User ID */
+    public var userId: Int64?
 
-    public init(query: String? = nil, merchantId: Int? = nil, categoryId: String? = nil, categorySlug: String? = nil, minCommission: Double? = nil, maxCommission: Double? = nil, minPrice: Int? = nil, maxPrice: Int? = nil, includeOffers: Bool? = false) {
-        self.query = query
-        self.merchantId = merchantId
-        self.categoryId = categoryId
-        self.categorySlug = categorySlug
-        self.minCommission = minCommission
-        self.maxCommission = maxCommission
-        self.minPrice = minPrice
-        self.maxPrice = maxPrice
-        self.includeOffers = includeOffers
+    public init(appOrderId: String? = nil, bagId: Int64? = nil, externalOrderId: String? = nil, orderId: Int64? = nil, referralId: String? = nil, userId: Int64? = nil) {
+        self.appOrderId = appOrderId
+        self.bagId = bagId
+        self.externalOrderId = externalOrderId
+        self.orderId = orderId
+        self.referralId = referralId
+        self.userId = userId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case query
-        case merchantId = "merchant_id"
-        case categoryId = "category_id"
-        case categorySlug = "category_slug"
-        case minCommission = "min_commission"
-        case maxCommission = "max_commission"
-        case minPrice = "min_price"
-        case maxPrice = "max_price"
-        case includeOffers = "include_offers"
+        case appOrderId = "app_order_id"
+        case bagId = "bag_id"
+        case externalOrderId = "external_order_id"
+        case orderId = "order_id"
+        case referralId = "referral_id"
+        case userId = "user_id"
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(query, forKey: .query)
-        try container.encodeIfPresent(merchantId, forKey: .merchantId)
-        try container.encodeIfPresent(categoryId, forKey: .categoryId)
-        try container.encodeIfPresent(categorySlug, forKey: .categorySlug)
-        try container.encodeIfPresent(minCommission, forKey: .minCommission)
-        try container.encodeIfPresent(maxCommission, forKey: .maxCommission)
-        try container.encodeIfPresent(minPrice, forKey: .minPrice)
-        try container.encodeIfPresent(maxPrice, forKey: .maxPrice)
-        try container.encodeIfPresent(includeOffers, forKey: .includeOffers)
+        try container.encodeIfPresent(appOrderId, forKey: .appOrderId)
+        try container.encodeIfPresent(bagId, forKey: .bagId)
+        try container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
+        try container.encodeIfPresent(orderId, forKey: .orderId)
+        try container.encodeIfPresent(referralId, forKey: .referralId)
+        try container.encodeIfPresent(userId, forKey: .userId)
     }
 }
 

@@ -13,11 +13,6 @@ import AnyCodable
 /** Products */
 public struct Product: Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable {
-        case physical = "PHYSICAL"
-        case digital = "DIGITAL"
-        case virtual = "VIRTUAL"
-    }
     public enum Currency: String, Codable, CaseIterable {
         case usd = "USD"
         case gbp = "GBP"
@@ -27,145 +22,172 @@ public struct Product: Codable, JSONEncodable, Hashable {
         case female = "FEMALE"
         case unisex = "UNISEX"
     }
-    public var id: String?
-    /** Product Name */
-    public var name: String
-    /** Product Description */
-    public var description: String?
-    /** Product Long Description */
-    public var longDescription: String?
-    /** Product Slug/Handle */
-    public var slug: String
+    public enum Requires: String, Codable, CaseIterable {
+        case taxonomy = "TAXONOMY"
+        case gender = "GENDER"
+        case gtins = "GTINS"
+    }
+    public enum ModelType: String, Codable, CaseIterable {
+        case physical = "physical"
+        case digital = "digital"
+        case virtual = "virtual"
+    }
+    /** Is the Product Available */
+    public var available: Bool?
     /** Brand */
     public var brand: String?
-    /** Is the Product Available */
-    public var available: Bool? = false
-    /** Is the Product Visible */
-    public var visible: Bool? = false
-    /** Product Type */
-    public var type: ModelType?
-    public var currency: Currency?
-    /** Minimum Price of the Product */
-    public var minPrice: Int?
-    /** Maximum Price of the Product */
-    public var maxPrice: Int?
-    /** Product Variants */
-    public var variants: [ProductVariant]?
-    /** Merchant Offerings */
-    public var offers: [Offer]?
     /** Categories */
-    public var categories: [Category]?
-    /** Gender */
-    public var gender: Gender?
-    /** Meta Data */
-    public var meta: [Meta]?
-    /** Tags */
-    public var tags: [String]?
-    /** ID's of related products. */
-    public var relatedProductIds: [String]?
+    public var categories: Set<Category>?
+    public var channelReady: Bool?
     /** ID's of Cross Saleable Products. */
-    public var crossSaleProductIds: [String]?
-    /** List of Global Trade Item Numbers */
-    public var gtins: [String]?
-    /** The default/cover image of the Product */
-    public var defaultImageUrl: String?
-    /** Overall Quantity */
-    public var qtyAvailable: Int?
-    /** The maximum commission rate offered by a merchant. */
-    public var maxCommissionRate: Double?
+    public var crossSaleProductIds: Set<String>?
+    public var currency: Currency?
     /** Date of product creation */
     public var dateCreated: Date?
     /** Date of last product update */
     public var dateLastModified: Date?
+    /** The default/cover image of the Product */
+    public var defaultImageUrl: String?
+    /** Product Description */
+    public var description: String?
+    /** Gender */
+    public var gender: Gender?
+    /** List of Global Trade Item Numbers */
+    public var gtins: Set<String>?
+    public var id: String?
+    /** Product Long Description */
+    public var longDescription: String?
+    /** Maximum Price of the Product */
+    public var maxPrice: Int?
+    /** List of merchants selling this product. */
+    public var merchantIds: Set<Int>?
+    /** Meta Data */
+    public var meta: Set<Meta>?
+    /** Minimum Price of the Product */
+    public var minPrice: Int?
+    /** Product Name */
+    public var name: String
+    /** Merchant Offerings */
+    public var offers: Set<Offer>?
+    public var offersAvailable: Int?
+    /** Overall Quantity */
+    public var qtyAvailable: Int?
+    /** ID's of related products. */
+    public var relatedProductIds: Set<String>?
+    public var requires: Set<Requires>?
+    /** Product Slug/Handle */
+    public var slug: String
+    /** Tags */
+    public var tags: Set<String>?
+    /** Number of times this product has been sold */
+    public var totalSales: Int?
+    /** Product Type */
+    public var type: ModelType?
+    /** Product Variants */
+    public var variants: Set<ProductVariant>?
+    /** Is the Product Visible */
+    public var visible: Bool?
 
-    public init(id: String? = nil, name: String, description: String? = nil, longDescription: String? = nil, slug: String, brand: String? = nil, available: Bool? = false, visible: Bool? = false, type: ModelType? = nil, currency: Currency? = nil, minPrice: Int? = nil, maxPrice: Int? = nil, variants: [ProductVariant]? = nil, offers: [Offer]? = nil, categories: [Category]? = nil, gender: Gender? = nil, meta: [Meta]? = nil, tags: [String]? = nil, relatedProductIds: [String]? = nil, crossSaleProductIds: [String]? = nil, gtins: [String]? = nil, defaultImageUrl: String? = nil, qtyAvailable: Int? = nil, maxCommissionRate: Double? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil) {
-        self.id = id
-        self.name = name
-        self.description = description
-        self.longDescription = longDescription
-        self.slug = slug
-        self.brand = brand
+    public init(available: Bool? = nil, brand: String? = nil, categories: Set<Category>? = nil, channelReady: Bool? = nil, crossSaleProductIds: Set<String>? = nil, currency: Currency? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, defaultImageUrl: String? = nil, description: String? = nil, gender: Gender? = nil, gtins: Set<String>? = nil, id: String? = nil, longDescription: String? = nil, maxPrice: Int? = nil, merchantIds: Set<Int>? = nil, meta: Set<Meta>? = nil, minPrice: Int? = nil, name: String, offers: Set<Offer>? = nil, offersAvailable: Int? = nil, qtyAvailable: Int? = nil, relatedProductIds: Set<String>? = nil, requires: Set<Requires>? = nil, slug: String, tags: Set<String>? = nil, totalSales: Int? = nil, type: ModelType? = nil, variants: Set<ProductVariant>? = nil, visible: Bool? = nil) {
         self.available = available
-        self.visible = visible
-        self.type = type
-        self.currency = currency
-        self.minPrice = minPrice
-        self.maxPrice = maxPrice
-        self.variants = variants
-        self.offers = offers
+        self.brand = brand
         self.categories = categories
-        self.gender = gender
-        self.meta = meta
-        self.tags = tags
-        self.relatedProductIds = relatedProductIds
+        self.channelReady = channelReady
         self.crossSaleProductIds = crossSaleProductIds
-        self.gtins = gtins
-        self.defaultImageUrl = defaultImageUrl
-        self.qtyAvailable = qtyAvailable
-        self.maxCommissionRate = maxCommissionRate
+        self.currency = currency
         self.dateCreated = dateCreated
         self.dateLastModified = dateLastModified
+        self.defaultImageUrl = defaultImageUrl
+        self.description = description
+        self.gender = gender
+        self.gtins = gtins
+        self.id = id
+        self.longDescription = longDescription
+        self.maxPrice = maxPrice
+        self.merchantIds = merchantIds
+        self.meta = meta
+        self.minPrice = minPrice
+        self.name = name
+        self.offers = offers
+        self.offersAvailable = offersAvailable
+        self.qtyAvailable = qtyAvailable
+        self.relatedProductIds = relatedProductIds
+        self.requires = requires
+        self.slug = slug
+        self.tags = tags
+        self.totalSales = totalSales
+        self.type = type
+        self.variants = variants
+        self.visible = visible
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case id
-        case name
-        case description
-        case longDescription = "long_description"
-        case slug
-        case brand
         case available
-        case visible
-        case type
-        case currency
-        case minPrice = "min_price"
-        case maxPrice = "max_price"
-        case variants
-        case offers
+        case brand
         case categories
-        case gender
-        case meta
-        case tags
-        case relatedProductIds = "related_product_ids"
+        case channelReady
         case crossSaleProductIds = "cross_sale_product_ids"
-        case gtins
-        case defaultImageUrl = "default_image_url"
-        case qtyAvailable = "qty_available"
-        case maxCommissionRate = "max_commission_rate"
+        case currency
         case dateCreated = "date_created"
         case dateLastModified = "date_last_modified"
+        case defaultImageUrl = "default_image_url"
+        case description
+        case gender
+        case gtins
+        case id
+        case longDescription = "long_description"
+        case maxPrice = "max_price"
+        case merchantIds = "merchant_ids"
+        case meta
+        case minPrice = "min_price"
+        case name
+        case offers
+        case offersAvailable
+        case qtyAvailable = "qty_available"
+        case relatedProductIds = "related_product_ids"
+        case requires
+        case slug
+        case tags
+        case totalSales = "total_sales"
+        case type
+        case variants
+        case visible
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(name, forKey: .name)
-        try container.encodeIfPresent(description, forKey: .description)
-        try container.encodeIfPresent(longDescription, forKey: .longDescription)
-        try container.encode(slug, forKey: .slug)
-        try container.encodeIfPresent(brand, forKey: .brand)
         try container.encodeIfPresent(available, forKey: .available)
-        try container.encodeIfPresent(visible, forKey: .visible)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(currency, forKey: .currency)
-        try container.encodeIfPresent(minPrice, forKey: .minPrice)
-        try container.encodeIfPresent(maxPrice, forKey: .maxPrice)
-        try container.encodeIfPresent(variants, forKey: .variants)
-        try container.encodeIfPresent(offers, forKey: .offers)
+        try container.encodeIfPresent(brand, forKey: .brand)
         try container.encodeIfPresent(categories, forKey: .categories)
-        try container.encodeIfPresent(gender, forKey: .gender)
-        try container.encodeIfPresent(meta, forKey: .meta)
-        try container.encodeIfPresent(tags, forKey: .tags)
-        try container.encodeIfPresent(relatedProductIds, forKey: .relatedProductIds)
+        try container.encodeIfPresent(channelReady, forKey: .channelReady)
         try container.encodeIfPresent(crossSaleProductIds, forKey: .crossSaleProductIds)
-        try container.encodeIfPresent(gtins, forKey: .gtins)
-        try container.encodeIfPresent(defaultImageUrl, forKey: .defaultImageUrl)
-        try container.encodeIfPresent(qtyAvailable, forKey: .qtyAvailable)
-        try container.encodeIfPresent(maxCommissionRate, forKey: .maxCommissionRate)
+        try container.encodeIfPresent(currency, forKey: .currency)
         try container.encodeIfPresent(dateCreated, forKey: .dateCreated)
         try container.encodeIfPresent(dateLastModified, forKey: .dateLastModified)
+        try container.encodeIfPresent(defaultImageUrl, forKey: .defaultImageUrl)
+        try container.encodeIfPresent(description, forKey: .description)
+        try container.encodeIfPresent(gender, forKey: .gender)
+        try container.encodeIfPresent(gtins, forKey: .gtins)
+        try container.encodeIfPresent(id, forKey: .id)
+        try container.encodeIfPresent(longDescription, forKey: .longDescription)
+        try container.encodeIfPresent(maxPrice, forKey: .maxPrice)
+        try container.encodeIfPresent(merchantIds, forKey: .merchantIds)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(minPrice, forKey: .minPrice)
+        try container.encode(name, forKey: .name)
+        try container.encodeIfPresent(offers, forKey: .offers)
+        try container.encodeIfPresent(offersAvailable, forKey: .offersAvailable)
+        try container.encodeIfPresent(qtyAvailable, forKey: .qtyAvailable)
+        try container.encodeIfPresent(relatedProductIds, forKey: .relatedProductIds)
+        try container.encodeIfPresent(requires, forKey: .requires)
+        try container.encode(slug, forKey: .slug)
+        try container.encodeIfPresent(tags, forKey: .tags)
+        try container.encodeIfPresent(totalSales, forKey: .totalSales)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(variants, forKey: .variants)
+        try container.encodeIfPresent(visible, forKey: .visible)
     }
 }
 

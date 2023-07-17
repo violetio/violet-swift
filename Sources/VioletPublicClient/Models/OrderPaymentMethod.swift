@@ -15,37 +15,37 @@ public struct OrderPaymentMethod: Codable, JSONEncodable, Hashable {
 
     /** Brand of Card */
     public var brand: String?
-    /** Last Four Numbers on Card */
-    public var lastFour: String?
+    /** Name as it appears on Card */
+    public var cardholderName: String?
+    /** Is Default Method */
+    public var _default: Bool?
     /** Card Expiration Month */
     public var expMonth: Int?
     /** Card Expiration Year */
     public var expYear: Int?
-    /** Name as it appears on card. */
-    public var cardholderName: String?
+    /** Last Four Numbers on Card */
+    public var lastFour: String?
     /** ID of the referenced Payment Method */
     public var paymentMethodId: Int64
-    /** Is Default Method */
-    public var _default: Bool? = false
 
-    public init(brand: String? = nil, lastFour: String? = nil, expMonth: Int? = nil, expYear: Int? = nil, cardholderName: String? = nil, paymentMethodId: Int64, _default: Bool? = false) {
+    public init(brand: String? = nil, cardholderName: String? = nil, _default: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, lastFour: String? = nil, paymentMethodId: Int64) {
         self.brand = brand
-        self.lastFour = lastFour
+        self.cardholderName = cardholderName
+        self._default = _default
         self.expMonth = expMonth
         self.expYear = expYear
-        self.cardholderName = cardholderName
+        self.lastFour = lastFour
         self.paymentMethodId = paymentMethodId
-        self._default = _default
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case brand
-        case lastFour = "last_four"
+        case cardholderName = "cardholder_name"
+        case _default = "default"
         case expMonth = "exp_month"
         case expYear = "exp_year"
-        case cardholderName = "cardholder_name"
+        case lastFour = "last_four"
         case paymentMethodId = "payment_method_id"
-        case _default = "default"
     }
 
     // Encodable protocol methods
@@ -53,12 +53,12 @@ public struct OrderPaymentMethod: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(brand, forKey: .brand)
-        try container.encodeIfPresent(lastFour, forKey: .lastFour)
+        try container.encodeIfPresent(cardholderName, forKey: .cardholderName)
+        try container.encodeIfPresent(_default, forKey: ._default)
         try container.encodeIfPresent(expMonth, forKey: .expMonth)
         try container.encodeIfPresent(expYear, forKey: .expYear)
-        try container.encodeIfPresent(cardholderName, forKey: .cardholderName)
+        try container.encodeIfPresent(lastFour, forKey: .lastFour)
         try container.encode(paymentMethodId, forKey: .paymentMethodId)
-        try container.encodeIfPresent(_default, forKey: ._default)
     }
 }
 

@@ -25,6 +25,10 @@ public struct WebhookEvent: Codable, JSONEncodable, Hashable {
         case offerCreated = "OFFER_CREATED"
         case offerUpdated = "OFFER_UPDATED"
         case offerRemoved = "OFFER_REMOVED"
+        case productSyncStarted = "PRODUCT_SYNC_STARTED"
+        case productSyncCompleted = "PRODUCT_SYNC_COMPLETED"
+        case productSyncFailed = "PRODUCT_SYNC_FAILED"
+        case merchantNeedsAttention = "MERCHANT_NEEDS_ATTENTION"
     }
     public enum Status: String, Codable, CaseIterable {
         case created = "CREATED"
@@ -32,71 +36,71 @@ public struct WebhookEvent: Codable, JSONEncodable, Hashable {
         case succeeded = "SUCCEEDED"
         case failed = "FAILED"
     }
-    public var id: Int?
     /** App ID */
     public var appId: Int?
-    /** ID of the webhook the event occurred on */
-    public var webhookId: Int?
-    /** ID of entity this event occurred for */
-    public var entityId: Int64?
-    /** HTTP Status Code */
-    public var statusCode: Int?
-    /** Response from the remote url */
-    public var response: String?
-    /** Type of webhook event */
-    public var eventType: EventType?
     /** Deliver attempts of the webhook the event */
     public var attempts: Int?
-    /** Status of webhook event */
-    public var status: Status
     /** Date of creation */
     public var dateCreated: Date?
     /** Date of last update */
     public var dateLastModified: Date?
+    /** ID of entity this event occurred for */
+    public var entityId: Int64?
+    /** Type of webhook event */
+    public var eventType: EventType?
+    public var id: Int?
+    /** Response from the remote url */
+    public var response: String?
+    /** Status of webhook event */
+    public var status: Status
+    /** HTTP Status Code */
+    public var statusCode: Int?
+    /** ID of the webhook the event occurred on */
+    public var webhookId: Int?
 
-    public init(id: Int? = nil, appId: Int? = nil, webhookId: Int? = nil, entityId: Int64? = nil, statusCode: Int? = nil, response: String? = nil, eventType: EventType? = nil, attempts: Int? = nil, status: Status, dateCreated: Date? = nil, dateLastModified: Date? = nil) {
-        self.id = id
+    public init(appId: Int? = nil, attempts: Int? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, entityId: Int64? = nil, eventType: EventType? = nil, id: Int? = nil, response: String? = nil, status: Status, statusCode: Int? = nil, webhookId: Int? = nil) {
         self.appId = appId
-        self.webhookId = webhookId
-        self.entityId = entityId
-        self.statusCode = statusCode
-        self.response = response
-        self.eventType = eventType
         self.attempts = attempts
-        self.status = status
         self.dateCreated = dateCreated
         self.dateLastModified = dateLastModified
+        self.entityId = entityId
+        self.eventType = eventType
+        self.id = id
+        self.response = response
+        self.status = status
+        self.statusCode = statusCode
+        self.webhookId = webhookId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case id
         case appId = "app_id"
-        case webhookId = "webhook_id"
-        case entityId = "entity_id"
-        case statusCode = "status_code"
-        case response
-        case eventType = "event_type"
         case attempts
-        case status
         case dateCreated = "date_created"
         case dateLastModified = "date_last_modified"
+        case entityId = "entity_id"
+        case eventType = "event_type"
+        case id
+        case response
+        case status
+        case statusCode = "status_code"
+        case webhookId = "webhook_id"
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(appId, forKey: .appId)
-        try container.encodeIfPresent(webhookId, forKey: .webhookId)
-        try container.encodeIfPresent(entityId, forKey: .entityId)
-        try container.encodeIfPresent(statusCode, forKey: .statusCode)
-        try container.encodeIfPresent(response, forKey: .response)
-        try container.encodeIfPresent(eventType, forKey: .eventType)
         try container.encodeIfPresent(attempts, forKey: .attempts)
-        try container.encode(status, forKey: .status)
         try container.encodeIfPresent(dateCreated, forKey: .dateCreated)
         try container.encodeIfPresent(dateLastModified, forKey: .dateLastModified)
+        try container.encodeIfPresent(entityId, forKey: .entityId)
+        try container.encodeIfPresent(eventType, forKey: .eventType)
+        try container.encodeIfPresent(id, forKey: .id)
+        try container.encodeIfPresent(response, forKey: .response)
+        try container.encode(status, forKey: .status)
+        try container.encodeIfPresent(statusCode, forKey: .statusCode)
+        try container.encodeIfPresent(webhookId, forKey: .webhookId)
     }
 }
 

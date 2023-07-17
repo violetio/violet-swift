@@ -14,65 +14,78 @@ import AnyCodable
 public struct OrderAddress: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {
-        case shipping = "SHIPPING"
-        case billing = "BILLING"
+        case shipping = "shipping"
+        case billing = "billing"
     }
-    /** Name on Address */
-    public var name: String?
-    /** City */
-    public var city: String
-    /** State Abbreviation */
-    public var state: String
-    /** Country ISO2 Code */
-    public var country: String
-    /** Postal/Zip Code */
-    public var postalCode: String
-    /** Phone Number */
-    public var phone: String?
-    /** Address Type */
-    public var type: ModelType
     /** First line of the Address */
     public var address1: String
     /** Second line of the Address */
     public var address2: String?
+    /** City */
+    public var city: String
+    /** Country ISO2 Code */
+    public var country: String
+    /** Email Address */
+    public var email: String?
+    public var firstName: String?
+    public var lastName: String?
+    /** Name on Address */
+    public var name: String?
+    /** Phone Number */
+    public var phone: String?
+    /** Postal/Zip Code */
+    public var postalCode: String
+    /** State Abbreviation */
+    public var state: String
+    /** Address Type */
+    public var type: ModelType
 
-    public init(name: String? = nil, city: String, state: String, country: String, postalCode: String, phone: String? = nil, type: ModelType, address1: String, address2: String? = nil) {
-        self.name = name
-        self.city = city
-        self.state = state
-        self.country = country
-        self.postalCode = postalCode
-        self.phone = phone
-        self.type = type
+    public init(address1: String, address2: String? = nil, city: String, country: String, email: String? = nil, firstName: String? = nil, lastName: String? = nil, name: String? = nil, phone: String? = nil, postalCode: String, state: String, type: ModelType) {
         self.address1 = address1
         self.address2 = address2
+        self.city = city
+        self.country = country
+        self.email = email
+        self.firstName = firstName
+        self.lastName = lastName
+        self.name = name
+        self.phone = phone
+        self.postalCode = postalCode
+        self.state = state
+        self.type = type
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case name
-        case city
-        case state
-        case country
-        case postalCode = "postal_code"
-        case phone
-        case type
         case address1 = "address_1"
         case address2 = "address_2"
+        case city
+        case country
+        case email
+        case firstName
+        case lastName
+        case name
+        case phone
+        case postalCode = "postal_code"
+        case state
+        case type
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(name, forKey: .name)
-        try container.encode(city, forKey: .city)
-        try container.encode(state, forKey: .state)
-        try container.encode(country, forKey: .country)
-        try container.encode(postalCode, forKey: .postalCode)
-        try container.encodeIfPresent(phone, forKey: .phone)
-        try container.encode(type, forKey: .type)
         try container.encode(address1, forKey: .address1)
         try container.encodeIfPresent(address2, forKey: .address2)
+        try container.encode(city, forKey: .city)
+        try container.encode(country, forKey: .country)
+        try container.encodeIfPresent(email, forKey: .email)
+        try container.encodeIfPresent(firstName, forKey: .firstName)
+        try container.encodeIfPresent(lastName, forKey: .lastName)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(phone, forKey: .phone)
+        try container.encode(postalCode, forKey: .postalCode)
+        try container.encode(state, forKey: .state)
+        try container.encode(type, forKey: .type)
     }
 }
 
