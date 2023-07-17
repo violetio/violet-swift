@@ -1,21 +1,19 @@
 # CheckoutCompletionAPI
 
-All URIs are relative to *https://sandbox-api.violet.io:443/v1*
+All URIs are relative to *https://sandbox-api.violet.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**checkoutCartCartIdPriceGet**](CheckoutCompletionAPI.md#checkoutcartcartidpriceget) | **GET** /checkout/cart/{cart_id}/price | Price Cart
-[**checkoutCartCartIdSubmitPost**](CheckoutCompletionAPI.md#checkoutcartcartidsubmitpost) | **POST** /checkout/cart/{cart_id}/submit | Submit Cart
+[**priceCart1**](CheckoutCompletionAPI.md#pricecart1) | **GET** /checkout/cart/{cart_id}/price | Price Cart
+[**submitCheckout1**](CheckoutCompletionAPI.md#submitcheckout1) | **POST** /checkout/cart/{cart_id}/submit | Submit Cart
 
 
-# **checkoutCartCartIdPriceGet**
+# **priceCart1**
 ```swift
-    open class func checkoutCartCartIdPriceGet(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func priceCart1(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Price Cart
-
-Prices the cart. This includes the calculation of shipping and tax rates. Before pricing a cart the shipping address, billing address, shipping method, and any SKUs should be applied to the cart.
 
 ### Example
 ```swift
@@ -25,10 +23,10 @@ import VioletPublicClient
 let cartId = 987 // Int64 | 
 let xVioletToken = "xVioletToken_example" // String |  (optional)
 let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int64 |  (optional)
+let xVioletAppId = 987 // Int |  (optional)
 
 // Price Cart
-CheckoutCompletionAPI.checkoutCartCartIdPriceGet(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CheckoutCompletionAPI.priceCart1(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -47,7 +45,7 @@ Name | Type | Description  | Notes
  **cartId** | **Int64** |  | 
  **xVioletToken** | **String** |  | [optional] 
  **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int64** |  | [optional] 
+ **xVioletAppId** | **Int** |  | [optional] 
 
 ### Return type
 
@@ -64,14 +62,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **checkoutCartCartIdSubmitPost**
+# **submitCheckout1**
 ```swift
-    open class func checkoutCartCartIdSubmitPost(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func submitCheckout1(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, body: CartSubmissionRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Submit Cart
-
-Submits a cart. For each unique bag in your cart an order will be submitted to the source merchant's platform. Depending on the number of bags in your cart this request can take a few moments as each external order is submitted.
 
 ### Example
 ```swift
@@ -81,10 +77,11 @@ import VioletPublicClient
 let cartId = 987 // Int64 | 
 let xVioletToken = "xVioletToken_example" // String |  (optional)
 let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int64 |  (optional)
+let xVioletAppId = 987 // Int |  (optional)
+let body = CartSubmissionRequest(appOrderId: "appOrderId_example", appTransactionGateway: "appTransactionGateway_example", appTransactionId: "appTransactionId_example", orderCustomer: OrderCustomer(billingAddress: OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example"), email: "email_example", externalId: "externalId_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", sameAddress: false, shippingAddress: nil, userId: 123), referralId: "referralId_example") // CartSubmissionRequest |  (optional)
 
 // Submit Cart
-CheckoutCompletionAPI.checkoutCartCartIdSubmitPost(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CheckoutCompletionAPI.submitCheckout1(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -103,7 +100,8 @@ Name | Type | Description  | Notes
  **cartId** | **Int64** |  | 
  **xVioletToken** | **String** |  | [optional] 
  **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int64** |  | [optional] 
+ **xVioletAppId** | **Int** |  | [optional] 
+ **body** | [**CartSubmissionRequest**](CartSubmissionRequest.md) |  | [optional] 
 
 ### Return type
 
@@ -115,7 +113,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

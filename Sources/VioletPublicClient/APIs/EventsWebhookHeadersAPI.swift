@@ -20,13 +20,12 @@ open class EventsWebhookHeadersAPI {
      - parameter xVioletAppSecret: (header)  (optional)
      - parameter xVioletAppId: (header)  (optional)
      - parameter appId: (query)  (optional)
-     - parameter body: (body)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createWebhookHeader1(webhookId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil, body: WebhookHeader? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: WebhookHeader?, _ error: Error?) -> Void)) -> RequestTask {
-        return createWebhookHeader1WithRequestBuilder(webhookId: webhookId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId, body: body).execute(apiResponseQueue) { result in
+    open class func createWebhookHeader(webhookId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: WebhookHeader?, _ error: Error?) -> Void)) -> RequestTask {
+        return createWebhookHeaderWithRequestBuilder(webhookId: webhookId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -45,20 +44,19 @@ open class EventsWebhookHeadersAPI {
      - parameter xVioletAppSecret: (header)  (optional)
      - parameter xVioletAppId: (header)  (optional)
      - parameter appId: (query)  (optional)
-     - parameter body: (body)  (optional)
      - returns: RequestBuilder<WebhookHeader> 
      */
-    open class func createWebhookHeader1WithRequestBuilder(webhookId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil, body: WebhookHeader? = nil) -> RequestBuilder<WebhookHeader> {
+    open class func createWebhookHeaderWithRequestBuilder(webhookId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil) -> RequestBuilder<WebhookHeader> {
         var localVariablePath = "/events/webhooks/{webhook_id}/headers"
         let webhookIdPreEscape = "\(APIHelper.mapValueToPathItem(webhookId))"
         let webhookIdPostEscape = webhookIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{webhook_id}", with: webhookIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
+        let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "app_id": (wrappedValue: appId?.encodeToJSON(), isExplode: true),
+            "app_id": (wrappedValue: appId?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -87,8 +85,8 @@ open class EventsWebhookHeadersAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func deleteWebhookHeader1(webhookId: Int, headerId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
-        return deleteWebhookHeader1WithRequestBuilder(webhookId: webhookId, headerId: headerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId).execute(apiResponseQueue) { result in
+    open class func deleteWebhookHeader(webhookId: Int, headerId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+        return deleteWebhookHeaderWithRequestBuilder(webhookId: webhookId, headerId: headerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion((), nil)
@@ -110,7 +108,7 @@ open class EventsWebhookHeadersAPI {
      - parameter appId: (query)  (optional)
      - returns: RequestBuilder<Void> 
      */
-    open class func deleteWebhookHeader1WithRequestBuilder(webhookId: Int, headerId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil) -> RequestBuilder<Void> {
+    open class func deleteWebhookHeaderWithRequestBuilder(webhookId: Int, headerId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil) -> RequestBuilder<Void> {
         var localVariablePath = "/events/webhooks/{webhook_id}/headers/{header_id}"
         let webhookIdPreEscape = "\(APIHelper.mapValueToPathItem(webhookId))"
         let webhookIdPostEscape = webhookIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -123,7 +121,7 @@ open class EventsWebhookHeadersAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "app_id": (wrappedValue: appId?.encodeToJSON(), isExplode: true),
+            "app_id": (wrappedValue: appId?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -152,8 +150,8 @@ open class EventsWebhookHeadersAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getWebhookHeaderById1(webhookId: Int, headerId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: WebhookHeader?, _ error: Error?) -> Void)) -> RequestTask {
-        return getWebhookHeaderById1WithRequestBuilder(webhookId: webhookId, headerId: headerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId).execute(apiResponseQueue) { result in
+    open class func getWebhookHeaderById(webhookId: Int, headerId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: WebhookHeader?, _ error: Error?) -> Void)) -> RequestTask {
+        return getWebhookHeaderByIdWithRequestBuilder(webhookId: webhookId, headerId: headerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -175,7 +173,7 @@ open class EventsWebhookHeadersAPI {
      - parameter appId: (query)  (optional)
      - returns: RequestBuilder<WebhookHeader> 
      */
-    open class func getWebhookHeaderById1WithRequestBuilder(webhookId: Int, headerId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil) -> RequestBuilder<WebhookHeader> {
+    open class func getWebhookHeaderByIdWithRequestBuilder(webhookId: Int, headerId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil) -> RequestBuilder<WebhookHeader> {
         var localVariablePath = "/events/webhooks/{webhook_id}/headers/{header_id}"
         let webhookIdPreEscape = "\(APIHelper.mapValueToPathItem(webhookId))"
         let webhookIdPostEscape = webhookIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -188,7 +186,7 @@ open class EventsWebhookHeadersAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "app_id": (wrappedValue: appId?.encodeToJSON(), isExplode: true),
+            "app_id": (wrappedValue: appId?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -216,8 +214,8 @@ open class EventsWebhookHeadersAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getWebhookHeaders1(webhookId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: [WebhookHeader]?, _ error: Error?) -> Void)) -> RequestTask {
-        return getWebhookHeaders1WithRequestBuilder(webhookId: webhookId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId).execute(apiResponseQueue) { result in
+    open class func getWebhookHeaders(webhookId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: [WebhookHeader]?, _ error: Error?) -> Void)) -> RequestTask {
+        return getWebhookHeadersWithRequestBuilder(webhookId: webhookId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -238,7 +236,7 @@ open class EventsWebhookHeadersAPI {
      - parameter appId: (query)  (optional)
      - returns: RequestBuilder<[WebhookHeader]> 
      */
-    open class func getWebhookHeaders1WithRequestBuilder(webhookId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil) -> RequestBuilder<[WebhookHeader]> {
+    open class func getWebhookHeadersWithRequestBuilder(webhookId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil) -> RequestBuilder<[WebhookHeader]> {
         var localVariablePath = "/events/webhooks/{webhook_id}/headers"
         let webhookIdPreEscape = "\(APIHelper.mapValueToPathItem(webhookId))"
         let webhookIdPostEscape = webhookIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -248,7 +246,7 @@ open class EventsWebhookHeadersAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "app_id": (wrappedValue: appId?.encodeToJSON(), isExplode: true),
+            "app_id": (wrappedValue: appId?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -273,13 +271,12 @@ open class EventsWebhookHeadersAPI {
      - parameter xVioletAppSecret: (header)  (optional)
      - parameter xVioletAppId: (header)  (optional)
      - parameter appId: (query)  (optional)
-     - parameter body: (body)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func updateWebhookHeader1(webhookId: Int, headerId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil, body: WebhookHeader? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: WebhookHeader?, _ error: Error?) -> Void)) -> RequestTask {
-        return updateWebhookHeader1WithRequestBuilder(webhookId: webhookId, headerId: headerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId, body: body).execute(apiResponseQueue) { result in
+    open class func updateWebhookHeader(webhookId: Int, headerId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: WebhookHeader?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateWebhookHeaderWithRequestBuilder(webhookId: webhookId, headerId: headerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, appId: appId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -299,10 +296,9 @@ open class EventsWebhookHeadersAPI {
      - parameter xVioletAppSecret: (header)  (optional)
      - parameter xVioletAppId: (header)  (optional)
      - parameter appId: (query)  (optional)
-     - parameter body: (body)  (optional)
      - returns: RequestBuilder<WebhookHeader> 
      */
-    open class func updateWebhookHeader1WithRequestBuilder(webhookId: Int, headerId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil, body: WebhookHeader? = nil) -> RequestBuilder<WebhookHeader> {
+    open class func updateWebhookHeaderWithRequestBuilder(webhookId: Int, headerId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, appId: Int? = nil) -> RequestBuilder<WebhookHeader> {
         var localVariablePath = "/events/webhooks/{webhook_id}/headers/{header_id}"
         let webhookIdPreEscape = "\(APIHelper.mapValueToPathItem(webhookId))"
         let webhookIdPostEscape = webhookIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -311,11 +307,11 @@ open class EventsWebhookHeadersAPI {
         let headerIdPostEscape = headerIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{header_id}", with: headerIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
+        let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "app_id": (wrappedValue: appId?.encodeToJSON(), isExplode: true),
+            "app_id": (wrappedValue: appId?.encodeToJSON(), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

@@ -1,20 +1,18 @@
 # CatalogSkusAPI
 
-All URIs are relative to *https://sandbox-api.violet.io:443/v1*
+All URIs are relative to *https://sandbox-api.violet.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**catalogSkusSkuIdGet**](CatalogSkusAPI.md#catalogskusskuidget) | **GET** /catalog/skus/{sku_id} | Get Sku by ID
+[**getSkuById1**](CatalogSkusAPI.md#getskubyid1) | **GET** /catalog/skus/{sku_id} | Get Sku by ID
 
 
-# **catalogSkusSkuIdGet**
+# **getSkuById1**
 ```swift
-    open class func catalogSkusSkuIdGet(skuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, completion: @escaping (_ data: Sku?, _ error: Error?) -> Void)
+    open class func getSkuById1(skuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, baseCurrency: String? = nil, completion: @escaping (_ data: Sku?, _ error: Error?) -> Void)
 ```
 
 Get Sku by ID
-
-Retreives a single SKU by ID.
 
 ### Example
 ```swift
@@ -24,10 +22,11 @@ import VioletPublicClient
 let skuId = 987 // Int64 | 
 let xVioletToken = "xVioletToken_example" // String |  (optional)
 let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int64 |  (optional)
+let xVioletAppId = 987 // Int |  (optional)
+let baseCurrency = "baseCurrency_example" // String |  (optional) (default to "USD")
 
 // Get Sku by ID
-CatalogSkusAPI.catalogSkusSkuIdGet(skuId: skuId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CatalogSkusAPI.getSkuById1(skuId: skuId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, baseCurrency: baseCurrency) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -46,7 +45,8 @@ Name | Type | Description  | Notes
  **skuId** | **Int64** |  | 
  **xVioletToken** | **String** |  | [optional] 
  **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int64** |  | [optional] 
+ **xVioletAppId** | **Int** |  | [optional] 
+ **baseCurrency** | **String** |  | [optional] [default to &quot;USD&quot;]
 
 ### Return type
 

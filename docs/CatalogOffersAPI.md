@@ -1,37 +1,39 @@
 # CatalogOffersAPI
 
-All URIs are relative to *https://sandbox-api.violet.io:443/v1*
+All URIs are relative to *https://sandbox-api.violet.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**catalogOffersMerchantsMerchantIdGet**](CatalogOffersAPI.md#catalogoffersmerchantsmerchantidget) | **GET** /catalog/offers/merchants/{merchant_id} | Get Offers by merchant_id
-[**catalogOffersOfferIdGet**](CatalogOffersAPI.md#catalogoffersofferidget) | **GET** /catalog/offers/{offer_id} | Get Offer by ID
-[**catalogOffersSearchbetatrueGet**](CatalogOffersAPI.md#catalogofferssearchbetatrueget) | **GET** /catalog/offers/search?beta&#x3D;true | Get Offers by merchant_id
+[**getMerchantOffers1**](CatalogOffersAPI.md#getmerchantoffers1) | **GET** /catalog/offers/merchants/{merchant_id} | Get All Merchant Offers
+[**getOfferById1**](CatalogOffersAPI.md#getofferbyid1) | **GET** /catalog/offers/{offer_id} | Get Offer by ID
+[**searchOffers1**](CatalogOffersAPI.md#searchoffers1) | **POST** /catalog/offers/search | Search Offers
 
 
-# **catalogOffersMerchantsMerchantIdGet**
+# **getMerchantOffers1**
 ```swift
-    open class func catalogOffersMerchantsMerchantIdGet(merchantId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, page: Int? = nil, size: Int? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
+    open class func getMerchantOffers1(merchantId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, since: Int64? = nil, page: Int? = nil, size: Int? = nil, mapVariants: Bool? = nil, baseCurrency: String? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
 ```
 
-Get Offers by merchant_id
-
-Retrieves a page of offers by Merchant ID.
+Get All Merchant Offers
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import VioletPublicClient
 
-let merchantId = 987 // Int64 | 
+let merchantId = 987 // Int | 
 let xVioletToken = "xVioletToken_example" // String |  (optional)
 let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int64 |  (optional)
+let xVioletAppId = 987 // Int |  (optional)
+let xVioletApiFeatures = "xVioletApiFeatures_example" // String |  (optional)
+let since = 987 // Int64 |  (optional)
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
+let mapVariants = true // Bool |  (optional) (default to true)
+let baseCurrency = "baseCurrency_example" // String |  (optional)
 
-// Get Offers by merchant_id
-CatalogOffersAPI.catalogOffersMerchantsMerchantIdGet(merchantId: merchantId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size) { (response, error) in
+// Get All Merchant Offers
+CatalogOffersAPI.getMerchantOffers1(merchantId: merchantId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, xVioletApiFeatures: xVioletApiFeatures, since: since, page: page, size: size, mapVariants: mapVariants, baseCurrency: baseCurrency) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -47,12 +49,16 @@ CatalogOffersAPI.catalogOffersMerchantsMerchantIdGet(merchantId: merchantId, xVi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **merchantId** | **Int64** |  | 
+ **merchantId** | **Int** |  | 
  **xVioletToken** | **String** |  | [optional] 
  **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int64** |  | [optional] 
+ **xVioletAppId** | **Int** |  | [optional] 
+ **xVioletApiFeatures** | **String** |  | [optional] 
+ **since** | **Int64** |  | [optional] 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
+ **mapVariants** | **Bool** |  | [optional] [default to true]
+ **baseCurrency** | **String** |  | [optional] 
 
 ### Return type
 
@@ -69,14 +75,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **catalogOffersOfferIdGet**
+# **getOfferById1**
 ```swift
-    open class func catalogOffersOfferIdGet(offerId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, completion: @escaping (_ data: Offer?, _ error: Error?) -> Void)
+    open class func getOfferById1(offerId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, baseCurrency: String? = nil, exchangeRate: Double? = nil, completion: @escaping (_ data: Offer?, _ error: Error?) -> Void)
 ```
 
 Get Offer by ID
-
-Retrieves a single offer by ID.
 
 ### Example
 ```swift
@@ -86,10 +90,13 @@ import VioletPublicClient
 let offerId = 987 // Int64 | 
 let xVioletToken = "xVioletToken_example" // String |  (optional)
 let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int64 |  (optional)
+let xVioletAppId = 987 // Int |  (optional)
+let xVioletApiFeatures = "xVioletApiFeatures_example" // String |  (optional)
+let baseCurrency = "baseCurrency_example" // String |  (optional) (default to "USD")
+let exchangeRate = 987 // Double |  (optional)
 
 // Get Offer by ID
-CatalogOffersAPI.catalogOffersOfferIdGet(offerId: offerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CatalogOffersAPI.getOfferById1(offerId: offerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, xVioletApiFeatures: xVioletApiFeatures, baseCurrency: baseCurrency, exchangeRate: exchangeRate) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -108,7 +115,10 @@ Name | Type | Description  | Notes
  **offerId** | **Int64** |  | 
  **xVioletToken** | **String** |  | [optional] 
  **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int64** |  | [optional] 
+ **xVioletAppId** | **Int** |  | [optional] 
+ **xVioletApiFeatures** | **String** |  | [optional] 
+ **baseCurrency** | **String** |  | [optional] [default to &quot;USD&quot;]
+ **exchangeRate** | **Double** |  | [optional] 
 
 ### Return type
 
@@ -125,14 +135,14 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **catalogOffersSearchbetatrueGet**
+# **searchOffers1**
 ```swift
-    open class func catalogOffersSearchbetatrueGet(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int64? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
+    open class func searchOffers1(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, excludeHidden: Bool? = nil, body: OfferSearchRequest? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
 ```
 
-Get Offers by merchant_id
+Search Offers
 
-Retrieves a page of offers by Merchant ID.
+Maximum size limit of 100 results.
 
 ### Example
 ```swift
@@ -141,10 +151,15 @@ import VioletPublicClient
 
 let xVioletToken = "xVioletToken_example" // String |  (optional)
 let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int64 |  (optional)
+let xVioletAppId = 987 // Int |  (optional)
+let page = 987 // Int |  (optional) (default to 1)
+let size = 987 // Int |  (optional) (default to 20)
+let excludePublic = true // Bool |  (optional) (default to false)
+let excludeHidden = true // Bool |  (optional) (default to true)
+let body = OfferSearchRequest(externalId: "externalId_example", id: 123, maxPrice: 123, merchantId: 123, minPrice: 123, name: "name_example", productId: "productId_example", publishingStatus: "publishingStatus_example", seller: "seller_example", sortBy: "sortBy_example", sortDirection: "sortDirection_example", subscriptionStatus: "subscriptionStatus_example", vendor: "vendor_example") // OfferSearchRequest |  (optional)
 
-// Get Offers by merchant_id
-CatalogOffersAPI.catalogOffersSearchbetatrueGet(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+// Search Offers
+CatalogOffersAPI.searchOffers1(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, excludePublic: excludePublic, excludeHidden: excludeHidden, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -162,7 +177,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xVioletToken** | **String** |  | [optional] 
  **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int64** |  | [optional] 
+ **xVioletAppId** | **Int** |  | [optional] 
+ **page** | **Int** |  | [optional] [default to 1]
+ **size** | **Int** |  | [optional] [default to 20]
+ **excludePublic** | **Bool** |  | [optional] [default to false]
+ **excludeHidden** | **Bool** |  | [optional] [default to true]
+ **body** | [**OfferSearchRequest**](OfferSearchRequest.md) |  | [optional] 
 
 ### Return type
 
@@ -174,7 +194,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
