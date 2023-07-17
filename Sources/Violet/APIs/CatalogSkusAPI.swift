@@ -24,8 +24,8 @@ open class CatalogSkusAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getSkuById1(skuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, baseCurrency: String? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: Sku?, _ error: Error?) -> Void)) -> RequestTask {
-        return getSkuById1WithRequestBuilder(skuId: skuId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, baseCurrency: baseCurrency).execute(apiResponseQueue) { result in
+    open class func getSkuById(skuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, baseCurrency: String? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Sku?, _ error: Error?) -> Void)) -> RequestTask {
+        return getSkuByIdWithRequestBuilder(skuId: skuId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, baseCurrency: baseCurrency).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -45,12 +45,12 @@ open class CatalogSkusAPI {
      - parameter baseCurrency: (query)  (optional, default to "USD")
      - returns: RequestBuilder<Sku> 
      */
-    open class func getSkuById1WithRequestBuilder(skuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, baseCurrency: String? = nil) -> RequestBuilder<Sku> {
+    open class func getSkuByIdWithRequestBuilder(skuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, baseCurrency: String? = nil) -> RequestBuilder<Sku> {
         var localVariablePath = "/catalog/skus/{sku_id}"
         let skuIdPreEscape = "\(APIHelper.mapValueToPathItem(skuId))"
         let skuIdPostEscape = skuIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{sku_id}", with: skuIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
+        let localVariableURLString = VioletAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -66,7 +66,7 @@ open class CatalogSkusAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Sku>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Sku>.Type = VioletAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }

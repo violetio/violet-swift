@@ -21,7 +21,7 @@ open class AccessAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func login(xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: LoginResponse?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func login(xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: LoginResponse?, _ error: Error?) -> Void)) -> RequestTask {
         return loginWithRequestBuilder(xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -41,7 +41,7 @@ open class AccessAPI {
      */
     open class func loginWithRequestBuilder(xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil) -> RequestBuilder<LoginResponse> {
         let localVariablePath = "/login"
-        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
+        let localVariableURLString = VioletAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -53,7 +53,7 @@ open class AccessAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<LoginResponse>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<LoginResponse>.Type = VioletAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
@@ -68,7 +68,7 @@ open class AccessAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func refreshToken(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: RefreshTokenResponse?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func refreshToken(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: RefreshTokenResponse?, _ error: Error?) -> Void)) -> RequestTask {
         return refreshTokenWithRequestBuilder(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -89,7 +89,7 @@ open class AccessAPI {
      */
     open class func refreshTokenWithRequestBuilder(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil) -> RequestBuilder<RefreshTokenResponse> {
         let localVariablePath = "/auth/token"
-        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
+        let localVariableURLString = VioletAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -102,7 +102,7 @@ open class AccessAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<RefreshTokenResponse>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<RefreshTokenResponse>.Type = VioletAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
