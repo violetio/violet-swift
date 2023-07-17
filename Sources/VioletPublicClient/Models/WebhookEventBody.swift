@@ -14,20 +14,20 @@ import AnyCodable
 public struct WebhookEventBody: Codable, JSONEncodable, Hashable {
 
     public var body: [String: AnyCodable]?
-    public var length: Int?
     /** Date of creation */
     public var dateCreated: Date?
+    public var length: Int?
 
-    public init(body: [String: AnyCodable]? = nil, length: Int? = nil, dateCreated: Date? = nil) {
+    public init(body: [String: AnyCodable]? = nil, dateCreated: Date? = nil, length: Int? = nil) {
         self.body = body
-        self.length = length
         self.dateCreated = dateCreated
+        self.length = length
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case body
-        case length
         case dateCreated = "date_created"
+        case length
     }
 
     // Encodable protocol methods
@@ -35,8 +35,8 @@ public struct WebhookEventBody: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(body, forKey: .body)
-        try container.encodeIfPresent(length, forKey: .length)
         try container.encodeIfPresent(dateCreated, forKey: .dateCreated)
+        try container.encodeIfPresent(length, forKey: .length)
     }
 }
 

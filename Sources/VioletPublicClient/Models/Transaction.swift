@@ -13,116 +13,112 @@ import AnyCodable
 /** Order Transaction */
 public struct Transaction: Codable, JSONEncodable, Hashable {
 
+    public enum Status: String, Codable, CaseIterable {
+        case processing = "PROCESSING"
+        case completed = "COMPLETED"
+        case refunded = "REFUNDED"
+        case requiresAction = "REQUIRES_ACTION"
+    }
     public enum ModelType: String, Codable, CaseIterable {
         case authorization = "AUTHORIZATION"
         case capture = "CAPTURE"
-        case sale = "SALE"
         case void = "VOID"
         case refund = "REFUND"
     }
-    public enum Status: String, Codable, CaseIterable {
-        case processing = "processing"
-        case completed = "completed"
-    }
-    public var id: Int64?
-    /** ID of the Merchant receiving the transaction */
-    public var merchantId: Int
-    /** ID of the User who facilitated the transaction */
-    public var sellerId: Int64?
-    /** ID of the App that created the Order */
-    public var appId: Int64
-    /** ID of the Order the Transaction applies to */
-    public var orderId: Int64?
-    /** ID of the Bag the Transaction applies to */
-    public var bagId: Int64
-    /** ID of the referenced Payment Method */
-    public var paymentMethodId: Int64
-    /** ID of the Transaction in the Payment Gateway */
-    public var gatewayTransactionId: String?
-    /** Gateway processing the Transaction */
-    public var gateway: String?
     /** Total amount being transacted */
     public var amount: Int?
+    /** ID of the App that created the Order */
+    public var appId: Int
+    /** ID of the Bag the Transaction applies to */
+    public var bagId: Int64
     /** Currency the Transaction takes place in */
     public var currency: String?
-    /** Transaction Type */
-    public var type: ModelType?
-    /** Error Code from gateway if error occurred */
-    public var errorCode: String?
-    /** Transaction Status */
-    public var status: Status?
-    /** Is this a test Transaction */
-    public var test: Bool? = false
     /** Date of transaction creation */
     public var dateCreated: Date?
     /** Date of last transaction update */
     public var dateLastModified: Date?
+    /** Error Code from gateway if error occurred */
+    public var errorCode: String?
+    /** Gateway processing the Transaction */
+    public var gateway: String?
+    /** ID of the Transaction in the Payment Gateway */
+    public var gatewayTransactionId: String?
+    public var id: Int64?
+    /** ID of the Merchant receiving the transaction */
+    public var merchantId: Int
+    /** ID of the Order the Transaction applies to */
+    public var orderId: Int64?
     public var orderPaymentMethod: OrderPaymentMethod?
+    /** ID of the referenced Payment Method */
+    public var paymentMethodId: Int64
+    /** Transaction Status */
+    public var status: Status?
+    /** Is this a test Transaction */
+    public var test: Bool?
+    /** Transaction Type */
+    public var type: ModelType?
 
-    public init(id: Int64? = nil, merchantId: Int, sellerId: Int64? = nil, appId: Int64, orderId: Int64? = nil, bagId: Int64, paymentMethodId: Int64, gatewayTransactionId: String? = nil, gateway: String? = nil, amount: Int? = nil, currency: String? = nil, type: ModelType? = nil, errorCode: String? = nil, status: Status? = nil, test: Bool? = false, dateCreated: Date? = nil, dateLastModified: Date? = nil, orderPaymentMethod: OrderPaymentMethod? = nil) {
-        self.id = id
-        self.merchantId = merchantId
-        self.sellerId = sellerId
-        self.appId = appId
-        self.orderId = orderId
-        self.bagId = bagId
-        self.paymentMethodId = paymentMethodId
-        self.gatewayTransactionId = gatewayTransactionId
-        self.gateway = gateway
+    public init(amount: Int? = nil, appId: Int, bagId: Int64, currency: String? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, errorCode: String? = nil, gateway: String? = nil, gatewayTransactionId: String? = nil, id: Int64? = nil, merchantId: Int, orderId: Int64? = nil, orderPaymentMethod: OrderPaymentMethod? = nil, paymentMethodId: Int64, status: Status? = nil, test: Bool? = nil, type: ModelType? = nil) {
         self.amount = amount
+        self.appId = appId
+        self.bagId = bagId
         self.currency = currency
-        self.type = type
-        self.errorCode = errorCode
-        self.status = status
-        self.test = test
         self.dateCreated = dateCreated
         self.dateLastModified = dateLastModified
+        self.errorCode = errorCode
+        self.gateway = gateway
+        self.gatewayTransactionId = gatewayTransactionId
+        self.id = id
+        self.merchantId = merchantId
+        self.orderId = orderId
         self.orderPaymentMethod = orderPaymentMethod
+        self.paymentMethodId = paymentMethodId
+        self.status = status
+        self.test = test
+        self.type = type
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case id
-        case merchantId = "merchant_id"
-        case sellerId = "seller_id"
-        case appId = "app_id"
-        case orderId = "order_id"
-        case bagId = "bag_id"
-        case paymentMethodId = "payment_method_id"
-        case gatewayTransactionId = "gateway_transaction_id"
-        case gateway
         case amount
+        case appId = "app_id"
+        case bagId = "bag_id"
         case currency
-        case type
-        case errorCode = "error_code"
-        case status
-        case test
         case dateCreated = "date_created"
         case dateLastModified = "date_last_modified"
-        case orderPaymentMethod
+        case errorCode = "error_code"
+        case gateway
+        case gatewayTransactionId = "gateway_transaction_id"
+        case id
+        case merchantId = "merchant_id"
+        case orderId = "order_id"
+        case orderPaymentMethod = "order_payment_method"
+        case paymentMethodId = "payment_method_id"
+        case status
+        case test
+        case type
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(merchantId, forKey: .merchantId)
-        try container.encodeIfPresent(sellerId, forKey: .sellerId)
-        try container.encode(appId, forKey: .appId)
-        try container.encodeIfPresent(orderId, forKey: .orderId)
-        try container.encode(bagId, forKey: .bagId)
-        try container.encode(paymentMethodId, forKey: .paymentMethodId)
-        try container.encodeIfPresent(gatewayTransactionId, forKey: .gatewayTransactionId)
-        try container.encodeIfPresent(gateway, forKey: .gateway)
         try container.encodeIfPresent(amount, forKey: .amount)
+        try container.encode(appId, forKey: .appId)
+        try container.encode(bagId, forKey: .bagId)
         try container.encodeIfPresent(currency, forKey: .currency)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(errorCode, forKey: .errorCode)
-        try container.encodeIfPresent(status, forKey: .status)
-        try container.encodeIfPresent(test, forKey: .test)
         try container.encodeIfPresent(dateCreated, forKey: .dateCreated)
         try container.encodeIfPresent(dateLastModified, forKey: .dateLastModified)
+        try container.encodeIfPresent(errorCode, forKey: .errorCode)
+        try container.encodeIfPresent(gateway, forKey: .gateway)
+        try container.encodeIfPresent(gatewayTransactionId, forKey: .gatewayTransactionId)
+        try container.encodeIfPresent(id, forKey: .id)
+        try container.encode(merchantId, forKey: .merchantId)
+        try container.encodeIfPresent(orderId, forKey: .orderId)
         try container.encodeIfPresent(orderPaymentMethod, forKey: .orderPaymentMethod)
+        try container.encode(paymentMethodId, forKey: .paymentMethodId)
+        try container.encodeIfPresent(status, forKey: .status)
+        try container.encodeIfPresent(test, forKey: .test)
+        try container.encodeIfPresent(type, forKey: .type)
     }
 }
 

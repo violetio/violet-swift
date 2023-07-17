@@ -10,28 +10,28 @@ import Foundation
 import AnyCodable
 #endif
 
-/** Additional Product Data */
+/** Additional Product MetaData */
 public struct Meta: Codable, JSONEncodable, Hashable {
 
     public var id: Int64?
-    /** Offer Id */
-    public var offerId: Int64
     /** Key */
     public var key: String
+    /** Offer Id */
+    public var offerId: Int64
     /** Value */
     public var value: String
 
-    public init(id: Int64? = nil, offerId: Int64, key: String, value: String) {
+    public init(id: Int64? = nil, key: String, offerId: Int64, value: String) {
         self.id = id
-        self.offerId = offerId
         self.key = key
+        self.offerId = offerId
         self.value = value
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case id
-        case offerId = "offer_id"
         case key
+        case offerId = "offer_id"
         case value
     }
 
@@ -40,8 +40,8 @@ public struct Meta: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(offerId, forKey: .offerId)
         try container.encode(key, forKey: .key)
+        try container.encode(offerId, forKey: .offerId)
         try container.encode(value, forKey: .value)
     }
 }

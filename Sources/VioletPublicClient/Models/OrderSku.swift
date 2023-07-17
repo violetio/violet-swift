@@ -13,66 +13,141 @@ import AnyCodable
 /** SKUs belonging to an Order */
 public struct OrderSku: Codable, JSONEncodable, Hashable {
 
-    public var id: Int64?
-    /** ID of the Merchant the SKU belongs to */
-    public var merchantId: Int?
+    public enum ProductType: String, Codable, CaseIterable {
+        case physical = "PHYSICAL"
+        case digital = "DIGITAL"
+        case virtual = "VIRTUAL"
+    }
+    public enum Status: String, Codable, CaseIterable {
+        case inProgress = "IN_PROGRESS"
+        case processing = "PROCESSING"
+        case shipped = "SHIPPED"
+        case partiallyShipped = "PARTIALLY_SHIPPED"
+        case delivered = "DELIVERED"
+        case couldNotDeliver = "COULD_NOT_DELIVER"
+        case returned = "RETURNED"
+        case canceled = "CANCELED"
+        case refunded = "REFUNDED"
+        case rejected = "REJECTED"
+    }
     /** ID of the App creating the Order */
-    public var appId: Int64?
-    /** ID of the Product */
-    public var productId: String?
-    /** ID of the referenced SKU */
-    public var skuId: Int64
+    public var appId: Int?
+    /** Is the product still available for purchase */
+    public var available: Bool?
+    /** Brand Name */
+    public var brand: String?
     /** ID of the SKU on the External Ecommerce Platform */
     public var externalId: String?
+    /** Height of SKU */
+    public var height: Double?
+    public var id: Int64?
+    /** Length of SKU */
+    public var length: Double?
+    /** Price of the SKU multiplied by the Quantity */
+    public var linePrice: Int?
+    /** ID of the Merchant the SKU belongs to */
+    public var merchantId: Int?
     /** Name of the SKU */
     public var name: String?
-    /** URL of the thumbnail image */
-    public var thumbnail: String?
+    public var orderSkuRates: [OrderSkuRate]?
+    /** Price of the individual SKU */
+    public var price: Int?
+    /** ID of the Product */
+    public var productId: String?
+    /** Product Type */
+    public var productType: ProductType?
     /** Quantity of the SKU being purchased */
     public var quantity: Int?
-    /** SKU Price */
-    public var price: Int?
+    /** The quantity of this item that has been fulfilled */
+    public var quantityFulfilled: Int?
+    /** ID of the referenced SKU */
+    public var skuId: Int64
+    /** Sku Status */
+    public var status: Status?
+    /** URL of the thumbnail image */
+    public var thumbnail: String?
+    public var transientExternalProductId: String?
+    /** Weight of SKU */
+    public var weight: Double?
+    /** Width of SKU */
+    public var width: Double?
 
-    public init(id: Int64? = nil, merchantId: Int? = nil, appId: Int64? = nil, productId: String? = nil, skuId: Int64, externalId: String? = nil, name: String? = nil, thumbnail: String? = nil, quantity: Int? = nil, price: Int? = nil) {
-        self.id = id
-        self.merchantId = merchantId
+    public init(appId: Int? = nil, available: Bool? = nil, brand: String? = nil, externalId: String? = nil, height: Double? = nil, id: Int64? = nil, length: Double? = nil, linePrice: Int? = nil, merchantId: Int? = nil, name: String? = nil, orderSkuRates: [OrderSkuRate]? = nil, price: Int? = nil, productId: String? = nil, productType: ProductType? = nil, quantity: Int? = nil, quantityFulfilled: Int? = nil, skuId: Int64, status: Status? = nil, thumbnail: String? = nil, transientExternalProductId: String? = nil, weight: Double? = nil, width: Double? = nil) {
         self.appId = appId
-        self.productId = productId
-        self.skuId = skuId
+        self.available = available
+        self.brand = brand
         self.externalId = externalId
+        self.height = height
+        self.id = id
+        self.length = length
+        self.linePrice = linePrice
+        self.merchantId = merchantId
         self.name = name
-        self.thumbnail = thumbnail
-        self.quantity = quantity
+        self.orderSkuRates = orderSkuRates
         self.price = price
+        self.productId = productId
+        self.productType = productType
+        self.quantity = quantity
+        self.quantityFulfilled = quantityFulfilled
+        self.skuId = skuId
+        self.status = status
+        self.thumbnail = thumbnail
+        self.transientExternalProductId = transientExternalProductId
+        self.weight = weight
+        self.width = width
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case id
-        case merchantId = "merchant_id"
         case appId = "app_id"
-        case productId = "product_id"
-        case skuId = "sku_id"
+        case available
+        case brand
         case externalId = "external_id"
+        case height
+        case id
+        case length
+        case linePrice = "line_price"
+        case merchantId = "merchant_id"
         case name
-        case thumbnail
-        case quantity
+        case orderSkuRates = "order_sku_rates"
         case price
+        case productId = "product_id"
+        case productType = "product_type"
+        case quantity
+        case quantityFulfilled = "quantity_fulfilled"
+        case skuId = "sku_id"
+        case status
+        case thumbnail
+        case transientExternalProductId = "transient_external_product_id"
+        case weight
+        case width
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(id, forKey: .id)
-        try container.encodeIfPresent(merchantId, forKey: .merchantId)
         try container.encodeIfPresent(appId, forKey: .appId)
-        try container.encodeIfPresent(productId, forKey: .productId)
-        try container.encode(skuId, forKey: .skuId)
+        try container.encodeIfPresent(available, forKey: .available)
+        try container.encodeIfPresent(brand, forKey: .brand)
         try container.encodeIfPresent(externalId, forKey: .externalId)
+        try container.encodeIfPresent(height, forKey: .height)
+        try container.encodeIfPresent(id, forKey: .id)
+        try container.encodeIfPresent(length, forKey: .length)
+        try container.encodeIfPresent(linePrice, forKey: .linePrice)
+        try container.encodeIfPresent(merchantId, forKey: .merchantId)
         try container.encodeIfPresent(name, forKey: .name)
-        try container.encodeIfPresent(thumbnail, forKey: .thumbnail)
-        try container.encodeIfPresent(quantity, forKey: .quantity)
+        try container.encodeIfPresent(orderSkuRates, forKey: .orderSkuRates)
         try container.encodeIfPresent(price, forKey: .price)
+        try container.encodeIfPresent(productId, forKey: .productId)
+        try container.encodeIfPresent(productType, forKey: .productType)
+        try container.encodeIfPresent(quantity, forKey: .quantity)
+        try container.encodeIfPresent(quantityFulfilled, forKey: .quantityFulfilled)
+        try container.encode(skuId, forKey: .skuId)
+        try container.encodeIfPresent(status, forKey: .status)
+        try container.encodeIfPresent(thumbnail, forKey: .thumbnail)
+        try container.encodeIfPresent(transientExternalProductId, forKey: .transientExternalProductId)
+        try container.encodeIfPresent(weight, forKey: .weight)
+        try container.encodeIfPresent(width, forKey: .width)
     }
 }
 

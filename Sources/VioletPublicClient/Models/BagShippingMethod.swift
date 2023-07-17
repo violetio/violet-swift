@@ -13,17 +13,23 @@ import AnyCodable
 /** Shipping Method applied to a Bag */
 public struct BagShippingMethod: Codable, JSONEncodable, Hashable {
 
+    /** The ID of the bag the Shipping Method belongs to */
     public var bagId: Int64?
-    public var shippingMethodId: String?
+    /** Price of the Shipping Method */
+    public var shippingMethodId: Int?
+    /** Label of the Shipping Method */
+    public var shippingMethodLabel: String?
 
-    public init(bagId: Int64? = nil, shippingMethodId: String? = nil) {
+    public init(bagId: Int64? = nil, shippingMethodId: Int? = nil, shippingMethodLabel: String? = nil) {
         self.bagId = bagId
         self.shippingMethodId = shippingMethodId
+        self.shippingMethodLabel = shippingMethodLabel
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case bagId = "bag_id"
         case shippingMethodId = "shipping_method_id"
+        case shippingMethodLabel = "shipping_method_label"
     }
 
     // Encodable protocol methods
@@ -32,6 +38,7 @@ public struct BagShippingMethod: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(bagId, forKey: .bagId)
         try container.encodeIfPresent(shippingMethodId, forKey: .shippingMethodId)
+        try container.encodeIfPresent(shippingMethodLabel, forKey: .shippingMethodLabel)
     }
 }
 
