@@ -14,8 +14,8 @@ import AnyCodable
 public struct OrderAddress: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {
-        case shipping = "shipping"
-        case billing = "billing"
+        case shipping = "SHIPPING"
+        case billing = "BILLING"
     }
     /** First line of the Address */
     public var address1: String?

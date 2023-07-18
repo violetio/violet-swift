@@ -28,9 +28,9 @@ public struct Product: Codable, JSONEncodable, Hashable {
         case gtins = "GTINS"
     }
     public enum ModelType: String, Codable, CaseIterable {
-        case physical = "physical"
-        case digital = "digital"
-        case virtual = "virtual"
+        case physical = "PHYSICAL"
+        case digital = "DIGITAL"
+        case virtual = "VIRTUAL"
     }
     /** Is the Product Available */
     public var available: Bool?
