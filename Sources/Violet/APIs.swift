@@ -14,7 +14,7 @@ import Foundation
 public typealias Violet = VioletAPI
 
 open class VioletAPI {
-    public static var basePath = "http://localhost:8020"
+    public static var basePath = "http://localhost:8020/api"
     public static var customHeaders: [String: String] = [:]
     public static var credential: URLCredential?
     public static var requestBuilderFactory: RequestBuilderFactory = URLSessionRequestBuilderFactory()
