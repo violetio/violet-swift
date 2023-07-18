@@ -1,17 +1,17 @@
 # CheckoutShippingAPI
 
-All URIs are relative to *https://sandbox-api.violet.io/v1*
+All URIs are relative to *http://localhost:8020/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**applyShippingMethods1**](CheckoutShippingAPI.md#applyshippingmethods1) | **POST** /checkout/cart/{cart_id}/shipping | Set Shipping Methods
-[**getAvailableShippingMethods1**](CheckoutShippingAPI.md#getavailableshippingmethods1) | **GET** /checkout/cart/{cart_id}/shipping/available | Get Available Shipping Methods
-[**removeShippingMethod1**](CheckoutShippingAPI.md#removeshippingmethod1) | **DELETE** /checkout/cart/{cart_id}/shipping/{shipping_method_id} | Remove Shipping Method
+[**applyShippingMethods**](CheckoutShippingAPI.md#applyshippingmethods) | **POST** /checkout/cart/{cart_id}/shipping | Set Shipping Methods
+[**getAvailableShippingMethods**](CheckoutShippingAPI.md#getavailableshippingmethods) | **GET** /checkout/cart/{cart_id}/shipping/available | Get Available Shipping Methods
+[**removeShippingMethod**](CheckoutShippingAPI.md#removeshippingmethod) | **DELETE** /checkout/cart/{cart_id}/shipping/{shipping_method_id} | Remove Shipping Method
 
 
-# **applyShippingMethods1**
+# **applyShippingMethods**
 ```swift
-    open class func applyShippingMethods1(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, body: [BagShippingMethod]? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func applyShippingMethods(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, body: [BagShippingMethod]? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Set Shipping Methods
@@ -19,7 +19,7 @@ Set Shipping Methods
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClient
+import Violet
 
 let cartId = 987 // Int64 | 
 let xVioletToken = "xVioletToken_example" // String |  (optional)
@@ -29,7 +29,7 @@ let priceCart = true // Bool |  (optional) (default to false)
 let body = [BagShippingMethod(bagId: 123, shippingMethodId: 123, shippingMethodLabel: "shippingMethodLabel_example")] // [BagShippingMethod] |  (optional)
 
 // Set Shipping Methods
-CheckoutShippingAPI.applyShippingMethods1(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutShippingAPI.applyShippingMethods(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -67,9 +67,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getAvailableShippingMethods1**
+# **getAvailableShippingMethods**
 ```swift
-    open class func getAvailableShippingMethods1(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: [OrderShippingMethodWrapper]?, _ error: Error?) -> Void)
+    open class func getAvailableShippingMethods(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: [OrderShippingMethodWrapper]?, _ error: Error?) -> Void)
 ```
 
 Get Available Shipping Methods
@@ -77,7 +77,7 @@ Get Available Shipping Methods
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClient
+import Violet
 
 let cartId = 987 // Int64 | 
 let xVioletToken = "xVioletToken_example" // String |  (optional)
@@ -85,7 +85,7 @@ let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
 let xVioletAppId = 987 // Int |  (optional)
 
 // Get Available Shipping Methods
-CheckoutShippingAPI.getAvailableShippingMethods1(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CheckoutShippingAPI.getAvailableShippingMethods(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -121,9 +121,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **removeShippingMethod1**
+# **removeShippingMethod**
 ```swift
-    open class func removeShippingMethod1(cartId: Int64, shippingMethodId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func removeShippingMethod(cartId: Int64, shippingMethodId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Remove Shipping Method
@@ -131,7 +131,7 @@ Remove Shipping Method
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClient
+import Violet
 
 let cartId = 987 // Int64 | 
 let shippingMethodId = 987 // Int64 | 
@@ -141,7 +141,7 @@ let xVioletAppId = 987 // Int |  (optional)
 let priceCart = true // Bool |  (optional) (default to false)
 
 // Remove Shipping Method
-CheckoutShippingAPI.removeShippingMethod1(cartId: cartId, shippingMethodId: shippingMethodId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart) { (response, error) in
+CheckoutShippingAPI.removeShippingMethod(cartId: cartId, shippingMethodId: shippingMethodId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart) { (response, error) in
     guard error == nil else {
         print(error)
         return

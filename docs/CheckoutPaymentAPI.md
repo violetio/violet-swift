@@ -1,6 +1,6 @@
 # CheckoutPaymentAPI
 
-All URIs are relative to *https://sandbox-api.violet.io/v1*
+All URIs are relative to *http://localhost:8020/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

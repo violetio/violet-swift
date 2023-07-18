@@ -1,6 +1,6 @@
 # AccessAPI
 
-All URIs are relative to *https://sandbox-api.violet.io/v1*
+All URIs are relative to *http://localhost:8020/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -18,7 +18,7 @@ Login
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClient
+import Violet
 
 let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
 let xVioletAppId = 987 // Int |  (optional)
@@ -68,7 +68,7 @@ Refresh Token
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClient
+import Violet
 
 let xVioletToken = "xVioletToken_example" // String |  (optional)
 let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)

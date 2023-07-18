@@ -1,15 +1,15 @@
 # CatalogProductsAPI
 
-All URIs are relative to *https://sandbox-api.violet.io/v1*
+All URIs are relative to *http://localhost:8020/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getProducts1**](CatalogProductsAPI.md#getproducts1) | **GET** /catalog/products | Get Products
+[**getProducts**](CatalogProductsAPI.md#getproducts) | **GET** /catalog/products | Get Products
 
 
-# **getProducts1**
+# **getProducts**
 ```swift
-    open class func getProducts1(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, excludeHidden: Bool? = nil, completion: @escaping (_ data: [Product]?, _ error: Error?) -> Void)
+    open class func getProducts(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, excludeHidden: Bool? = nil, completion: @escaping (_ data: [Product]?, _ error: Error?) -> Void)
 ```
 
 Get Products
@@ -19,7 +19,7 @@ Products will be wrapped in a Page container.
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClient
+import Violet
 
 let xVioletToken = "xVioletToken_example" // String |  (optional)
 let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
@@ -30,7 +30,7 @@ let excludePublic = true // Bool |  (optional) (default to false)
 let excludeHidden = true // Bool |  (optional) (default to true)
 
 // Get Products
-CatalogProductsAPI.getProducts1(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, excludePublic: excludePublic, excludeHidden: excludeHidden) { (response, error) in
+CatalogProductsAPI.getProducts(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, excludePublic: excludePublic, excludeHidden: excludeHidden) { (response, error) in
     guard error == nil else {
         print(error)
         return
