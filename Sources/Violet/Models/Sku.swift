@@ -22,14 +22,14 @@ public struct Sku: Codable, JSONEncodable, Hashable {
         case forDeletion = "FOR_DELETION"
     }
     public enum TaxType: String, Codable, CaseIterable {
-        case _default = "default"
-        case apparel = "apparel"
-        case service = "service"
+        case _default = "DEFAULT"
+        case apparel = "APPAREL"
+        case service = "SERVICE"
     }
     public enum ModelType: String, Codable, CaseIterable {
-        case physical = "physical"
-        case digital = "digital"
-        case virtual = "virtual"
+        case physical = "PHYSICAL"
+        case digital = "DIGITAL"
+        case virtual = "VIRTUAL"
     }
     /** Sku Albums */
     public var albums: Set<Album>?
