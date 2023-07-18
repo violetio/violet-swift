@@ -1,17 +1,17 @@
 # RefundsAPI
 
-All URIs are relative to *https://sandbox-api.violet.io/v1*
+All URIs are relative to *http://localhost:8020/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getBagRefunds1**](RefundsAPI.md#getbagrefunds1) | **GET** /orders/{order_id}/bags/{bag_id}/refunds | Get Bag Refunds
-[**getOrderRefundById1**](RefundsAPI.md#getorderrefundbyid1) | **GET** /orders/{order_id}/refunds/{refund_id} | Get Order Refund by ID
-[**getOrderRefunds1**](RefundsAPI.md#getorderrefunds1) | **GET** /orders/{order_id}/refunds | Get Order Refunds
+[**getBagRefunds**](RefundsAPI.md#getbagrefunds) | **GET** /orders/{order_id}/bags/{bag_id}/refunds | Get Bag Refunds
+[**getOrderRefundById**](RefundsAPI.md#getorderrefundbyid) | **GET** /orders/{order_id}/refunds/{refund_id} | Get Order Refund by ID
+[**getOrderRefunds**](RefundsAPI.md#getorderrefunds) | **GET** /orders/{order_id}/refunds | Get Order Refunds
 
 
-# **getBagRefunds1**
+# **getBagRefunds**
 ```swift
-    open class func getBagRefunds1(orderId: Int64, bagId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: [Refund]?, _ error: Error?) -> Void)
+    open class func getBagRefunds(orderId: Int64, bagId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: [Refund]?, _ error: Error?) -> Void)
 ```
 
 Get Bag Refunds
@@ -19,7 +19,7 @@ Get Bag Refunds
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClient
+import Violet
 
 let orderId = 987 // Int64 | 
 let bagId = 987 // Int64 | 
@@ -28,7 +28,7 @@ let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
 let xVioletAppId = 987 // Int |  (optional)
 
 // Get Bag Refunds
-RefundsAPI.getBagRefunds1(orderId: orderId, bagId: bagId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+RefundsAPI.getBagRefunds(orderId: orderId, bagId: bagId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -65,9 +65,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getOrderRefundById1**
+# **getOrderRefundById**
 ```swift
-    open class func getOrderRefundById1(orderId: Int64, refundId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Refund?, _ error: Error?) -> Void)
+    open class func getOrderRefundById(orderId: Int64, refundId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Refund?, _ error: Error?) -> Void)
 ```
 
 Get Order Refund by ID
@@ -75,7 +75,7 @@ Get Order Refund by ID
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClient
+import Violet
 
 let orderId = 987 // Int64 | 
 let refundId = 987 // Int64 | 
@@ -84,7 +84,7 @@ let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
 let xVioletAppId = 987 // Int |  (optional)
 
 // Get Order Refund by ID
-RefundsAPI.getOrderRefundById1(orderId: orderId, refundId: refundId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+RefundsAPI.getOrderRefundById(orderId: orderId, refundId: refundId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -121,9 +121,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getOrderRefunds1**
+# **getOrderRefunds**
 ```swift
-    open class func getOrderRefunds1(orderId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: [Refund]?, _ error: Error?) -> Void)
+    open class func getOrderRefunds(orderId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: [Refund]?, _ error: Error?) -> Void)
 ```
 
 Get Order Refunds
@@ -131,7 +131,7 @@ Get Order Refunds
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import VioletPublicClient
+import Violet
 
 let orderId = 987 // Int64 | 
 let xVioletToken = "xVioletToken_example" // String |  (optional)
@@ -139,7 +139,7 @@ let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
 let xVioletAppId = 987 // Int |  (optional)
 
 // Get Order Refunds
-RefundsAPI.getOrderRefunds1(orderId: orderId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+RefundsAPI.getOrderRefunds(orderId: orderId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
     guard error == nil else {
         print(error)
         return
