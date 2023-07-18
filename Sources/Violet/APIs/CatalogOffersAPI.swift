@@ -29,8 +29,8 @@ open class CatalogOffersAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getMerchantOffers1(merchantId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, since: Int64? = nil, page: Int? = nil, size: Int? = nil, mapVariants: Bool? = nil, baseCurrency: String? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: PageOffer?, _ error: Error?) -> Void)) -> RequestTask {
-        return getMerchantOffers1WithRequestBuilder(merchantId: merchantId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, xVioletApiFeatures: xVioletApiFeatures, since: since, page: page, size: size, mapVariants: mapVariants, baseCurrency: baseCurrency).execute(apiResponseQueue) { result in
+    open class func getMerchantOffers(merchantId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, since: Int64? = nil, page: Int? = nil, size: Int? = nil, mapVariants: Bool? = nil, baseCurrency: String? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: PageOffer?, _ error: Error?) -> Void)) -> RequestTask {
+        return getMerchantOffersWithRequestBuilder(merchantId: merchantId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, xVioletApiFeatures: xVioletApiFeatures, since: since, page: page, size: size, mapVariants: mapVariants, baseCurrency: baseCurrency).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -55,12 +55,12 @@ open class CatalogOffersAPI {
      - parameter baseCurrency: (query)  (optional)
      - returns: RequestBuilder<PageOffer> 
      */
-    open class func getMerchantOffers1WithRequestBuilder(merchantId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, since: Int64? = nil, page: Int? = nil, size: Int? = nil, mapVariants: Bool? = nil, baseCurrency: String? = nil) -> RequestBuilder<PageOffer> {
+    open class func getMerchantOffersWithRequestBuilder(merchantId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, since: Int64? = nil, page: Int? = nil, size: Int? = nil, mapVariants: Bool? = nil, baseCurrency: String? = nil) -> RequestBuilder<PageOffer> {
         var localVariablePath = "/catalog/offers/merchants/{merchant_id}"
         let merchantIdPreEscape = "\(APIHelper.mapValueToPathItem(merchantId))"
         let merchantIdPostEscape = merchantIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{merchant_id}", with: merchantIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
+        let localVariableURLString = VioletAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -81,7 +81,7 @@ open class CatalogOffersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PageOffer>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PageOffer>.Type = VioletAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
@@ -100,8 +100,8 @@ open class CatalogOffersAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getOfferById1(offerId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, baseCurrency: String? = nil, exchangeRate: Double? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: Offer?, _ error: Error?) -> Void)) -> RequestTask {
-        return getOfferById1WithRequestBuilder(offerId: offerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, xVioletApiFeatures: xVioletApiFeatures, baseCurrency: baseCurrency, exchangeRate: exchangeRate).execute(apiResponseQueue) { result in
+    open class func getOfferById(offerId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, baseCurrency: String? = nil, exchangeRate: Double? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Offer?, _ error: Error?) -> Void)) -> RequestTask {
+        return getOfferByIdWithRequestBuilder(offerId: offerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, xVioletApiFeatures: xVioletApiFeatures, baseCurrency: baseCurrency, exchangeRate: exchangeRate).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -123,12 +123,12 @@ open class CatalogOffersAPI {
      - parameter exchangeRate: (query)  (optional)
      - returns: RequestBuilder<Offer> 
      */
-    open class func getOfferById1WithRequestBuilder(offerId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, baseCurrency: String? = nil, exchangeRate: Double? = nil) -> RequestBuilder<Offer> {
+    open class func getOfferByIdWithRequestBuilder(offerId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, baseCurrency: String? = nil, exchangeRate: Double? = nil) -> RequestBuilder<Offer> {
         var localVariablePath = "/catalog/offers/{offer_id}"
         let offerIdPreEscape = "\(APIHelper.mapValueToPathItem(offerId))"
         let offerIdPostEscape = offerIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{offer_id}", with: offerIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
+        let localVariableURLString = VioletAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -146,7 +146,7 @@ open class CatalogOffersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Offer>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Offer>.Type = VioletAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
@@ -166,8 +166,8 @@ open class CatalogOffersAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func searchOffers1(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, excludeHidden: Bool? = nil, body: OfferSearchRequest? = nil, apiResponseQueue: DispatchQueue = VioletPublicClientAPI.apiResponseQueue, completion: @escaping ((_ data: PageOffer?, _ error: Error?) -> Void)) -> RequestTask {
-        return searchOffers1WithRequestBuilder(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, excludePublic: excludePublic, excludeHidden: excludeHidden, body: body).execute(apiResponseQueue) { result in
+    open class func searchOffers(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, excludeHidden: Bool? = nil, body: OfferSearchRequest? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: PageOffer?, _ error: Error?) -> Void)) -> RequestTask {
+        return searchOffersWithRequestBuilder(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, excludePublic: excludePublic, excludeHidden: excludeHidden, body: body).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -191,9 +191,9 @@ open class CatalogOffersAPI {
      - parameter body: (body)  (optional)
      - returns: RequestBuilder<PageOffer> 
      */
-    open class func searchOffers1WithRequestBuilder(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, excludeHidden: Bool? = nil, body: OfferSearchRequest? = nil) -> RequestBuilder<PageOffer> {
+    open class func searchOffersWithRequestBuilder(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, excludeHidden: Bool? = nil, body: OfferSearchRequest? = nil) -> RequestBuilder<PageOffer> {
         let localVariablePath = "/catalog/offers/search"
-        let localVariableURLString = VioletPublicClientAPI.basePath + localVariablePath
+        let localVariableURLString = VioletAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -212,7 +212,7 @@ open class CatalogOffersAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PageOffer>.Type = VioletPublicClientAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PageOffer>.Type = VioletAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
