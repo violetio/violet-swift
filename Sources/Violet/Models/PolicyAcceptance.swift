@@ -21,17 +21,17 @@ public struct PolicyAcceptance: Codable, JSONEncodable, Hashable {
     /** Date the user first accepted this version of the policy. */
     public var dateAccepted: Date?
     /** IP Address of User during policy acceptance */
-    public var ipAddress: String
+    public var ipAddress: String?
     /** Type of policy being accepted */
-    public var policyType: PolicyType
+    public var policyType: PolicyType?
     /** Email address of the user who accepted a policy. */
-    public var userEmailAddress: String
+    public var userEmailAddress: String?
     /** ID of User accepting the policy */
-    public var userId: Int64
+    public var userId: Int64?
     /** Version of policy */
     public var version: String?
 
-    public init(dateAccepted: Date? = nil, ipAddress: String, policyType: PolicyType, userEmailAddress: String, userId: Int64, version: String? = nil) {
+    public init(dateAccepted: Date? = nil, ipAddress: String? = nil, policyType: PolicyType? = nil, userEmailAddress: String? = nil, userId: Int64? = nil, version: String? = nil) {
         self.dateAccepted = dateAccepted
         self.ipAddress = ipAddress
         self.policyType = policyType
@@ -54,10 +54,10 @@ public struct PolicyAcceptance: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(dateAccepted, forKey: .dateAccepted)
-        try container.encode(ipAddress, forKey: .ipAddress)
-        try container.encode(policyType, forKey: .policyType)
-        try container.encode(userEmailAddress, forKey: .userEmailAddress)
-        try container.encode(userId, forKey: .userId)
+        try container.encodeIfPresent(ipAddress, forKey: .ipAddress)
+        try container.encodeIfPresent(policyType, forKey: .policyType)
+        try container.encodeIfPresent(userEmailAddress, forKey: .userEmailAddress)
+        try container.encodeIfPresent(userId, forKey: .userId)
         try container.encodeIfPresent(version, forKey: .version)
     }
 }

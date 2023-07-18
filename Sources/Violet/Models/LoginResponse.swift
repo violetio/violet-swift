@@ -278,18 +278,18 @@ public struct LoginResponse: Codable, JSONEncodable, Hashable {
     /** Date of last update */
     public var dateLastModified: Date?
     /** The users unique email address */
-    public var email: String
+    public var email: String?
     /** The users first name */
-    public var firstName: String
+    public var firstName: String?
     public var id: Int64?
     /** The users last name */
-    public var lastName: String
+    public var lastName: String?
     /** Merchant ID */
     public var merchantId: Int?
     /** Merchant IDs */
     public var merchantIds: [Int]?
     /** The users raw desired password */
-    public var password: String
+    public var password: String?
     /** Is the Users Payment Settings Configured */
     public var paymentConfigured: Bool?
     /** Privacy Policy Accepted */
@@ -306,11 +306,11 @@ public struct LoginResponse: Codable, JSONEncodable, Hashable {
     /** Terms of Service Accepted */
     public var tosAccepted: Bool?
     /** The allowed values for the user type */
-    public var type: ModelType
+    public var type: ModelType?
     /** If a user has verified their emailed address */
     public var verified: Bool?
 
-    public init(countryCode: CountryCode? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, email: String, firstName: String, id: Int64? = nil, lastName: String, merchantId: Int? = nil, merchantIds: [Int]? = nil, password: String, paymentConfigured: Bool? = nil, privacyPolicyAccepted: Bool? = nil, refreshToken: String? = nil, roles: Set<Role>? = nil, status: Status? = nil, storeUrl: String? = nil, token: String? = nil, tosAccepted: Bool? = nil, type: ModelType, verified: Bool? = nil) {
+    public init(countryCode: CountryCode? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, email: String? = nil, firstName: String? = nil, id: Int64? = nil, lastName: String? = nil, merchantId: Int? = nil, merchantIds: [Int]? = nil, password: String? = nil, paymentConfigured: Bool? = nil, privacyPolicyAccepted: Bool? = nil, refreshToken: String? = nil, roles: Set<Role>? = nil, status: Status? = nil, storeUrl: String? = nil, token: String? = nil, tosAccepted: Bool? = nil, type: ModelType? = nil, verified: Bool? = nil) {
         self.countryCode = countryCode
         self.dateCreated = dateCreated
         self.dateLastModified = dateLastModified
@@ -363,13 +363,13 @@ public struct LoginResponse: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(countryCode, forKey: .countryCode)
         try container.encodeIfPresent(dateCreated, forKey: .dateCreated)
         try container.encodeIfPresent(dateLastModified, forKey: .dateLastModified)
-        try container.encode(email, forKey: .email)
-        try container.encode(firstName, forKey: .firstName)
+        try container.encodeIfPresent(email, forKey: .email)
+        try container.encodeIfPresent(firstName, forKey: .firstName)
         try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(lastName, forKey: .lastName)
+        try container.encodeIfPresent(lastName, forKey: .lastName)
         try container.encodeIfPresent(merchantId, forKey: .merchantId)
         try container.encodeIfPresent(merchantIds, forKey: .merchantIds)
-        try container.encode(password, forKey: .password)
+        try container.encodeIfPresent(password, forKey: .password)
         try container.encodeIfPresent(paymentConfigured, forKey: .paymentConfigured)
         try container.encodeIfPresent(privacyPolicyAccepted, forKey: .privacyPolicyAccepted)
         try container.encodeIfPresent(refreshToken, forKey: .refreshToken)
@@ -378,7 +378,7 @@ public struct LoginResponse: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(storeUrl, forKey: .storeUrl)
         try container.encodeIfPresent(token, forKey: .token)
         try container.encodeIfPresent(tosAccepted, forKey: .tosAccepted)
-        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(verified, forKey: .verified)
     }
 }

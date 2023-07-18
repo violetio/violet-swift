@@ -14,12 +14,12 @@ import AnyCodable
 public struct RefundErrors: Codable, JSONEncodable, Hashable {
 
     public var errorCode: Int?
-    public var errorMessage: String
+    public var errorMessage: String?
     public var id: Int64?
     /** ID of the Refund this Error is associated to */
-    public var refundId: Int64
+    public var refundId: Int64?
 
-    public init(errorCode: Int? = nil, errorMessage: String, id: Int64? = nil, refundId: Int64) {
+    public init(errorCode: Int? = nil, errorMessage: String? = nil, id: Int64? = nil, refundId: Int64? = nil) {
         self.errorCode = errorCode
         self.errorMessage = errorMessage
         self.id = id
@@ -38,9 +38,9 @@ public struct RefundErrors: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(errorCode, forKey: .errorCode)
-        try container.encode(errorMessage, forKey: .errorMessage)
+        try container.encodeIfPresent(errorMessage, forKey: .errorMessage)
         try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(refundId, forKey: .refundId)
+        try container.encodeIfPresent(refundId, forKey: .refundId)
     }
 }
 

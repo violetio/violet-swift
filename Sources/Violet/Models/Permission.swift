@@ -17,9 +17,9 @@ public struct Permission: Codable, JSONEncodable, Hashable {
     /** Brief description of the Permission */
     public var description: String?
     /** Name of the Permission */
-    public var name: String
+    public var name: String?
 
-    public init(description: String? = nil, name: String) {
+    public init(description: String? = nil, name: String? = nil) {
         self.description = description
         self.name = name
     }
@@ -34,7 +34,7 @@ public struct Permission: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(description, forKey: .description)
-        try container.encode(name, forKey: .name)
+        try container.encodeIfPresent(name, forKey: .name)
     }
 }
 

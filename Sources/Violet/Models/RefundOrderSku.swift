@@ -19,13 +19,13 @@ public struct RefundOrderSku: Codable, JSONEncodable, Hashable {
     public var externalId: String?
     public var id: Int64?
     /** Id of the Order Sku associated with Refund Order Sku */
-    public var orderSkuId: Int64
+    public var orderSkuId: Int64?
     /** Quantity of the this item refunded by this refund. */
     public var quantityRefunded: Int?
     /** Id of the Refund associated with Refund Order Sku */
-    public var refundId: Int64
+    public var refundId: Int64?
 
-    public init(bagId: Int64? = nil, externalId: String? = nil, id: Int64? = nil, orderSkuId: Int64, quantityRefunded: Int? = nil, refundId: Int64) {
+    public init(bagId: Int64? = nil, externalId: String? = nil, id: Int64? = nil, orderSkuId: Int64? = nil, quantityRefunded: Int? = nil, refundId: Int64? = nil) {
         self.bagId = bagId
         self.externalId = externalId
         self.id = id
@@ -50,9 +50,9 @@ public struct RefundOrderSku: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(bagId, forKey: .bagId)
         try container.encodeIfPresent(externalId, forKey: .externalId)
         try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(orderSkuId, forKey: .orderSkuId)
+        try container.encodeIfPresent(orderSkuId, forKey: .orderSkuId)
         try container.encodeIfPresent(quantityRefunded, forKey: .quantityRefunded)
-        try container.encode(refundId, forKey: .refundId)
+        try container.encodeIfPresent(refundId, forKey: .refundId)
     }
 }
 

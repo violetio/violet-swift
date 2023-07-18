@@ -18,13 +18,13 @@ public struct OrderAddress: Codable, JSONEncodable, Hashable {
         case billing = "billing"
     }
     /** First line of the Address */
-    public var address1: String
+    public var address1: String?
     /** Second line of the Address */
     public var address2: String?
     /** City */
-    public var city: String
+    public var city: String?
     /** Country ISO2 Code */
-    public var country: String
+    public var country: String?
     /** Email Address */
     public var email: String?
     public var firstName: String?
@@ -34,13 +34,13 @@ public struct OrderAddress: Codable, JSONEncodable, Hashable {
     /** Phone Number */
     public var phone: String?
     /** Postal/Zip Code */
-    public var postalCode: String
+    public var postalCode: String?
     /** State Abbreviation */
-    public var state: String
+    public var state: String?
     /** Address Type */
-    public var type: ModelType
+    public var type: ModelType?
 
-    public init(address1: String, address2: String? = nil, city: String, country: String, email: String? = nil, firstName: String? = nil, lastName: String? = nil, name: String? = nil, phone: String? = nil, postalCode: String, state: String, type: ModelType) {
+    public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, email: String? = nil, firstName: String? = nil, lastName: String? = nil, name: String? = nil, phone: String? = nil, postalCode: String? = nil, state: String? = nil, type: ModelType? = nil) {
         self.address1 = address1
         self.address2 = address2
         self.city = city
@@ -74,18 +74,18 @@ public struct OrderAddress: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(address1, forKey: .address1)
+        try container.encodeIfPresent(address1, forKey: .address1)
         try container.encodeIfPresent(address2, forKey: .address2)
-        try container.encode(city, forKey: .city)
-        try container.encode(country, forKey: .country)
+        try container.encodeIfPresent(city, forKey: .city)
+        try container.encodeIfPresent(country, forKey: .country)
         try container.encodeIfPresent(email, forKey: .email)
         try container.encodeIfPresent(firstName, forKey: .firstName)
         try container.encodeIfPresent(lastName, forKey: .lastName)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(phone, forKey: .phone)
-        try container.encode(postalCode, forKey: .postalCode)
-        try container.encode(state, forKey: .state)
-        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(postalCode, forKey: .postalCode)
+        try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(type, forKey: .type)
     }
 }
 

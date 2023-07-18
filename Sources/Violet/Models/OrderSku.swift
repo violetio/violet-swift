@@ -61,7 +61,7 @@ public struct OrderSku: Codable, JSONEncodable, Hashable {
     /** The quantity of this item that has been fulfilled */
     public var quantityFulfilled: Int?
     /** ID of the referenced SKU */
-    public var skuId: Int64
+    public var skuId: Int64?
     /** Sku Status */
     public var status: Status?
     /** URL of the thumbnail image */
@@ -72,7 +72,7 @@ public struct OrderSku: Codable, JSONEncodable, Hashable {
     /** Width of SKU */
     public var width: Double?
 
-    public init(appId: Int? = nil, available: Bool? = nil, brand: String? = nil, externalId: String? = nil, height: Double? = nil, id: Int64? = nil, length: Double? = nil, linePrice: Int? = nil, merchantId: Int? = nil, name: String? = nil, orderSkuRates: [OrderSkuRate]? = nil, price: Int? = nil, productId: String? = nil, productType: ProductType? = nil, quantity: Int? = nil, quantityFulfilled: Int? = nil, skuId: Int64, status: Status? = nil, thumbnail: String? = nil, transientExternalProductId: String? = nil, weight: Double? = nil, width: Double? = nil) {
+    public init(appId: Int? = nil, available: Bool? = nil, brand: String? = nil, externalId: String? = nil, height: Double? = nil, id: Int64? = nil, length: Double? = nil, linePrice: Int? = nil, merchantId: Int? = nil, name: String? = nil, orderSkuRates: [OrderSkuRate]? = nil, price: Int? = nil, productId: String? = nil, productType: ProductType? = nil, quantity: Int? = nil, quantityFulfilled: Int? = nil, skuId: Int64? = nil, status: Status? = nil, thumbnail: String? = nil, transientExternalProductId: String? = nil, weight: Double? = nil, width: Double? = nil) {
         self.appId = appId
         self.available = available
         self.brand = brand
@@ -142,7 +142,7 @@ public struct OrderSku: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(productType, forKey: .productType)
         try container.encodeIfPresent(quantity, forKey: .quantity)
         try container.encodeIfPresent(quantityFulfilled, forKey: .quantityFulfilled)
-        try container.encode(skuId, forKey: .skuId)
+        try container.encodeIfPresent(skuId, forKey: .skuId)
         try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(thumbnail, forKey: .thumbnail)
         try container.encodeIfPresent(transientExternalProductId, forKey: .transientExternalProductId)

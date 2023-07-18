@@ -23,9 +23,9 @@ public struct ProductVariantValue: Codable, JSONEncodable, Hashable {
     /** Color/Pattern Swatch URL */
     public var swatch: String?
     /** ID of the Variation */
-    public var variantId: String
+    public var variantId: String?
 
-    public init(displayOrder: Int? = nil, hex: String? = nil, id: String? = nil, name: String? = nil, swatch: String? = nil, variantId: String) {
+    public init(displayOrder: Int? = nil, hex: String? = nil, id: String? = nil, name: String? = nil, swatch: String? = nil, variantId: String? = nil) {
         self.displayOrder = displayOrder
         self.hex = hex
         self.id = id
@@ -52,7 +52,7 @@ public struct ProductVariantValue: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(swatch, forKey: .swatch)
-        try container.encode(variantId, forKey: .variantId)
+        try container.encodeIfPresent(variantId, forKey: .variantId)
     }
 }
 

@@ -36,7 +36,7 @@ public struct Sku: Codable, JSONEncodable, Hashable {
     /** Amazon Standard Identification Number */
     public var asin: String?
     /** The base currency of this SKU */
-    public var currency: String
+    public var currency: String?
     /** Date of SKU creation */
     public var dateCreated: Date?
     /** Date of last SKU update */
@@ -57,11 +57,11 @@ public struct Sku: Codable, JSONEncodable, Hashable {
     /** International Standard Book Number */
     public var isbn: String?
     /** ID of the Merchant */
-    public var merchantId: Int
+    public var merchantId: Int?
     /** Sku Name */
     public var name: String?
     /** ID of the Offer */
-    public var offerId: Int64
+    public var offerId: Int64?
     /** The presented currency of this SKU */
     public var presentedCurrency: String?
     /** Quantity Available */
@@ -69,7 +69,7 @@ public struct Sku: Codable, JSONEncodable, Hashable {
     /** Retail Price of the SKU */
     public var retailPrice: Int?
     /** Sale Price of the SKU */
-    public var salePrice: Int
+    public var salePrice: Int?
     public var skuDimensions: SkuDimensions?
     /** SKU Status */
     public var status: Status?
@@ -77,13 +77,13 @@ public struct Sku: Codable, JSONEncodable, Hashable {
     public var taxType: TaxType?
     /** Is the product taxable */
     public var taxable: Bool?
-    public var type: ModelType
+    public var type: ModelType?
     /** Universal Product Code */
     public var upc: String?
     /** Variant Values that apply to this SKU */
     public var variantValues: Set<SkuVariantValue>?
 
-    public init(albums: Set<Album>? = nil, asin: String? = nil, currency: String, dateCreated: Date? = nil, dateLastModified: Date? = nil, displayOrder: Int? = nil, ean: String? = nil, externalId: String? = nil, gtin: String? = nil, id: Int64? = nil, inStock: Bool? = nil, inventoryTracked: Bool? = nil, isbn: String? = nil, merchantId: Int, name: String? = nil, offerId: Int64, presentedCurrency: String? = nil, quantityAvailable: Int? = nil, retailPrice: Int? = nil, salePrice: Int, skuDimensions: SkuDimensions? = nil, status: Status? = nil, taxType: TaxType? = nil, taxable: Bool? = nil, type: ModelType, upc: String? = nil, variantValues: Set<SkuVariantValue>? = nil) {
+    public init(albums: Set<Album>? = nil, asin: String? = nil, currency: String? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, displayOrder: Int? = nil, ean: String? = nil, externalId: String? = nil, gtin: String? = nil, id: Int64? = nil, inStock: Bool? = nil, inventoryTracked: Bool? = nil, isbn: String? = nil, merchantId: Int? = nil, name: String? = nil, offerId: Int64? = nil, presentedCurrency: String? = nil, quantityAvailable: Int? = nil, retailPrice: Int? = nil, salePrice: Int? = nil, skuDimensions: SkuDimensions? = nil, status: Status? = nil, taxType: TaxType? = nil, taxable: Bool? = nil, type: ModelType? = nil, upc: String? = nil, variantValues: Set<SkuVariantValue>? = nil) {
         self.albums = albums
         self.asin = asin
         self.currency = currency
@@ -149,7 +149,7 @@ public struct Sku: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(albums, forKey: .albums)
         try container.encodeIfPresent(asin, forKey: .asin)
-        try container.encode(currency, forKey: .currency)
+        try container.encodeIfPresent(currency, forKey: .currency)
         try container.encodeIfPresent(dateCreated, forKey: .dateCreated)
         try container.encodeIfPresent(dateLastModified, forKey: .dateLastModified)
         try container.encodeIfPresent(displayOrder, forKey: .displayOrder)
@@ -160,18 +160,18 @@ public struct Sku: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(inStock, forKey: .inStock)
         try container.encodeIfPresent(inventoryTracked, forKey: .inventoryTracked)
         try container.encodeIfPresent(isbn, forKey: .isbn)
-        try container.encode(merchantId, forKey: .merchantId)
+        try container.encodeIfPresent(merchantId, forKey: .merchantId)
         try container.encodeIfPresent(name, forKey: .name)
-        try container.encode(offerId, forKey: .offerId)
+        try container.encodeIfPresent(offerId, forKey: .offerId)
         try container.encodeIfPresent(presentedCurrency, forKey: .presentedCurrency)
         try container.encodeIfPresent(quantityAvailable, forKey: .quantityAvailable)
         try container.encodeIfPresent(retailPrice, forKey: .retailPrice)
-        try container.encode(salePrice, forKey: .salePrice)
+        try container.encodeIfPresent(salePrice, forKey: .salePrice)
         try container.encodeIfPresent(skuDimensions, forKey: .skuDimensions)
         try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(taxType, forKey: .taxType)
         try container.encodeIfPresent(taxable, forKey: .taxable)
-        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(upc, forKey: .upc)
         try container.encodeIfPresent(variantValues, forKey: .variantValues)
     }

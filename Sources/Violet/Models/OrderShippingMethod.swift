@@ -26,7 +26,7 @@ public struct OrderShippingMethod: Codable, JSONEncodable, Hashable {
     }
     public var carrier: Carrier?
     /** ID of the Bag the Shipping Method applies to */
-    public var bagId: Int64
+    public var bagId: Int64?
     /** ID(s) on external ecommerce platform */
     public var externalId: String?
     public var id: Int64?
@@ -36,21 +36,21 @@ public struct OrderShippingMethod: Codable, JSONEncodable, Hashable {
     /** Maximum Weight */
     public var maxWeight: Double?
     /** ID of the merchant the bag belongs to */
-    public var merchantId: Int
+    public var merchantId: Int?
     /** Minimum Subtotal */
     public var minSubtotal: Int?
     /** Minimum Weight */
     public var minWeight: Double?
     /** Total cost of the Shipping Method */
-    public var price: Int
+    public var price: Int?
     /** ID of the referenced Shipping Method */
-    public var shippingMethodId: String
+    public var shippingMethodId: String?
     /** Carrier Tracking Number */
     public var trackingNumber: String?
     /** Type of Shipping Method */
-    public var type: ModelType
+    public var type: ModelType?
 
-    public init(carrier: Carrier? = nil, bagId: Int64, externalId: String? = nil, id: Int64? = nil, label: String? = nil, maxSubtotal: Int? = nil, maxWeight: Double? = nil, merchantId: Int, minSubtotal: Int? = nil, minWeight: Double? = nil, price: Int, shippingMethodId: String, trackingNumber: String? = nil, type: ModelType) {
+    public init(carrier: Carrier? = nil, bagId: Int64? = nil, externalId: String? = nil, id: Int64? = nil, label: String? = nil, maxSubtotal: Int? = nil, maxWeight: Double? = nil, merchantId: Int? = nil, minSubtotal: Int? = nil, minWeight: Double? = nil, price: Int? = nil, shippingMethodId: String? = nil, trackingNumber: String? = nil, type: ModelType? = nil) {
         self.carrier = carrier
         self.bagId = bagId
         self.externalId = externalId
@@ -89,19 +89,19 @@ public struct OrderShippingMethod: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(carrier, forKey: .carrier)
-        try container.encode(bagId, forKey: .bagId)
+        try container.encodeIfPresent(bagId, forKey: .bagId)
         try container.encodeIfPresent(externalId, forKey: .externalId)
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(label, forKey: .label)
         try container.encodeIfPresent(maxSubtotal, forKey: .maxSubtotal)
         try container.encodeIfPresent(maxWeight, forKey: .maxWeight)
-        try container.encode(merchantId, forKey: .merchantId)
+        try container.encodeIfPresent(merchantId, forKey: .merchantId)
         try container.encodeIfPresent(minSubtotal, forKey: .minSubtotal)
         try container.encodeIfPresent(minWeight, forKey: .minWeight)
-        try container.encode(price, forKey: .price)
-        try container.encode(shippingMethodId, forKey: .shippingMethodId)
+        try container.encodeIfPresent(price, forKey: .price)
+        try container.encodeIfPresent(shippingMethodId, forKey: .shippingMethodId)
         try container.encodeIfPresent(trackingNumber, forKey: .trackingNumber)
-        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(type, forKey: .type)
     }
 }
 

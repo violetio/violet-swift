@@ -23,12 +23,12 @@ public struct Album: Codable, JSONEncodable, Hashable {
     /** Name of Album */
     public var name: String?
     /** ID of the parent entity */
-    public var parentId: Int64
+    public var parentId: Int64?
     public var primaryMedia: Media?
     /** Parent Type */
-    public var type: ModelType
+    public var type: ModelType?
 
-    public init(id: Int64? = nil, media: Set<Media>? = nil, name: String? = nil, parentId: Int64, primaryMedia: Media? = nil, type: ModelType) {
+    public init(id: Int64? = nil, media: Set<Media>? = nil, name: String? = nil, parentId: Int64? = nil, primaryMedia: Media? = nil, type: ModelType? = nil) {
         self.id = id
         self.media = media
         self.name = name
@@ -53,9 +53,9 @@ public struct Album: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(media, forKey: .media)
         try container.encodeIfPresent(name, forKey: .name)
-        try container.encode(parentId, forKey: .parentId)
+        try container.encodeIfPresent(parentId, forKey: .parentId)
         try container.encodeIfPresent(primaryMedia, forKey: .primaryMedia)
-        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(type, forKey: .type)
     }
 }
 

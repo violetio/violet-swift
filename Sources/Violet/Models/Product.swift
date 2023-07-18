@@ -66,7 +66,7 @@ public struct Product: Codable, JSONEncodable, Hashable {
     /** Minimum Price of the Product */
     public var minPrice: Int?
     /** Product Name */
-    public var name: String
+    public var name: String?
     /** Merchant Offerings */
     public var offers: Set<Offer>?
     public var offersAvailable: Int?
@@ -76,7 +76,7 @@ public struct Product: Codable, JSONEncodable, Hashable {
     public var relatedProductIds: Set<String>?
     public var requires: Set<Requires>?
     /** Product Slug/Handle */
-    public var slug: String
+    public var slug: String?
     /** Tags */
     public var tags: Set<String>?
     /** Number of times this product has been sold */
@@ -88,7 +88,7 @@ public struct Product: Codable, JSONEncodable, Hashable {
     /** Is the Product Visible */
     public var visible: Bool?
 
-    public init(available: Bool? = nil, brand: String? = nil, categories: Set<Category>? = nil, channelReady: Bool? = nil, crossSaleProductIds: Set<String>? = nil, currency: Currency? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, defaultImageUrl: String? = nil, description: String? = nil, gender: Gender? = nil, gtins: Set<String>? = nil, id: String? = nil, longDescription: String? = nil, maxPrice: Int? = nil, merchantIds: Set<Int>? = nil, meta: Set<Meta>? = nil, minPrice: Int? = nil, name: String, offers: Set<Offer>? = nil, offersAvailable: Int? = nil, qtyAvailable: Int? = nil, relatedProductIds: Set<String>? = nil, requires: Set<Requires>? = nil, slug: String, tags: Set<String>? = nil, totalSales: Int? = nil, type: ModelType? = nil, variants: Set<ProductVariant>? = nil, visible: Bool? = nil) {
+    public init(available: Bool? = nil, brand: String? = nil, categories: Set<Category>? = nil, channelReady: Bool? = nil, crossSaleProductIds: Set<String>? = nil, currency: Currency? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, defaultImageUrl: String? = nil, description: String? = nil, gender: Gender? = nil, gtins: Set<String>? = nil, id: String? = nil, longDescription: String? = nil, maxPrice: Int? = nil, merchantIds: Set<Int>? = nil, meta: Set<Meta>? = nil, minPrice: Int? = nil, name: String? = nil, offers: Set<Offer>? = nil, offersAvailable: Int? = nil, qtyAvailable: Int? = nil, relatedProductIds: Set<String>? = nil, requires: Set<Requires>? = nil, slug: String? = nil, tags: Set<String>? = nil, totalSales: Int? = nil, type: ModelType? = nil, variants: Set<ProductVariant>? = nil, visible: Bool? = nil) {
         self.available = available
         self.brand = brand
         self.categories = categories
@@ -176,13 +176,13 @@ public struct Product: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(merchantIds, forKey: .merchantIds)
         try container.encodeIfPresent(meta, forKey: .meta)
         try container.encodeIfPresent(minPrice, forKey: .minPrice)
-        try container.encode(name, forKey: .name)
+        try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(offers, forKey: .offers)
         try container.encodeIfPresent(offersAvailable, forKey: .offersAvailable)
         try container.encodeIfPresent(qtyAvailable, forKey: .qtyAvailable)
         try container.encodeIfPresent(relatedProductIds, forKey: .relatedProductIds)
         try container.encodeIfPresent(requires, forKey: .requires)
-        try container.encode(slug, forKey: .slug)
+        try container.encodeIfPresent(slug, forKey: .slug)
         try container.encodeIfPresent(tags, forKey: .tags)
         try container.encodeIfPresent(totalSales, forKey: .totalSales)
         try container.encodeIfPresent(type, forKey: .type)

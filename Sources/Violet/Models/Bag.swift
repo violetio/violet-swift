@@ -103,7 +103,7 @@ public struct Bag: Codable, JSONEncodable, Hashable {
         case backorderd = "BACKORDERD"
     }
     /** ID of the App creating this Bag */
-    public var appId: Int
+    public var appId: Int?
     /** Name of app that originated the order. */
     public var appName: String?
     /** App Order ID */
@@ -136,16 +136,16 @@ public struct Bag: Codable, JSONEncodable, Hashable {
     public var fulfillments: Set<BagFulfillment>?
     public var id: Int64?
     /** ID of the Merchant the Bag references */
-    public var merchantId: Int
+    public var merchantId: Int?
     /** Name of Merchant */
     public var merchantName: String?
     /** ID of the Order the Bag belongs to */
-    public var orderId: Int64
+    public var orderId: Int64?
     /** The commerce platform used by this merchant. */
     public var platform: Platform?
     /** Date when the bag can no longer be refunded */
     public var remorsePeriodEnds: Date?
-    public var shippingMethod: OrderShippingMethod
+    public var shippingMethod: OrderShippingMethod?
     /** Shipping Total of the bag */
     public var shippingTotal: Int?
     /** SKUs added to the bag */
@@ -157,7 +157,7 @@ public struct Bag: Codable, JSONEncodable, Hashable {
     /** Tax Total of the bag */
     public var taxTotal: Int?
     /** Taxes applied to the bag */
-    public var taxes: [OrderTax]
+    public var taxes: [OrderTax]?
     /** Are taxes included in the cart total. */
     public var taxesIncluded: Bool?
     /** Total price of the bag */
@@ -167,7 +167,7 @@ public struct Bag: Codable, JSONEncodable, Hashable {
     /** Is this bag going to be placed through wallet-based checkout */
     public var walletBasedCheckout: Bool?
 
-    public init(appId: Int, appName: String? = nil, appOrderId: String? = nil, bagId: Int64? = nil, bagStatus: BagStatus? = nil, channel: Channel? = nil, commissionRate: Double? = nil, currency: String? = nil, currencyExchangeRate: Double? = nil, dateCreated: Date? = nil, discountTotal: Int? = nil, discounts: Set<BagDiscount>? = nil, externalCheckout: Bool? = nil, externalCurrency: String? = nil, externalId: String? = nil, financialStatus: FinancialStatus? = nil, fulfillmentStatus: FulfillmentStatus? = nil, fulfillments: Set<BagFulfillment>? = nil, id: Int64? = nil, merchantId: Int, merchantName: String? = nil, orderId: Int64, platform: Platform? = nil, remorsePeriodEnds: Date? = nil, shippingMethod: OrderShippingMethod, shippingTotal: Int? = nil, skus: [OrderSku]? = nil, status: Status? = nil, subTotal: Int? = nil, taxTotal: Int? = nil, taxes: [OrderTax], taxesIncluded: Bool? = nil, total: Int? = nil, transactions: [Transaction]? = nil, walletBasedCheckout: Bool? = nil) {
+    public init(appId: Int? = nil, appName: String? = nil, appOrderId: String? = nil, bagId: Int64? = nil, bagStatus: BagStatus? = nil, channel: Channel? = nil, commissionRate: Double? = nil, currency: String? = nil, currencyExchangeRate: Double? = nil, dateCreated: Date? = nil, discountTotal: Int? = nil, discounts: Set<BagDiscount>? = nil, externalCheckout: Bool? = nil, externalCurrency: String? = nil, externalId: String? = nil, financialStatus: FinancialStatus? = nil, fulfillmentStatus: FulfillmentStatus? = nil, fulfillments: Set<BagFulfillment>? = nil, id: Int64? = nil, merchantId: Int? = nil, merchantName: String? = nil, orderId: Int64? = nil, platform: Platform? = nil, remorsePeriodEnds: Date? = nil, shippingMethod: OrderShippingMethod? = nil, shippingTotal: Int? = nil, skus: [OrderSku]? = nil, status: Status? = nil, subTotal: Int? = nil, taxTotal: Int? = nil, taxes: [OrderTax]? = nil, taxesIncluded: Bool? = nil, total: Int? = nil, transactions: [Transaction]? = nil, walletBasedCheckout: Bool? = nil) {
         self.appId = appId
         self.appName = appName
         self.appOrderId = appOrderId
@@ -247,7 +247,7 @@ public struct Bag: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(appId, forKey: .appId)
+        try container.encodeIfPresent(appId, forKey: .appId)
         try container.encodeIfPresent(appName, forKey: .appName)
         try container.encodeIfPresent(appOrderId, forKey: .appOrderId)
         try container.encodeIfPresent(bagId, forKey: .bagId)
@@ -266,18 +266,18 @@ public struct Bag: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(fulfillmentStatus, forKey: .fulfillmentStatus)
         try container.encodeIfPresent(fulfillments, forKey: .fulfillments)
         try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(merchantId, forKey: .merchantId)
+        try container.encodeIfPresent(merchantId, forKey: .merchantId)
         try container.encodeIfPresent(merchantName, forKey: .merchantName)
-        try container.encode(orderId, forKey: .orderId)
+        try container.encodeIfPresent(orderId, forKey: .orderId)
         try container.encodeIfPresent(platform, forKey: .platform)
         try container.encodeIfPresent(remorsePeriodEnds, forKey: .remorsePeriodEnds)
-        try container.encode(shippingMethod, forKey: .shippingMethod)
+        try container.encodeIfPresent(shippingMethod, forKey: .shippingMethod)
         try container.encodeIfPresent(shippingTotal, forKey: .shippingTotal)
         try container.encodeIfPresent(skus, forKey: .skus)
         try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(subTotal, forKey: .subTotal)
         try container.encodeIfPresent(taxTotal, forKey: .taxTotal)
-        try container.encode(taxes, forKey: .taxes)
+        try container.encodeIfPresent(taxes, forKey: .taxes)
         try container.encodeIfPresent(taxesIncluded, forKey: .taxesIncluded)
         try container.encodeIfPresent(total, forKey: .total)
         try container.encodeIfPresent(transactions, forKey: .transactions)
