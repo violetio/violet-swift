@@ -14,15 +14,15 @@ import AnyCodable
 public struct PayoutAccount: Codable, JSONEncodable, Hashable {
 
     public enum AccountType: String, Codable, CaseIterable {
-        case merchant = "merchant"
-        case developer = "developer"
+        case merchant = "MERCHANT"
+        case developer = "DEVELOPER"
     }
     public enum PaymentService: String, Codable, CaseIterable {
-        case stripe = "stripe"
+        case stripe = "STRIPE"
     }
     public enum PaymentServiceAccountType: String, Codable, CaseIterable {
-        case express = "express"
-        case custom = "custom"
+        case express = "EXPRESS"
+        case custom = "CUSTOM"
     }
     public enum Status: String, Codable, CaseIterable {
         case incomplete = "INCOMPLETE"

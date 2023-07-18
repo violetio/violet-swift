@@ -21,10 +21,10 @@ public struct Migration: Codable, JSONEncodable, Hashable {
         case error = "ERROR"
     }
     public enum Status: String, Codable, CaseIterable {
-        case complete = "complete"
-        case incomplete = "incomplete"
-        case needsAttention = "needs_attention"
-        case notApplicable = "not_applicable"
+        case complete = "COMPLETE"
+        case incomplete = "INCOMPLETE"
+        case needsAttention = "NEEDS_ATTENTION"
+        case notApplicable = "NOT_APPLICABLE"
     }
     public var error: ModelError?
     /** The results of the merchant payout account migration check */

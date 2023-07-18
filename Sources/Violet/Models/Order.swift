@@ -23,13 +23,13 @@ public struct Order: Codable, JSONEncodable, Hashable {
         case requiresAction = "REQUIRES_ACTION"
     }
     public enum Status: String, Codable, CaseIterable {
-        case inProgress = "in_progress"
-        case processing = "processing"
-        case completed = "completed"
-        case canceled = "canceled"
-        case partiallyRefunded = "partially_refunded"
-        case refunded = "refunded"
-        case requiresAction = "requires_action"
+        case inProgress = "IN_PROGRESS"
+        case processing = "PROCESSING"
+        case completed = "COMPLETED"
+        case canceled = "CANCELED"
+        case partiallyRefunded = "PARTIALLY_REFUNDED"
+        case refunded = "REFUNDED"
+        case requiresAction = "REQUIRES_ACTION"
     }
     /** App Customer ID */
     public var appCustomerId: String?
