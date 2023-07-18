@@ -19,9 +19,9 @@ public struct OrderCustomer: Codable, JSONEncodable, Hashable {
     /** ID of the Customer on the External Platform */
     public var externalId: String?
     /** First Name */
-    public var firstName: String
+    public var firstName: String?
     /** Last Name */
-    public var lastName: String
+    public var lastName: String?
     public var name: String?
     /** Use Same Address for Both */
     public var sameAddress: Bool?
@@ -29,7 +29,7 @@ public struct OrderCustomer: Codable, JSONEncodable, Hashable {
     /** ID of the User the Order Customer references */
     public var userId: Int64?
 
-    public init(billingAddress: OrderAddress? = nil, email: String? = nil, externalId: String? = nil, firstName: String, lastName: String, name: String? = nil, sameAddress: Bool? = nil, shippingAddress: OrderAddress? = nil, userId: Int64? = nil) {
+    public init(billingAddress: OrderAddress? = nil, email: String? = nil, externalId: String? = nil, firstName: String? = nil, lastName: String? = nil, name: String? = nil, sameAddress: Bool? = nil, shippingAddress: OrderAddress? = nil, userId: Int64? = nil) {
         self.billingAddress = billingAddress
         self.email = email
         self.externalId = externalId
@@ -60,8 +60,8 @@ public struct OrderCustomer: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(billingAddress, forKey: .billingAddress)
         try container.encodeIfPresent(email, forKey: .email)
         try container.encodeIfPresent(externalId, forKey: .externalId)
-        try container.encode(firstName, forKey: .firstName)
-        try container.encode(lastName, forKey: .lastName)
+        try container.encodeIfPresent(firstName, forKey: .firstName)
+        try container.encodeIfPresent(lastName, forKey: .lastName)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(sameAddress, forKey: .sameAddress)
         try container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)

@@ -15,23 +15,23 @@ public struct OrderTax: Codable, JSONEncodable, Hashable {
 
     static let descriptionRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     /** Total Tax amount on Bag */
-    public var amount: Int
+    public var amount: Int?
     /** Description of the Tax */
     public var description: String?
     /** ID of the Merchant the Bag belongs to */
-    public var merchantId: Int
+    public var merchantId: Int?
     /** ID of the Order the Tax belongs to */
-    public var orderId: Int64
+    public var orderId: Int64?
     /** Postal/Zip Code */
     public var postalCode: String?
     /** Tax Rate */
-    public var rate: Double
+    public var rate: Double?
     /** SKUs covered by the Tax */
     public var skus: [String]?
     /** State abbreviation */
-    public var state: String
+    public var state: String?
 
-    public init(amount: Int, description: String? = nil, merchantId: Int, orderId: Int64, postalCode: String? = nil, rate: Double, skus: [String]? = nil, state: String) {
+    public init(amount: Int? = nil, description: String? = nil, merchantId: Int? = nil, orderId: Int64? = nil, postalCode: String? = nil, rate: Double? = nil, skus: [String]? = nil, state: String? = nil) {
         self.amount = amount
         self.description = description
         self.merchantId = merchantId
@@ -57,14 +57,14 @@ public struct OrderTax: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(amount, forKey: .amount)
+        try container.encodeIfPresent(amount, forKey: .amount)
         try container.encodeIfPresent(description, forKey: .description)
-        try container.encode(merchantId, forKey: .merchantId)
-        try container.encode(orderId, forKey: .orderId)
+        try container.encodeIfPresent(merchantId, forKey: .merchantId)
+        try container.encodeIfPresent(orderId, forKey: .orderId)
         try container.encodeIfPresent(postalCode, forKey: .postalCode)
-        try container.encode(rate, forKey: .rate)
+        try container.encodeIfPresent(rate, forKey: .rate)
         try container.encodeIfPresent(skus, forKey: .skus)
-        try container.encode(state, forKey: .state)
+        try container.encodeIfPresent(state, forKey: .state)
     }
 }
 

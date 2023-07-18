@@ -98,7 +98,7 @@ public struct Offer: Codable, JSONEncodable, Hashable {
     /** Product Albums */
     public var albums: Set<Album>?
     /** Is Product Available */
-    public var available: Bool
+    public var available: Bool?
     /** Amount given by merchant */
     public var commissionRate: Double?
     /** Base Currency of Offer */
@@ -119,17 +119,17 @@ public struct Offer: Codable, JSONEncodable, Hashable {
     /** Maximum Price the Product sells for */
     public var maxPrice: Int?
     /** Merchant ID */
-    public var merchantId: Int
+    public var merchantId: Int?
     /** Additional Meta Data of the Offer */
     public var meta: Set<Meta>?
     /** Minimum Price the Product sells for */
-    public var minPrice: Int
+    public var minPrice: Int?
     /** Name of Product in Offer */
-    public var name: String
+    public var name: String?
     /** The presented currency of this SKU */
     public var presentedCurrency: String?
     /** The parent/container product ID */
-    public var productId: String
+    public var productId: String?
     /** Publishing Status */
     public var publishingStatus: PublishingStatus?
     /** Name of Merchant Selling Product */
@@ -139,7 +139,7 @@ public struct Offer: Codable, JSONEncodable, Hashable {
     /** Product SKUs */
     public var skus: Set<Sku>?
     /** Source Platform */
-    public var source: Source
+    public var source: Source?
     /** Original Category on Source Platform */
     public var sourceCategoryName: String?
     /** Status */
@@ -158,11 +158,11 @@ public struct Offer: Codable, JSONEncodable, Hashable {
     /** Name of Original Vendor */
     public var vendor: String?
     /** Is Product Visible */
-    public var visible: Bool
+    public var visible: Bool?
     /** Weight Unit */
     public var weightUnit: WeightUnit?
 
-    public init(albums: Set<Album>? = nil, available: Bool, commissionRate: Double? = nil, currency: String? = nil, currencySymbol: String? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, description: String? = nil, externalId: String? = nil, externalUrl: String? = nil, id: Int64? = nil, maxPrice: Int? = nil, merchantId: Int, meta: Set<Meta>? = nil, minPrice: Int, name: String, presentedCurrency: String? = nil, productId: String, publishingStatus: PublishingStatus? = nil, seller: String? = nil, sizeUnit: SizeUnit? = nil, skus: Set<Sku>? = nil, source: Source, sourceCategoryName: String? = nil, status: Status? = nil, subscriptionStatus: SubscriptionStatus? = nil, tags: [String]? = nil, threeDEnables: Bool? = nil, threeDResource: String? = nil, type: ModelType? = nil, variants: Set<Variant>? = nil, vendor: String? = nil, visible: Bool, weightUnit: WeightUnit? = nil) {
+    public init(albums: Set<Album>? = nil, available: Bool? = nil, commissionRate: Double? = nil, currency: String? = nil, currencySymbol: String? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, description: String? = nil, externalId: String? = nil, externalUrl: String? = nil, id: Int64? = nil, maxPrice: Int? = nil, merchantId: Int? = nil, meta: Set<Meta>? = nil, minPrice: Int? = nil, name: String? = nil, presentedCurrency: String? = nil, productId: String? = nil, publishingStatus: PublishingStatus? = nil, seller: String? = nil, sizeUnit: SizeUnit? = nil, skus: Set<Sku>? = nil, source: Source? = nil, sourceCategoryName: String? = nil, status: Status? = nil, subscriptionStatus: SubscriptionStatus? = nil, tags: [String]? = nil, threeDEnables: Bool? = nil, threeDResource: String? = nil, type: ModelType? = nil, variants: Set<Variant>? = nil, vendor: String? = nil, visible: Bool? = nil, weightUnit: WeightUnit? = nil) {
         self.albums = albums
         self.available = available
         self.commissionRate = commissionRate
@@ -241,7 +241,7 @@ public struct Offer: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(albums, forKey: .albums)
-        try container.encode(available, forKey: .available)
+        try container.encodeIfPresent(available, forKey: .available)
         try container.encodeIfPresent(commissionRate, forKey: .commissionRate)
         try container.encodeIfPresent(currency, forKey: .currency)
         try container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
@@ -252,17 +252,17 @@ public struct Offer: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(externalUrl, forKey: .externalUrl)
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(maxPrice, forKey: .maxPrice)
-        try container.encode(merchantId, forKey: .merchantId)
+        try container.encodeIfPresent(merchantId, forKey: .merchantId)
         try container.encodeIfPresent(meta, forKey: .meta)
-        try container.encode(minPrice, forKey: .minPrice)
-        try container.encode(name, forKey: .name)
+        try container.encodeIfPresent(minPrice, forKey: .minPrice)
+        try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(presentedCurrency, forKey: .presentedCurrency)
-        try container.encode(productId, forKey: .productId)
+        try container.encodeIfPresent(productId, forKey: .productId)
         try container.encodeIfPresent(publishingStatus, forKey: .publishingStatus)
         try container.encodeIfPresent(seller, forKey: .seller)
         try container.encodeIfPresent(sizeUnit, forKey: .sizeUnit)
         try container.encodeIfPresent(skus, forKey: .skus)
-        try container.encode(source, forKey: .source)
+        try container.encodeIfPresent(source, forKey: .source)
         try container.encodeIfPresent(sourceCategoryName, forKey: .sourceCategoryName)
         try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(subscriptionStatus, forKey: .subscriptionStatus)
@@ -272,7 +272,7 @@ public struct Offer: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(variants, forKey: .variants)
         try container.encodeIfPresent(vendor, forKey: .vendor)
-        try container.encode(visible, forKey: .visible)
+        try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(weightUnit, forKey: .weightUnit)
     }
 }

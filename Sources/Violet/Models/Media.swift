@@ -18,7 +18,7 @@ public struct Media: Codable, JSONEncodable, Hashable {
         case video = "VIDEO"
     }
     /** Album ID */
-    public var albumId: Int64
+    public var albumId: Int64?
     /** ID of hosted cloud entity */
     public var cloudId: String?
     /** Display Order */
@@ -35,7 +35,7 @@ public struct Media: Codable, JSONEncodable, Hashable {
     /** Media URL */
     public var url: String?
 
-    public init(albumId: Int64, cloudId: String? = nil, displayOrder: Int? = nil, externalId: String? = nil, id: Int64? = nil, primary: Bool? = nil, sourceUrl: String? = nil, type: ModelType? = nil, url: String? = nil) {
+    public init(albumId: Int64? = nil, cloudId: String? = nil, displayOrder: Int? = nil, externalId: String? = nil, id: Int64? = nil, primary: Bool? = nil, sourceUrl: String? = nil, type: ModelType? = nil, url: String? = nil) {
         self.albumId = albumId
         self.cloudId = cloudId
         self.displayOrder = displayOrder
@@ -63,7 +63,7 @@ public struct Media: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(albumId, forKey: .albumId)
+        try container.encodeIfPresent(albumId, forKey: .albumId)
         try container.encodeIfPresent(cloudId, forKey: .cloudId)
         try container.encodeIfPresent(displayOrder, forKey: .displayOrder)
         try container.encodeIfPresent(externalId, forKey: .externalId)

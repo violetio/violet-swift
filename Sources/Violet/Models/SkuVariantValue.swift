@@ -14,11 +14,11 @@ import AnyCodable
 public struct SkuVariantValue: Codable, JSONEncodable, Hashable {
 
     /** Variant Value */
-    public var value: String
+    public var value: String?
     /** Variant Name */
-    public var variant: String
+    public var variant: String?
 
-    public init(value: String, variant: String) {
+    public init(value: String? = nil, variant: String? = nil) {
         self.value = value
         self.variant = variant
     }
@@ -32,8 +32,8 @@ public struct SkuVariantValue: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(value, forKey: .value)
-        try container.encode(variant, forKey: .variant)
+        try container.encodeIfPresent(value, forKey: .value)
+        try container.encodeIfPresent(variant, forKey: .variant)
     }
 }
 

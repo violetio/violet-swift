@@ -14,9 +14,9 @@ import AnyCodable
 public struct RefreshTokenResponse: Codable, JSONEncodable, Hashable {
 
     /** Token */
-    public var token: String
+    public var token: String?
 
-    public init(token: String) {
+    public init(token: String? = nil) {
         self.token = token
     }
 
@@ -28,7 +28,7 @@ public struct RefreshTokenResponse: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(token, forKey: .token)
+        try container.encodeIfPresent(token, forKey: .token)
     }
 }
 

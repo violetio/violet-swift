@@ -28,9 +28,9 @@ public struct Transaction: Codable, JSONEncodable, Hashable {
     /** Total amount being transacted */
     public var amount: Int?
     /** ID of the App that created the Order */
-    public var appId: Int
+    public var appId: Int?
     /** ID of the Bag the Transaction applies to */
-    public var bagId: Int64
+    public var bagId: Int64?
     /** Currency the Transaction takes place in */
     public var currency: String?
     /** Date of transaction creation */
@@ -45,12 +45,12 @@ public struct Transaction: Codable, JSONEncodable, Hashable {
     public var gatewayTransactionId: String?
     public var id: Int64?
     /** ID of the Merchant receiving the transaction */
-    public var merchantId: Int
+    public var merchantId: Int?
     /** ID of the Order the Transaction applies to */
     public var orderId: Int64?
     public var orderPaymentMethod: OrderPaymentMethod?
     /** ID of the referenced Payment Method */
-    public var paymentMethodId: Int64
+    public var paymentMethodId: Int64?
     /** Transaction Status */
     public var status: Status?
     /** Is this a test Transaction */
@@ -58,7 +58,7 @@ public struct Transaction: Codable, JSONEncodable, Hashable {
     /** Transaction Type */
     public var type: ModelType?
 
-    public init(amount: Int? = nil, appId: Int, bagId: Int64, currency: String? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, errorCode: String? = nil, gateway: String? = nil, gatewayTransactionId: String? = nil, id: Int64? = nil, merchantId: Int, orderId: Int64? = nil, orderPaymentMethod: OrderPaymentMethod? = nil, paymentMethodId: Int64, status: Status? = nil, test: Bool? = nil, type: ModelType? = nil) {
+    public init(amount: Int? = nil, appId: Int? = nil, bagId: Int64? = nil, currency: String? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, errorCode: String? = nil, gateway: String? = nil, gatewayTransactionId: String? = nil, id: Int64? = nil, merchantId: Int? = nil, orderId: Int64? = nil, orderPaymentMethod: OrderPaymentMethod? = nil, paymentMethodId: Int64? = nil, status: Status? = nil, test: Bool? = nil, type: ModelType? = nil) {
         self.amount = amount
         self.appId = appId
         self.bagId = bagId
@@ -103,8 +103,8 @@ public struct Transaction: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(amount, forKey: .amount)
-        try container.encode(appId, forKey: .appId)
-        try container.encode(bagId, forKey: .bagId)
+        try container.encodeIfPresent(appId, forKey: .appId)
+        try container.encodeIfPresent(bagId, forKey: .bagId)
         try container.encodeIfPresent(currency, forKey: .currency)
         try container.encodeIfPresent(dateCreated, forKey: .dateCreated)
         try container.encodeIfPresent(dateLastModified, forKey: .dateLastModified)
@@ -112,10 +112,10 @@ public struct Transaction: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(gateway, forKey: .gateway)
         try container.encodeIfPresent(gatewayTransactionId, forKey: .gatewayTransactionId)
         try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(merchantId, forKey: .merchantId)
+        try container.encodeIfPresent(merchantId, forKey: .merchantId)
         try container.encodeIfPresent(orderId, forKey: .orderId)
         try container.encodeIfPresent(orderPaymentMethod, forKey: .orderPaymentMethod)
-        try container.encode(paymentMethodId, forKey: .paymentMethodId)
+        try container.encodeIfPresent(paymentMethodId, forKey: .paymentMethodId)
         try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(test, forKey: .test)
         try container.encodeIfPresent(type, forKey: .type)

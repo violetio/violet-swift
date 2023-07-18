@@ -75,7 +75,7 @@ public struct Order: Codable, JSONEncodable, Hashable {
     /** Shipping Total of the Order */
     public var shippingTotal: Int?
     /** Status of the Order */
-    public var status: Status
+    public var status: Status?
     /** Stripe publishable key. Use for tokenizing payment methods. */
     public var stripeKey: String?
     /** Subtotal of the Order */
@@ -90,7 +90,7 @@ public struct Order: Codable, JSONEncodable, Hashable {
     /** Is this cart going to be placed through wallet-based checkout */
     public var walletBasedCheckout: Bool?
 
-    public init(appCustomerId: String? = nil, appId: Int? = nil, appName: String? = nil, appOrderId: String? = nil, bags: [Bag]? = nil, billingAddress: OrderAddress? = nil, currency: String? = nil, currencySymbol: String? = nil, customer: OrderCustomer? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, developerId: Int? = nil, discountTotal: Int? = nil, errors: [OrderError]? = nil, guest: Bool? = nil, id: Int64? = nil, intentBasedCheckout: Bool? = nil, isGuest: Bool? = nil, orderId: Int64? = nil, orderStatus: OrderStatus? = nil, paymentIntentClientSecret: String? = nil, paymentMethod: OrderPaymentMethod? = nil, priced: Bool? = nil, referralId: String? = nil, shippingAddress: OrderAddress? = nil, shippingTotal: Int? = nil, status: Status, stripeKey: String? = nil, subTotal: Int? = nil, taxTotal: Int? = nil, token: String? = nil, total: Int? = nil, userId: Int64? = nil, walletBasedCheckout: Bool? = nil) {
+    public init(appCustomerId: String? = nil, appId: Int? = nil, appName: String? = nil, appOrderId: String? = nil, bags: [Bag]? = nil, billingAddress: OrderAddress? = nil, currency: String? = nil, currencySymbol: String? = nil, customer: OrderCustomer? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, developerId: Int? = nil, discountTotal: Int? = nil, errors: [OrderError]? = nil, guest: Bool? = nil, id: Int64? = nil, intentBasedCheckout: Bool? = nil, isGuest: Bool? = nil, orderId: Int64? = nil, orderStatus: OrderStatus? = nil, paymentIntentClientSecret: String? = nil, paymentMethod: OrderPaymentMethod? = nil, priced: Bool? = nil, referralId: String? = nil, shippingAddress: OrderAddress? = nil, shippingTotal: Int? = nil, status: Status? = nil, stripeKey: String? = nil, subTotal: Int? = nil, taxTotal: Int? = nil, token: String? = nil, total: Int? = nil, userId: Int64? = nil, walletBasedCheckout: Bool? = nil) {
         self.appCustomerId = appCustomerId
         self.appId = appId
         self.appName = appName
@@ -194,7 +194,7 @@ public struct Order: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(referralId, forKey: .referralId)
         try container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
         try container.encodeIfPresent(shippingTotal, forKey: .shippingTotal)
-        try container.encode(status, forKey: .status)
+        try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(stripeKey, forKey: .stripeKey)
         try container.encodeIfPresent(subTotal, forKey: .subTotal)
         try container.encodeIfPresent(taxTotal, forKey: .taxTotal)

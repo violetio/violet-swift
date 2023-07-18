@@ -14,16 +14,16 @@ import AnyCodable
 public struct Category: Codable, JSONEncodable, Hashable {
 
     /** Category Depth */
-    public var depth: Int
+    public var depth: Int?
     public var id: String?
     /** Category Name */
-    public var name: String
+    public var name: String?
     /** Parent ID */
     public var parentId: String?
     /** Category Slug */
-    public var slug: String
+    public var slug: String?
 
-    public init(depth: Int, id: String? = nil, name: String, parentId: String? = nil, slug: String) {
+    public init(depth: Int? = nil, id: String? = nil, name: String? = nil, parentId: String? = nil, slug: String? = nil) {
         self.depth = depth
         self.id = id
         self.name = name
@@ -43,11 +43,11 @@ public struct Category: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(depth, forKey: .depth)
+        try container.encodeIfPresent(depth, forKey: .depth)
         try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(name, forKey: .name)
+        try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(parentId, forKey: .parentId)
-        try container.encode(slug, forKey: .slug)
+        try container.encodeIfPresent(slug, forKey: .slug)
     }
 }
 

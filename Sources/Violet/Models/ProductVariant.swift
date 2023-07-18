@@ -17,15 +17,15 @@ public struct ProductVariant: Codable, JSONEncodable, Hashable {
     public var displayOrder: Int?
     public var id: String?
     /** Name */
-    public var name: String
+    public var name: String?
     /** Product ID */
-    public var productId: String
+    public var productId: String?
     /** Product Variant values */
     public var values: Set<ProductVariantValue>?
     /** Is this a visual variant */
     public var visual: Bool?
 
-    public init(displayOrder: Int? = nil, id: String? = nil, name: String, productId: String, values: Set<ProductVariantValue>? = nil, visual: Bool? = nil) {
+    public init(displayOrder: Int? = nil, id: String? = nil, name: String? = nil, productId: String? = nil, values: Set<ProductVariantValue>? = nil, visual: Bool? = nil) {
         self.displayOrder = displayOrder
         self.id = id
         self.name = name
@@ -49,8 +49,8 @@ public struct ProductVariant: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(displayOrder, forKey: .displayOrder)
         try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(name, forKey: .name)
-        try container.encode(productId, forKey: .productId)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(productId, forKey: .productId)
         try container.encodeIfPresent(values, forKey: .values)
         try container.encodeIfPresent(visual, forKey: .visual)
     }

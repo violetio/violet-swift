@@ -26,9 +26,9 @@ public struct OrderPaymentMethod: Codable, JSONEncodable, Hashable {
     /** Last Four Numbers on Card */
     public var lastFour: String?
     /** ID of the referenced Payment Method */
-    public var paymentMethodId: Int64
+    public var paymentMethodId: Int64?
 
-    public init(brand: String? = nil, cardholderName: String? = nil, _default: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, lastFour: String? = nil, paymentMethodId: Int64) {
+    public init(brand: String? = nil, cardholderName: String? = nil, _default: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, lastFour: String? = nil, paymentMethodId: Int64? = nil) {
         self.brand = brand
         self.cardholderName = cardholderName
         self._default = _default
@@ -58,7 +58,7 @@ public struct OrderPaymentMethod: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(expMonth, forKey: .expMonth)
         try container.encodeIfPresent(expYear, forKey: .expYear)
         try container.encodeIfPresent(lastFour, forKey: .lastFour)
-        try container.encode(paymentMethodId, forKey: .paymentMethodId)
+        try container.encodeIfPresent(paymentMethodId, forKey: .paymentMethodId)
     }
 }
 

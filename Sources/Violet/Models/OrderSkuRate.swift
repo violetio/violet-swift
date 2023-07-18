@@ -20,19 +20,19 @@ public struct OrderSkuRate: Codable, JSONEncodable, Hashable {
         case duty = "DUTY"
     }
     /** Total Tax amount on Bag */
-    public var amount: Int
+    public var amount: Int?
     public var decimalRate: Double?
     public var dollarAmount: Double?
     /** Rate Name */
-    public var name: String
+    public var name: String?
     /** ID of the Order SKU the Rate belongs to */
-    public var orderSkuId: Int64
+    public var orderSkuId: Int64?
     /** Rate */
     public var rate: Double?
     /** Rate Type */
-    public var type: ModelType
+    public var type: ModelType?
 
-    public init(amount: Int, decimalRate: Double? = nil, dollarAmount: Double? = nil, name: String, orderSkuId: Int64, rate: Double? = nil, type: ModelType) {
+    public init(amount: Int? = nil, decimalRate: Double? = nil, dollarAmount: Double? = nil, name: String? = nil, orderSkuId: Int64? = nil, rate: Double? = nil, type: ModelType? = nil) {
         self.amount = amount
         self.decimalRate = decimalRate
         self.dollarAmount = dollarAmount
@@ -56,13 +56,13 @@ public struct OrderSkuRate: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(amount, forKey: .amount)
+        try container.encodeIfPresent(amount, forKey: .amount)
         try container.encodeIfPresent(decimalRate, forKey: .decimalRate)
         try container.encodeIfPresent(dollarAmount, forKey: .dollarAmount)
-        try container.encode(name, forKey: .name)
-        try container.encode(orderSkuId, forKey: .orderSkuId)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(orderSkuId, forKey: .orderSkuId)
         try container.encodeIfPresent(rate, forKey: .rate)
-        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(type, forKey: .type)
     }
 }
 

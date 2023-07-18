@@ -26,7 +26,7 @@ public struct ShopifyProductSyncs: Codable, JSONEncodable, Hashable {
     public var dateLastSynced: Date?
     public var id: Int?
     /** Merchant ID */
-    public var merchantId: Int
+    public var merchantId: Int?
     /** Does this merchant require a resync */
     public var resyncRequired: Bool?
     /** Status of Sync */
@@ -40,7 +40,7 @@ public struct ShopifyProductSyncs: Codable, JSONEncodable, Hashable {
     /** Have the webhooks been created */
     public var webhooksCreated: Bool?
 
-    public init(abort: Bool? = nil, dateLastSynced: Date? = nil, id: Int? = nil, merchantId: Int, resyncRequired: Bool? = nil, status: Status? = nil, taxonomySynced: Bool? = nil, totalProducts: Int? = nil, totalProductsSynced: Int? = nil, webhooksCreated: Bool? = nil) {
+    public init(abort: Bool? = nil, dateLastSynced: Date? = nil, id: Int? = nil, merchantId: Int? = nil, resyncRequired: Bool? = nil, status: Status? = nil, taxonomySynced: Bool? = nil, totalProducts: Int? = nil, totalProductsSynced: Int? = nil, webhooksCreated: Bool? = nil) {
         self.abort = abort
         self.dateLastSynced = dateLastSynced
         self.id = id
@@ -73,7 +73,7 @@ public struct ShopifyProductSyncs: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(abort, forKey: .abort)
         try container.encodeIfPresent(dateLastSynced, forKey: .dateLastSynced)
         try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(merchantId, forKey: .merchantId)
+        try container.encodeIfPresent(merchantId, forKey: .merchantId)
         try container.encodeIfPresent(resyncRequired, forKey: .resyncRequired)
         try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(taxonomySynced, forKey: .taxonomySynced)

@@ -14,11 +14,11 @@ public struct Role: Codable, JSONEncodable, Hashable {
 
     static let nameRule = StringRule(minLength: 1, maxLength: 50, pattern: nil)
     /** Name of the Role */
-    public var name: String
+    public var name: String?
     /** Permissions available to this Role */
     public var permissions: Set<Permission>?
 
-    public init(name: String, permissions: Set<Permission>? = nil) {
+    public init(name: String? = nil, permissions: Set<Permission>? = nil) {
         self.name = name
         self.permissions = permissions
     }
@@ -32,7 +32,7 @@ public struct Role: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
+        try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(permissions, forKey: .permissions)
     }
 }

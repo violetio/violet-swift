@@ -22,9 +22,9 @@ public struct Refund: Codable, JSONEncodable, Hashable {
         case external = "EXTERNAL"
     }
     /** Amount being refunded */
-    public var amount: Int
+    public var amount: Int?
     /** ID of the App that created the Order */
-    public var appId: Int
+    public var appId: Int?
     /** ID of the Bag being refunded */
     public var bagId: Int64?
     /** Date of creation */
@@ -38,14 +38,14 @@ public struct Refund: Codable, JSONEncodable, Hashable {
     /** ID of the refund on the external commerce platform. */
     public var externalId: String?
     /** ID of the Transaction in the Payment Gateway */
-    public var gatewayTransactionId: String
+    public var gatewayTransactionId: String?
     public var id: Int64?
     /** ID of the merchant making the refund */
-    public var merchantId: Int
+    public var merchantId: Int?
     /** Amount being taken back from the associated transfer to the merchant */
     public var merchantTransferReversalAmountUsd: Int?
     /** ID of the Order being refunded */
-    public var orderId: Int64
+    public var orderId: Int64?
     /** Reason for refund */
     public var reason: String?
     /** Currency set for this refund by the external ecom platform */
@@ -55,9 +55,9 @@ public struct Refund: Codable, JSONEncodable, Hashable {
     /** Status of the Refund */
     public var status: Status?
     /** ID of the Transaction being refunded */
-    public var transactionId: Int64
+    public var transactionId: Int64?
 
-    public init(amount: Int, appId: Int, bagId: Int64? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, developerTransferReversalAmountUsd: Int? = nil, errors: Set<RefundErrors>? = nil, externalId: String? = nil, gatewayTransactionId: String, id: Int64? = nil, merchantId: Int, merchantTransferReversalAmountUsd: Int? = nil, orderId: Int64, reason: String? = nil, refundCurrency: String? = nil, skus: Set<RefundOrderSku>? = nil, status: Status? = nil, transactionId: Int64) {
+    public init(amount: Int? = nil, appId: Int? = nil, bagId: Int64? = nil, dateCreated: Date? = nil, dateLastModified: Date? = nil, developerTransferReversalAmountUsd: Int? = nil, errors: Set<RefundErrors>? = nil, externalId: String? = nil, gatewayTransactionId: String? = nil, id: Int64? = nil, merchantId: Int? = nil, merchantTransferReversalAmountUsd: Int? = nil, orderId: Int64? = nil, reason: String? = nil, refundCurrency: String? = nil, skus: Set<RefundOrderSku>? = nil, status: Status? = nil, transactionId: Int64? = nil) {
         self.amount = amount
         self.appId = appId
         self.bagId = bagId
@@ -103,24 +103,24 @@ public struct Refund: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(amount, forKey: .amount)
-        try container.encode(appId, forKey: .appId)
+        try container.encodeIfPresent(amount, forKey: .amount)
+        try container.encodeIfPresent(appId, forKey: .appId)
         try container.encodeIfPresent(bagId, forKey: .bagId)
         try container.encodeIfPresent(dateCreated, forKey: .dateCreated)
         try container.encodeIfPresent(dateLastModified, forKey: .dateLastModified)
         try container.encodeIfPresent(developerTransferReversalAmountUsd, forKey: .developerTransferReversalAmountUsd)
         try container.encodeIfPresent(errors, forKey: .errors)
         try container.encodeIfPresent(externalId, forKey: .externalId)
-        try container.encode(gatewayTransactionId, forKey: .gatewayTransactionId)
+        try container.encodeIfPresent(gatewayTransactionId, forKey: .gatewayTransactionId)
         try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(merchantId, forKey: .merchantId)
+        try container.encodeIfPresent(merchantId, forKey: .merchantId)
         try container.encodeIfPresent(merchantTransferReversalAmountUsd, forKey: .merchantTransferReversalAmountUsd)
-        try container.encode(orderId, forKey: .orderId)
+        try container.encodeIfPresent(orderId, forKey: .orderId)
         try container.encodeIfPresent(reason, forKey: .reason)
         try container.encodeIfPresent(refundCurrency, forKey: .refundCurrency)
         try container.encodeIfPresent(skus, forKey: .skus)
         try container.encodeIfPresent(status, forKey: .status)
-        try container.encode(transactionId, forKey: .transactionId)
+        try container.encodeIfPresent(transactionId, forKey: .transactionId)
     }
 }
 
