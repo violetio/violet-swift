@@ -14,10 +14,10 @@ import AnyCodable
 public struct TermsOfService: Codable, JSONEncodable, Hashable {
 
     public enum Status: String, Codable, CaseIterable {
-        case complete = "complete"
-        case incomplete = "incomplete"
-        case needsAttention = "needs_attention"
-        case notApplicable = "not_applicable"
+        case complete = "COMPLETE"
+        case incomplete = "INCOMPLETE"
+        case needsAttention = "NEEDS_ATTENTION"
+        case notApplicable = "NOT_APPLICABLE"
     }
     public var error: ModelError?
     /** The results of the merchant terms of service acceptance check */
