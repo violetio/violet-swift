@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "VioletPublicClient",
+    name: "Violet",
     platforms: [
             .iOS(.v13)
         ],
