@@ -84,7 +84,7 @@ open class CheckoutShippingAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getAvailableShippingMethods(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: [OrderShippingMethodWrapper]?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getAvailableShippingMethods(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: OrderShippingMethodWrapperArray?, _ error: Error?) -> Void)) -> RequestTask {
         return getAvailableShippingMethodsWithRequestBuilder(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -104,7 +104,7 @@ open class CheckoutShippingAPI {
      - parameter xVioletAppId: (header)  (optional)
      - returns: RequestBuilder<[OrderShippingMethodWrapper]> 
      */
-    open class func getAvailableShippingMethodsWithRequestBuilder(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil) -> RequestBuilder<[OrderShippingMethodWrapper]> {
+    open class func getAvailableShippingMethodsWithRequestBuilder(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil) -> RequestBuilder<OrderShippingMethodWrapperArray> {
         var localVariablePath = "/checkout/cart/{cart_id}/shipping/available"
         let cartIdPreEscape = "\(APIHelper.mapValueToPathItem(cartId))"
         let cartIdPostEscape = cartIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -122,7 +122,7 @@ open class CheckoutShippingAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[OrderShippingMethodWrapper]>.Type = VioletAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<OrderShippingMethodWrapperArray>.Type = VioletAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
