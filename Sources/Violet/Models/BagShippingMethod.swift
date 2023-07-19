@@ -15,12 +15,12 @@ public struct BagShippingMethod: Codable, JSONEncodable, Hashable {
 
     /** The ID of the bag the Shipping Method belongs to */
     public var bagId: Int64?
-    /** Price of the Shipping Method */
-    public var shippingMethodId: Int?
+    /** ID of the referenced Shipping Method */
+    public var shippingMethodId: String?
     /** Label of the Shipping Method */
     public var shippingMethodLabel: String?
 
-    public init(bagId: Int64? = nil, shippingMethodId: Int? = nil, shippingMethodLabel: String? = nil) {
+    public init(bagId: Int64? = nil, shippingMethodId: String? = nil, shippingMethodLabel: String? = nil) {
         self.bagId = bagId
         self.shippingMethodId = shippingMethodId
         self.shippingMethodLabel = shippingMethodLabel
