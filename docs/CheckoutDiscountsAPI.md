@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **addDiscountToCart**
 ```swift
-    open class func addDiscountToCart(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, body: DiscountRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func addDiscountToCart(cartId: Int64, priceCart: Bool? = nil, body: DiscountRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Add Discount to Cart
@@ -21,14 +21,11 @@ Add Discount to Cart
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let priceCart = true // Bool |  (optional) (default to false)
 let body = DiscountRequest(code: "code_example", merchantId: 123) // DiscountRequest |  (optional)
 
 // Add Discount to Cart
-CheckoutDiscountsAPI.addDiscountToCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutDiscountsAPI.addDiscountToCart(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -45,9 +42,9 @@ CheckoutDiscountsAPI.addDiscountToCart(cartId: cartId, xVioletToken: xVioletToke
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **body** | [**DiscountRequest**](DiscountRequest.md) |  | [optional] 
 
@@ -68,7 +65,7 @@ No authorization required
 
 # **removeDiscountFromCart**
 ```swift
-    open class func removeDiscountFromCart(cartId: Int64, discountId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func removeDiscountFromCart(cartId: Int64, discountId: Int64, priceCart: Bool? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Remove Discount from Cart
@@ -80,13 +77,10 @@ import Violet
 
 let cartId = 987 // Int64 | 
 let discountId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let priceCart = true // Bool |  (optional) (default to false)
 
 // Remove Discount from Cart
-CheckoutDiscountsAPI.removeDiscountFromCart(cartId: cartId, discountId: discountId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart) { (response, error) in
+CheckoutDiscountsAPI.removeDiscountFromCart(cartId: cartId, discountId: discountId, priceCart: priceCart) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -104,9 +98,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
  **discountId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
 
 ### Return type

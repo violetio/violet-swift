@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **createCart**
 ```swift
-    open class func createCart(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, applyCurrentUser: Bool? = nil, defaultPayment: Bool? = nil, appOrderId: String? = nil, baseCurrency: String? = nil, referralId: String? = nil, channel: Channel_createCart? = nil, async: Bool? = nil, body: CartInitializationRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func createCart(applyCurrentUser: Bool? = nil, defaultPayment: Bool? = nil, appOrderId: String? = nil, baseCurrency: String? = nil, referralId: String? = nil, channel: Channel_createCart? = nil, async: Bool? = nil, body: CartInitializationRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Create Cart
@@ -22,9 +22,6 @@ Create Cart
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Violet
 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let applyCurrentUser = true // Bool |  (optional) (default to false)
 let defaultPayment = true // Bool |  (optional) (default to false)
 let appOrderId = "appOrderId_example" // String |  (optional)
@@ -35,7 +32,7 @@ let async = true // Bool |  (optional) (default to true)
 let body = CartInitializationRequest(appOrderId: "appOrderId_example", baseCurrency: "baseCurrency_example", customer: OrderCustomer(billingAddress: OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example"), email: "email_example", externalId: "externalId_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", sameAddress: false, shippingAddress: nil, userId: 123), discounts: [DiscountRequest(code: "code_example", merchantId: 123)], referralId: "referralId_example", skus: [OrderSku(appId: 123, available: false, brand: "brand_example", externalId: "externalId_example", height: 123, id: 123, length: 123, linePrice: 123, merchantId: 123, name: "name_example", orderSkuRates: [OrderSkuRate(amount: 123, decimalRate: 123, dollarAmount: 123, name: "name_example", orderSkuId: 123, rate: 123, type: "type_example")], price: 123, productId: "productId_example", productType: "productType_example", quantity: 123, quantityFulfilled: 123, skuId: 123, status: "status_example", thumbnail: "thumbnail_example", transientExternalProductId: "transientExternalProductId_example", weight: 123, width: 123)], walletBasedCheckout: false) // CartInitializationRequest |  (optional)
 
 // Create Cart
-CheckoutCartAPI.createCart(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, applyCurrentUser: applyCurrentUser, defaultPayment: defaultPayment, appOrderId: appOrderId, baseCurrency: baseCurrency, referralId: referralId, channel: channel, async: async, body: body) { (response, error) in
+CheckoutCartAPI.createCart(applyCurrentUser: applyCurrentUser, defaultPayment: defaultPayment, appOrderId: appOrderId, baseCurrency: baseCurrency, referralId: referralId, channel: channel, async: async, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -51,9 +48,9 @@ CheckoutCartAPI.createCart(xVioletToken: xVioletToken, xVioletAppSecret: xViolet
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **applyCurrentUser** | **Bool** |  | [optional] [default to false]
  **defaultPayment** | **Bool** |  | [optional] [default to false]
  **appOrderId** | **String** |  | [optional] 
@@ -80,7 +77,7 @@ No authorization required
 
 # **deleteCart**
 ```swift
-    open class func deleteCart(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteCart(cartId: Int64, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Delete Cart
@@ -91,12 +88,9 @@ Delete Cart
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 
 // Delete Cart
-CheckoutCartAPI.deleteCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CheckoutCartAPI.deleteCart(cartId: cartId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -113,9 +107,9 @@ CheckoutCartAPI.deleteCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAp
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
 
 ### Return type
 
@@ -134,7 +128,7 @@ No authorization required
 
 # **getCart**
 ```swift
-    open class func getCart(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func getCart(cartId: Int64, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Get Cart by ID
@@ -145,12 +139,9 @@ Get Cart by ID
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 
 // Get Cart by ID
-CheckoutCartAPI.getCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CheckoutCartAPI.getCart(cartId: cartId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -167,9 +158,9 @@ CheckoutCartAPI.getCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
 
 ### Return type
 
@@ -188,7 +179,7 @@ No authorization required
 
 # **getCartByToken**
 ```swift
-    open class func getCartByToken(token: String, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func getCartByToken(token: String, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Get Cart by Token
@@ -199,12 +190,9 @@ Get Cart by Token
 import Violet
 
 let token = "token_example" // String | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 
 // Get Cart by Token
-CheckoutCartAPI.getCartByToken(token: token, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CheckoutCartAPI.getCartByToken(token: token) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -221,9 +209,9 @@ CheckoutCartAPI.getCartByToken(token: token, xVioletToken: xVioletToken, xViolet
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **String** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
 
 ### Return type
 

@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **applyPaymentMethod**
 ```swift
-    open class func applyPaymentMethod(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, body: PaymentMethodRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func applyPaymentMethod(cartId: Int64, priceCart: Bool? = nil, body: PaymentMethodRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Apply Payment Method
@@ -20,14 +20,11 @@ Apply Payment Method
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let priceCart = true // Bool |  (optional) (default to false)
 let body = PaymentMethodRequest(appOrderId: "appOrderId_example", cardCvc: 123, cardExpMonth: 123, cardExpYear: 123, cardNumber: "cardNumber_example", cardPostalCode: "cardPostalCode_example", completeCheckout: false, intentBasedCapture: false, token: "token_example") // PaymentMethodRequest |  (optional)
 
 // Apply Payment Method
-CheckoutPaymentAPI.applyPaymentMethod(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutPaymentAPI.applyPaymentMethod(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -44,9 +41,9 @@ CheckoutPaymentAPI.applyPaymentMethod(cartId: cartId, xVioletToken: xVioletToken
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **body** | [**PaymentMethodRequest**](PaymentMethodRequest.md) |  | [optional] 
 

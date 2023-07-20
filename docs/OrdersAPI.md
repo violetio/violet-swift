@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **getAllOrders**
 ```swift
-    open class func getAllOrders(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, completion: @escaping (_ data: PageOrder?, _ error: Error?) -> Void)
+    open class func getAllOrders(page: Int? = nil, size: Int? = nil, completion: @escaping (_ data: PageOrder?, _ error: Error?) -> Void)
 ```
 
 Get Orders
@@ -22,14 +22,11 @@ Get Orders
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Violet
 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
 
 // Get Orders
-OrdersAPI.getAllOrders(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size) { (response, error) in
+OrdersAPI.getAllOrders(page: page, size: size) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -45,9 +42,6 @@ OrdersAPI.getAllOrders(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppS
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
 
@@ -68,7 +62,7 @@ No authorization required
 
 # **getOrderById**
 ```swift
-    open class func getOrderById(orderId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func getOrderById(orderId: Int64, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Get Order by ID
@@ -79,12 +73,9 @@ Get Order by ID
 import Violet
 
 let orderId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 
 // Get Order by ID
-OrdersAPI.getOrderById(orderId: orderId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+OrdersAPI.getOrderById(orderId: orderId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -101,10 +92,7 @@ OrdersAPI.getOrderById(orderId: orderId, xVioletToken: xVioletToken, xVioletAppS
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
-
+ 
 ### Return type
 
 [**Order**](Order.md)
@@ -122,7 +110,7 @@ No authorization required
 
 # **searchBags**
 ```swift
-    open class func searchBags(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, extended: Bool? = nil, body: SearchRequest? = nil, completion: @escaping (_ data: PageBag?, _ error: Error?) -> Void)
+    open class func searchBags(page: Int? = nil, size: Int? = nil, extended: Bool? = nil, body: SearchRequest? = nil, completion: @escaping (_ data: PageBag?, _ error: Error?) -> Void)
 ```
 
 Search Bags
@@ -132,16 +120,13 @@ Search Bags
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Violet
 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
 let extended = true // Bool |  (optional) (default to false)
 let body = SearchRequest(appOrderId: "appOrderId_example", bagId: 123, externalOrderId: "externalOrderId_example", orderId: 123, referralId: "referralId_example", userId: 123) // SearchRequest |  (optional)
 
 // Search Bags
-OrdersAPI.searchBags(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, extended: extended, body: body) { (response, error) in
+OrdersAPI.searchBags(page: page, size: size, extended: extended, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -157,9 +142,6 @@ OrdersAPI.searchBags(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSec
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
  **extended** | **Bool** |  | [optional] [default to false]
@@ -182,7 +164,7 @@ No authorization required
 
 # **searchOrders**
 ```swift
-    open class func searchOrders(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, extended: Bool? = nil, body: SearchRequest? = nil, completion: @escaping (_ data: PageOrder?, _ error: Error?) -> Void)
+    open class func searchOrders(page: Int? = nil, size: Int? = nil, extended: Bool? = nil, body: SearchRequest? = nil, completion: @escaping (_ data: PageOrder?, _ error: Error?) -> Void)
 ```
 
 Search Orders
@@ -192,16 +174,13 @@ Search Orders
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Violet
 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
 let extended = true // Bool |  (optional) (default to false)
 let body = SearchRequest(appOrderId: "appOrderId_example", bagId: 123, externalOrderId: "externalOrderId_example", orderId: 123, referralId: "referralId_example", userId: 123) // SearchRequest |  (optional)
 
 // Search Orders
-OrdersAPI.searchOrders(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, extended: extended, body: body) { (response, error) in
+OrdersAPI.searchOrders(page: page, size: size, extended: extended, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -217,9 +196,6 @@ OrdersAPI.searchOrders(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppS
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
  **extended** | **Bool** |  | [optional] [default to false]

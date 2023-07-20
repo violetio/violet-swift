@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **priceCart**
 ```swift
-    open class func priceCart(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func priceCart(cartId: Int64, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Price Cart
@@ -21,12 +21,9 @@ Price Cart
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 
 // Price Cart
-CheckoutCompletionAPI.priceCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CheckoutCompletionAPI.priceCart(cartId: cartId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -43,9 +40,9 @@ CheckoutCompletionAPI.priceCart(cartId: cartId, xVioletToken: xVioletToken, xVio
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
 
 ### Return type
 
@@ -64,7 +61,7 @@ No authorization required
 
 # **submitCheckout**
 ```swift
-    open class func submitCheckout(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, body: CartSubmissionRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func submitCheckout(cartId: Int64, body: CartSubmissionRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Submit Cart
@@ -75,13 +72,10 @@ Submit Cart
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let body = CartSubmissionRequest(appOrderId: "appOrderId_example", appTransactionGateway: "appTransactionGateway_example", appTransactionId: "appTransactionId_example", orderCustomer: OrderCustomer(billingAddress: OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example"), email: "email_example", externalId: "externalId_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", sameAddress: false, shippingAddress: nil, userId: 123), referralId: "referralId_example") // CartSubmissionRequest |  (optional)
 
 // Submit Cart
-CheckoutCompletionAPI.submitCheckout(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, body: body) { (response, error) in
+CheckoutCompletionAPI.submitCheckout(cartId: cartId, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -98,9 +92,9 @@ CheckoutCompletionAPI.submitCheckout(cartId: cartId, xVioletToken: xVioletToken,
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **body** | [**CartSubmissionRequest**](CartSubmissionRequest.md) |  | [optional] 
 
 ### Return type

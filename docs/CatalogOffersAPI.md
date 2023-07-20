@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **getMerchantOffers**
 ```swift
-    open class func getMerchantOffers(merchantId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, since: Int64? = nil, page: Int? = nil, size: Int? = nil, mapVariants: Bool? = nil, baseCurrency: String? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
+    open class func getMerchantOffers(merchantId: Int, since: Int64? = nil, page: Int? = nil, size: Int? = nil, mapVariants: Bool? = nil, baseCurrency: String? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
 ```
 
 Get All Merchant Offers
@@ -22,10 +22,6 @@ Get All Merchant Offers
 import Violet
 
 let merchantId = 987 // Int | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
-let xVioletApiFeatures = "xVioletApiFeatures_example" // String |  (optional)
 let since = 987 // Int64 |  (optional)
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
@@ -33,7 +29,7 @@ let mapVariants = true // Bool |  (optional) (default to true)
 let baseCurrency = "baseCurrency_example" // String |  (optional)
 
 // Get All Merchant Offers
-CatalogOffersAPI.getMerchantOffers(merchantId: merchantId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, xVioletApiFeatures: xVioletApiFeatures, since: since, page: page, size: size, mapVariants: mapVariants, baseCurrency: baseCurrency) { (response, error) in
+CatalogOffersAPI.getMerchantOffers(merchantId: merchantId, since: since, page: page, size: size, mapVariants: mapVariants, baseCurrency: baseCurrency) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -50,10 +46,6 @@ CatalogOffersAPI.getMerchantOffers(merchantId: merchantId, xVioletToken: xViolet
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **merchantId** | **Int** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
- **xVioletApiFeatures** | **String** |  | [optional] 
  **since** | **Int64** |  | [optional] 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
@@ -77,7 +69,7 @@ No authorization required
 
 # **getOfferById**
 ```swift
-    open class func getOfferById(offerId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, baseCurrency: String? = nil, exchangeRate: Double? = nil, completion: @escaping (_ data: Offer?, _ error: Error?) -> Void)
+    open class func getOfferById(offerId: Int64, baseCurrency: String? = nil, exchangeRate: Double? = nil, completion: @escaping (_ data: Offer?, _ error: Error?) -> Void)
 ```
 
 Get Offer by ID
@@ -88,15 +80,11 @@ Get Offer by ID
 import Violet
 
 let offerId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
-let xVioletApiFeatures = "xVioletApiFeatures_example" // String |  (optional)
 let baseCurrency = "baseCurrency_example" // String |  (optional) (default to "USD")
 let exchangeRate = 987 // Double |  (optional)
 
 // Get Offer by ID
-CatalogOffersAPI.getOfferById(offerId: offerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, xVioletApiFeatures: xVioletApiFeatures, baseCurrency: baseCurrency, exchangeRate: exchangeRate) { (response, error) in
+CatalogOffersAPI.getOfferById(offerId: offerId,  baseCurrency: baseCurrency, exchangeRate: exchangeRate) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -113,10 +101,6 @@ CatalogOffersAPI.getOfferById(offerId: offerId, xVioletToken: xVioletToken, xVio
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **offerId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
- **xVioletApiFeatures** | **String** |  | [optional] 
  **baseCurrency** | **String** |  | [optional] [default to &quot;USD&quot;]
  **exchangeRate** | **Double** |  | [optional] 
 
@@ -137,7 +121,7 @@ No authorization required
 
 # **searchOffers**
 ```swift
-    open class func searchOffers(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, excludeHidden: Bool? = nil, body: OfferSearchRequest? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
+    open class func searchOffers(page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, excludeHidden: Bool? = nil, body: OfferSearchRequest? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
 ```
 
 Search Offers
@@ -149,9 +133,6 @@ Maximum size limit of 100 results.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Violet
 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
 let excludePublic = true // Bool |  (optional) (default to false)
@@ -159,7 +140,7 @@ let excludeHidden = true // Bool |  (optional) (default to true)
 let body = OfferSearchRequest(externalId: "externalId_example", id: 123, maxPrice: 123, merchantId: 123, minPrice: 123, name: "name_example", productId: "productId_example", publishingStatus: "publishingStatus_example", seller: "seller_example", sortBy: "sortBy_example", sortDirection: "sortDirection_example", subscriptionStatus: "subscriptionStatus_example", vendor: "vendor_example") // OfferSearchRequest |  (optional)
 
 // Search Offers
-CatalogOffersAPI.searchOffers(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, excludePublic: excludePublic, excludeHidden: excludeHidden, body: body) { (response, error) in
+CatalogOffersAPI.searchOffers(page: page, size: size, excludePublic: excludePublic, excludeHidden: excludeHidden, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -175,9 +156,6 @@ CatalogOffersAPI.searchOffers(xVioletToken: xVioletToken, xVioletAppSecret: xVio
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
  **excludePublic** | **Bool** |  | [optional] [default to false]

@@ -8,10 +8,9 @@ Method | HTTP request | Description
 [**getOrderRefundById**](RefundsAPI.md#getorderrefundbyid) | **GET** /orders/{order_id}/refunds/{refund_id} | Get Order Refund by ID
 [**getOrderRefunds**](RefundsAPI.md#getorderrefunds) | **GET** /orders/{order_id}/refunds | Get Order Refunds
 
-
 # **getBagRefunds**
 ```swift
-    open class func getBagRefunds(orderId: Int64, bagId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: [Refund]?, _ error: Error?) -> Void)
+    open class func getBagRefunds(orderId: Int64, bagId: Int64, completion: @escaping (_ data: [Refund]?, _ error: Error?) -> Void)
 ```
 
 Get Bag Refunds
@@ -23,12 +22,9 @@ import Violet
 
 let orderId = 987 // Int64 | 
 let bagId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 
 // Get Bag Refunds
-RefundsAPI.getBagRefunds(orderId: orderId, bagId: bagId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+RefundsAPI.getBagRefunds(orderId: orderId, bagId: bagId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -46,10 +42,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **Int64** |  | 
  **bagId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
-
+ 
 ### Return type
 
 [**[Refund]**](Refund.md)
@@ -67,7 +60,7 @@ No authorization required
 
 # **getOrderRefundById**
 ```swift
-    open class func getOrderRefundById(orderId: Int64, refundId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Refund?, _ error: Error?) -> Void)
+    open class func getOrderRefundById(orderId: Int64, refundId: Int64, completion: @escaping (_ data: Refund?, _ error: Error?) -> Void)
 ```
 
 Get Order Refund by ID
@@ -79,12 +72,9 @@ import Violet
 
 let orderId = 987 // Int64 | 
 let refundId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 
 // Get Order Refund by ID
-RefundsAPI.getOrderRefundById(orderId: orderId, refundId: refundId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+RefundsAPI.getOrderRefundById(orderId: orderId, refundId: refundId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -102,10 +92,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **Int64** |  | 
  **refundId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
-
+ 
 ### Return type
 
 [**Refund**](Refund.md)
@@ -123,7 +110,7 @@ No authorization required
 
 # **getOrderRefunds**
 ```swift
-    open class func getOrderRefunds(orderId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: [Refund]?, _ error: Error?) -> Void)
+    open class func getOrderRefunds(orderId: Int64, completion: @escaping (_ data: [Refund]?, _ error: Error?) -> Void)
 ```
 
 Get Order Refunds
@@ -134,12 +121,9 @@ Get Order Refunds
 import Violet
 
 let orderId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 
 // Get Order Refunds
-RefundsAPI.getOrderRefunds(orderId: orderId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+RefundsAPI.getOrderRefunds(orderId: orderId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -156,10 +140,7 @@ RefundsAPI.getOrderRefunds(orderId: orderId, xVioletToken: xVioletToken, xViolet
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
-
+ 
 ### Return type
 
 [**[Refund]**](Refund.md)

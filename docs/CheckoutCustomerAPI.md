@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 # **applyBillingAddress**
 ```swift
-    open class func applyBillingAddress(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func applyBillingAddress(cartId: Int64, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Set Billing Address
@@ -24,14 +24,11 @@ Set Billing Address
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let priceCart = true // Bool |  (optional) (default to false)
 let body = OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example") // OrderAddress |  (optional)
 
 // Set Billing Address
-CheckoutCustomerAPI.applyBillingAddress(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutCustomerAPI.applyBillingAddress(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -48,9 +45,9 @@ CheckoutCustomerAPI.applyBillingAddress(cartId: cartId, xVioletToken: xVioletTok
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **body** | [**OrderAddress**](OrderAddress.md) |  | [optional] 
 
@@ -71,7 +68,7 @@ No authorization required
 
 # **applyGuestCustomerToCart**
 ```swift
-    open class func applyGuestCustomerToCart(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, async: Bool? = nil, body: OrderCustomer? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func applyGuestCustomerToCart(cartId: Int64, async: Bool? = nil, body: OrderCustomer? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Apply Guest Customer to Cart
@@ -82,14 +79,11 @@ Apply Guest Customer to Cart
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let async = true // Bool |  (optional) (default to false)
 let body = OrderCustomer(billingAddress: OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example"), email: "email_example", externalId: "externalId_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", sameAddress: false, shippingAddress: nil, userId: 123) // OrderCustomer |  (optional)
 
 // Apply Guest Customer to Cart
-CheckoutCustomerAPI.applyGuestCustomerToCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, async: async, body: body) { (response, error) in
+CheckoutCustomerAPI.applyGuestCustomerToCart(cartId: cartId, async: async, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -106,9 +100,9 @@ CheckoutCustomerAPI.applyGuestCustomerToCart(cartId: cartId, xVioletToken: xViol
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **async** | **Bool** |  | [optional] [default to false]
  **body** | [**OrderCustomer**](OrderCustomer.md) |  | [optional] 
 
@@ -129,7 +123,7 @@ No authorization required
 
 # **applyShippingAddress**
 ```swift
-    open class func applyShippingAddress(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func applyShippingAddress(cartId: Int64, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Set Shipping Address
@@ -140,14 +134,11 @@ Set Shipping Address
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let priceCart = true // Bool |  (optional) (default to false)
 let body = OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example") // OrderAddress |  (optional)
 
 // Set Shipping Address
-CheckoutCustomerAPI.applyShippingAddress(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutCustomerAPI.applyShippingAddress(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -164,9 +155,9 @@ CheckoutCustomerAPI.applyShippingAddress(cartId: cartId, xVioletToken: xVioletTo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **body** | [**OrderAddress**](OrderAddress.md) |  | [optional] 
 
@@ -187,7 +178,7 @@ No authorization required
 
 # **updateBillingAddress**
 ```swift
-    open class func updateBillingAddress(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func updateBillingAddress(cartId: Int64, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Update Billing Address
@@ -198,14 +189,11 @@ Update Billing Address
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let priceCart = true // Bool |  (optional) (default to false)
 let body = OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example") // OrderAddress |  (optional)
 
 // Update Billing Address
-CheckoutCustomerAPI.updateBillingAddress(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutCustomerAPI.updateBillingAddress(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -222,9 +210,9 @@ CheckoutCustomerAPI.updateBillingAddress(cartId: cartId, xVioletToken: xVioletTo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **body** | [**OrderAddress**](OrderAddress.md) |  | [optional] 
 
@@ -245,7 +233,7 @@ No authorization required
 
 # **updateShippingAddress**
 ```swift
-    open class func updateShippingAddress(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func updateShippingAddress(cartId: Int64, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Update Shipping Address
@@ -256,14 +244,11 @@ Update Shipping Address
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let priceCart = true // Bool |  (optional) (default to false)
 let body = OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example") // OrderAddress |  (optional)
 
 // Update Shipping Address
-CheckoutCustomerAPI.updateShippingAddress(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutCustomerAPI.updateShippingAddress(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -280,9 +265,6 @@ CheckoutCustomerAPI.updateShippingAddress(cartId: cartId, xVioletToken: xVioletT
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **body** | [**OrderAddress**](OrderAddress.md) |  | [optional] 
 
