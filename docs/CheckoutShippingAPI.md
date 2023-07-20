@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **applyShippingMethods**
 ```swift
-    open class func applyShippingMethods(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, body: [BagShippingMethod]? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func applyShippingMethods(cartId: Int64, priceCart: Bool? = nil, body: [BagShippingMethod]? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Set Shipping Methods
@@ -69,7 +69,7 @@ No authorization required
 
 # **getAvailableShippingMethods**
 ```swift
-    open class func getAvailableShippingMethods(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: [OrderShippingMethodWrapper]?, _ error: Error?) -> Void)
+    open class func getAvailableShippingMethods(cartId: Int64, completion: @escaping (_ data: [OrderShippingMethodWrapper]?, _ error: Error?) -> Void)
 ```
 
 Get Available Shipping Methods
@@ -123,7 +123,7 @@ No authorization required
 
 # **removeShippingMethod**
 ```swift
-    open class func removeShippingMethod(cartId: Int64, shippingMethodId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func removeShippingMethod(cartId: Int64, shippingMethodId: Int64, priceCart: Bool? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Remove Shipping Method

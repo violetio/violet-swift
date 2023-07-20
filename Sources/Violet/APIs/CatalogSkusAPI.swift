@@ -24,7 +24,7 @@ open class CatalogSkusAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getSkuById(skuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, baseCurrency: String? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Sku?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getSkuById(skuId: Int64, baseCurrency: String? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Sku?, _ error: Error?) -> Void)) -> RequestTask {
         return getSkuByIdWithRequestBuilder(skuId: skuId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, baseCurrency: baseCurrency).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -45,7 +45,7 @@ open class CatalogSkusAPI {
      - parameter baseCurrency: (query)  (optional, default to "USD")
      - returns: RequestBuilder<Sku> 
      */
-    open class func getSkuByIdWithRequestBuilder(skuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, baseCurrency: String? = nil) -> RequestBuilder<Sku> {
+    open class func getSkuByIdWithRequestBuilder(skuId: Int64, baseCurrency: String? = nil) -> RequestBuilder<Sku> {
         var localVariablePath = "/catalog/skus/{sku_id}"
         let skuIdPreEscape = "\(APIHelper.mapValueToPathItem(skuId))"
         let skuIdPostEscape = skuIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""

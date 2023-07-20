@@ -23,7 +23,7 @@ open class CheckoutCompletionAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func priceCart(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Order?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func priceCart(cartId: Int64, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Order?, _ error: Error?) -> Void)) -> RequestTask {
         return priceCartWithRequestBuilder(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -78,7 +78,7 @@ open class CheckoutCompletionAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func submitCheckout(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, body: CartSubmissionRequest? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Order?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func submitCheckout(cartId: Int64, body: CartSubmissionRequest? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Order?, _ error: Error?) -> Void)) -> RequestTask {
         return submitCheckoutWithRequestBuilder(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, body: body).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -99,7 +99,7 @@ open class CheckoutCompletionAPI {
      - parameter body: (body)  (optional)
      - returns: RequestBuilder<Order> 
      */
-    open class func submitCheckoutWithRequestBuilder(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, body: CartSubmissionRequest? = nil) -> RequestBuilder<Order> {
+    open class func submitCheckoutWithRequestBuilder(cartId: Int64, body: CartSubmissionRequest? = nil) -> RequestBuilder<Order> {
         var localVariablePath = "/checkout/cart/{cart_id}/submit"
         let cartIdPreEscape = "\(APIHelper.mapValueToPathItem(cartId))"
         let cartIdPostEscape = cartIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""

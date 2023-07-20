@@ -68,7 +68,7 @@ No authorization required
 
 # **getOrderById**
 ```swift
-    open class func getOrderById(orderId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func getOrderById(orderId: Int64, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Get Order by ID

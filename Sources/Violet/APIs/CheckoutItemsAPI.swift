@@ -26,7 +26,7 @@ open class CheckoutItemsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func addSkuToCart(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Order?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func addSkuToCart(cartId: Int64, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Order?, _ error: Error?) -> Void)) -> RequestTask {
         return addSkuToCartWithRequestBuilder(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, async: async, body: body).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -49,7 +49,7 @@ open class CheckoutItemsAPI {
      - parameter body: (body)  (optional)
      - returns: RequestBuilder<Order> 
      */
-    open class func addSkuToCartWithRequestBuilder(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil) -> RequestBuilder<Order> {
+    open class func addSkuToCartWithRequestBuilder(cartId: Int64, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil) -> RequestBuilder<Order> {
         var localVariablePath = "/checkout/cart/{cart_id}/skus"
         let cartIdPreEscape = "\(APIHelper.mapValueToPathItem(cartId))"
         let cartIdPostEscape = cartIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -90,7 +90,7 @@ open class CheckoutItemsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func removeSkuFromCart(cartId: Int64, orderSkuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, async: Bool? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Order?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func removeSkuFromCart(cartId: Int64, orderSkuId: Int64, priceCart: Bool? = nil, async: Bool? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Order?, _ error: Error?) -> Void)) -> RequestTask {
         return removeSkuFromCartWithRequestBuilder(cartId: cartId, orderSkuId: orderSkuId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, async: async).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -113,7 +113,7 @@ open class CheckoutItemsAPI {
      - parameter async: (query)  (optional, default to false)
      - returns: RequestBuilder<Order> 
      */
-    open class func removeSkuFromCartWithRequestBuilder(cartId: Int64, orderSkuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, async: Bool? = nil) -> RequestBuilder<Order> {
+    open class func removeSkuFromCartWithRequestBuilder(cartId: Int64, orderSkuId: Int64, priceCart: Bool? = nil, async: Bool? = nil) -> RequestBuilder<Order> {
         var localVariablePath = "/checkout/cart/{cart_id}/skus/{order_sku_id}"
         let cartIdPreEscape = "\(APIHelper.mapValueToPathItem(cartId))"
         let cartIdPostEscape = cartIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -158,7 +158,7 @@ open class CheckoutItemsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func updateSkuInCart(cartId: Int64, orderSkuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Order?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func updateSkuInCart(cartId: Int64, orderSkuId: Int64, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Order?, _ error: Error?) -> Void)) -> RequestTask {
         return updateSkuInCartWithRequestBuilder(cartId: cartId, orderSkuId: orderSkuId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, async: async, body: body).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -182,7 +182,7 @@ open class CheckoutItemsAPI {
      - parameter body: (body)  (optional)
      - returns: RequestBuilder<Order> 
      */
-    open class func updateSkuInCartWithRequestBuilder(cartId: Int64, orderSkuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil) -> RequestBuilder<Order> {
+    open class func updateSkuInCartWithRequestBuilder(cartId: Int64, orderSkuId: Int64, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil) -> RequestBuilder<Order> {
         var localVariablePath = "/checkout/cart/{cart_id}/skus/{order_sku_id}"
         let cartIdPreEscape = "\(APIHelper.mapValueToPathItem(cartId))"
         let cartIdPostEscape = cartIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""

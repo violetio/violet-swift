@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **getBagRefunds**
 ```swift
-    open class func getBagRefunds(orderId: Int64, bagId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: [Refund]?, _ error: Error?) -> Void)
+    open class func getBagRefunds(orderId: Int64, bagId: Int64, completion: @escaping (_ data: [Refund]?, _ error: Error?) -> Void)
 ```
 
 Get Bag Refunds
@@ -67,7 +67,7 @@ No authorization required
 
 # **getOrderRefundById**
 ```swift
-    open class func getOrderRefundById(orderId: Int64, refundId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Refund?, _ error: Error?) -> Void)
+    open class func getOrderRefundById(orderId: Int64, refundId: Int64, completion: @escaping (_ data: Refund?, _ error: Error?) -> Void)
 ```
 
 Get Order Refund by ID
@@ -123,7 +123,7 @@ No authorization required
 
 # **getOrderRefunds**
 ```swift
-    open class func getOrderRefunds(orderId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: [Refund]?, _ error: Error?) -> Void)
+    open class func getOrderRefunds(orderId: Int64, completion: @escaping (_ data: [Refund]?, _ error: Error?) -> Void)
 ```
 
 Get Order Refunds

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **getMerchantOffers**
 ```swift
-    open class func getMerchantOffers(merchantId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, since: Int64? = nil, page: Int? = nil, size: Int? = nil, mapVariants: Bool? = nil, baseCurrency: String? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
+    open class func getMerchantOffers(merchantId: Int, since: Int64? = nil, page: Int? = nil, size: Int? = nil, mapVariants: Bool? = nil, baseCurrency: String? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
 ```
 
 Get All Merchant Offers
@@ -77,7 +77,7 @@ No authorization required
 
 # **getOfferById**
 ```swift
-    open class func getOfferById(offerId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, baseCurrency: String? = nil, exchangeRate: Double? = nil, completion: @escaping (_ data: Offer?, _ error: Error?) -> Void)
+    open class func getOfferById(offerId: Int64, baseCurrency: String? = nil, exchangeRate: Double? = nil, completion: @escaping (_ data: Offer?, _ error: Error?) -> Void)
 ```
 
 Get Offer by ID

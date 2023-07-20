@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **addSkuToCart**
 ```swift
-    open class func addSkuToCart(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func addSkuToCart(cartId: Int64, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Add SKU to Cart
@@ -71,7 +71,7 @@ No authorization required
 
 # **removeSkuFromCart**
 ```swift
-    open class func removeSkuFromCart(cartId: Int64, orderSkuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, async: Bool? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func removeSkuFromCart(cartId: Int64, orderSkuId: Int64, priceCart: Bool? = nil, async: Bool? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Remove SKU from Cart
@@ -131,7 +131,7 @@ No authorization required
 
 # **updateSkuInCart**
 ```swift
-    open class func updateSkuInCart(cartId: Int64, orderSkuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func updateSkuInCart(cartId: Int64, orderSkuId: Int64, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Update SKU in Cart

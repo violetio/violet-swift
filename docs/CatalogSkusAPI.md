@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **getSkuById**
 ```swift
-    open class func getSkuById(skuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, baseCurrency: String? = nil, completion: @escaping (_ data: Sku?, _ error: Error?) -> Void)
+    open class func getSkuById(skuId: Int64, baseCurrency: String? = nil, completion: @escaping (_ data: Sku?, _ error: Error?) -> Void)
 ```
 
 Get Sku by ID

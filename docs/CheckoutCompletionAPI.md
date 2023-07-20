@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **priceCart**
 ```swift
-    open class func priceCart(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func priceCart(cartId: Int64, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Price Cart
@@ -64,7 +64,7 @@ No authorization required
 
 # **submitCheckout**
 ```swift
-    open class func submitCheckout(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, body: CartSubmissionRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func submitCheckout(cartId: Int64, body: CartSubmissionRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Submit Cart

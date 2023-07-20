@@ -29,7 +29,7 @@ open class CatalogOffersAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getMerchantOffers(merchantId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, since: Int64? = nil, page: Int? = nil, size: Int? = nil, mapVariants: Bool? = nil, baseCurrency: String? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: PageOffer?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getMerchantOffers(merchantId: Int, xVioletApiFeatures: String? = nil, since: Int64? = nil, page: Int? = nil, size: Int? = nil, mapVariants: Bool? = nil, baseCurrency: String? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: PageOffer?, _ error: Error?) -> Void)) -> RequestTask {
         return getMerchantOffersWithRequestBuilder(merchantId: merchantId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, xVioletApiFeatures: xVioletApiFeatures, since: since, page: page, size: size, mapVariants: mapVariants, baseCurrency: baseCurrency).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -55,7 +55,7 @@ open class CatalogOffersAPI {
      - parameter baseCurrency: (query)  (optional)
      - returns: RequestBuilder<PageOffer> 
      */
-    open class func getMerchantOffersWithRequestBuilder(merchantId: Int, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, since: Int64? = nil, page: Int? = nil, size: Int? = nil, mapVariants: Bool? = nil, baseCurrency: String? = nil) -> RequestBuilder<PageOffer> {
+    open class func getMerchantOffersWithRequestBuilder(merchantId: Int, xVioletApiFeatures: String? = nil, since: Int64? = nil, page: Int? = nil, size: Int? = nil, mapVariants: Bool? = nil, baseCurrency: String? = nil) -> RequestBuilder<PageOffer> {
         var localVariablePath = "/catalog/offers/merchants/{merchant_id}"
         let merchantIdPreEscape = "\(APIHelper.mapValueToPathItem(merchantId))"
         let merchantIdPostEscape = merchantIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -100,7 +100,7 @@ open class CatalogOffersAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getOfferById(offerId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, baseCurrency: String? = nil, exchangeRate: Double? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Offer?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getOfferById(offerId: Int64, xVioletApiFeatures: String? = nil, baseCurrency: String? = nil, exchangeRate: Double? = nil, apiResponseQueue: DispatchQueue = VioletAPI.apiResponseQueue, completion: @escaping ((_ data: Offer?, _ error: Error?) -> Void)) -> RequestTask {
         return getOfferByIdWithRequestBuilder(offerId: offerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, xVioletApiFeatures: xVioletApiFeatures, baseCurrency: baseCurrency, exchangeRate: exchangeRate).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -123,7 +123,7 @@ open class CatalogOffersAPI {
      - parameter exchangeRate: (query)  (optional)
      - returns: RequestBuilder<Offer> 
      */
-    open class func getOfferByIdWithRequestBuilder(offerId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, xVioletApiFeatures: String? = nil, baseCurrency: String? = nil, exchangeRate: Double? = nil) -> RequestBuilder<Offer> {
+    open class func getOfferByIdWithRequestBuilder(offerId: Int64, baseCurrency: String? = nil, exchangeRate: Double? = nil) -> RequestBuilder<Offer> {
         var localVariablePath = "/catalog/offers/{offer_id}"
         let offerIdPreEscape = "\(APIHelper.mapValueToPathItem(offerId))"
         let offerIdPostEscape = offerIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""

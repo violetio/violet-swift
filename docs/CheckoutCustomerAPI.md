@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 # **applyBillingAddress**
 ```swift
-    open class func applyBillingAddress(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func applyBillingAddress(cartId: Int64, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Set Billing Address
@@ -71,7 +71,7 @@ No authorization required
 
 # **applyGuestCustomerToCart**
 ```swift
-    open class func applyGuestCustomerToCart(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, async: Bool? = nil, body: OrderCustomer? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func applyGuestCustomerToCart(cartId: Int64, async: Bool? = nil, body: OrderCustomer? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Apply Guest Customer to Cart
@@ -129,7 +129,7 @@ No authorization required
 
 # **applyShippingAddress**
 ```swift
-    open class func applyShippingAddress(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func applyShippingAddress(cartId: Int64, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Set Shipping Address
@@ -187,7 +187,7 @@ No authorization required
 
 # **updateBillingAddress**
 ```swift
-    open class func updateBillingAddress(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func updateBillingAddress(cartId: Int64, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Update Billing Address
@@ -245,7 +245,7 @@ No authorization required
 
 # **updateShippingAddress**
 ```swift
-    open class func updateShippingAddress(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func updateShippingAddress(cartId: Int64, priceCart: Bool? = nil, body: OrderAddress? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Update Shipping Address

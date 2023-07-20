@@ -80,7 +80,7 @@ No authorization required
 
 # **deleteCart**
 ```swift
-    open class func deleteCart(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteCart(cartId: Int64, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Delete Cart
@@ -134,7 +134,7 @@ No authorization required
 
 # **getCart**
 ```swift
-    open class func getCart(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func getCart(cartId: Int64, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Get Cart by ID
@@ -188,7 +188,7 @@ No authorization required
 
 # **getCartByToken**
 ```swift
-    open class func getCartByToken(token: String, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func getCartByToken(token: String, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Get Cart by Token
