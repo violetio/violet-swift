@@ -21,9 +21,9 @@ public struct OrderShippingMethod: Codable, JSONEncodable, Hashable {
         case ontrac = "ONTRAC"
     }
     public enum ModelType: String, Codable, CaseIterable {
-        case variable = "VARIABLE"
-        case flatRate = "FLAT_RATE"
+        case calculated = "CALCULATED"
         case flatRatePrice = "FLAT_RATE_PRICE"
+        case flatRateWeight = "FLAT_RATE_WEIGHT"
     }
     public var carrier: Carrier?
     /** ID of the Bag the Shipping Method applies to */
