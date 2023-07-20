@@ -121,7 +121,7 @@ No authorization required
 
 # **searchOffers**
 ```swift
-    open class func searchOffers(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, excludeHidden: Bool? = nil, body: OfferSearchRequest? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
+    open class func searchOffers(page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, excludeHidden: Bool? = nil, body: OfferSearchRequest? = nil, completion: @escaping (_ data: PageOffer?, _ error: Error?) -> Void)
 ```
 
 Search Offers

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **getAllOrders**
 ```swift
-    open class func getAllOrders(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, completion: @escaping (_ data: PageOrder?, _ error: Error?) -> Void)
+    open class func getAllOrders(page: Int? = nil, size: Int? = nil, completion: @escaping (_ data: PageOrder?, _ error: Error?) -> Void)
 ```
 
 Get Orders
@@ -75,7 +75,7 @@ import Violet
 let orderId = 987 // Int64 | 
 
 // Get Order by ID
-OrdersAPI.getOrderById(orderId: orderId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+OrdersAPI.getOrderById(orderId: orderId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -110,7 +110,7 @@ No authorization required
 
 # **searchBags**
 ```swift
-    open class func searchBags(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, extended: Bool? = nil, body: SearchRequest? = nil, completion: @escaping (_ data: PageBag?, _ error: Error?) -> Void)
+    open class func searchBags(page: Int? = nil, size: Int? = nil, extended: Bool? = nil, body: SearchRequest? = nil, completion: @escaping (_ data: PageBag?, _ error: Error?) -> Void)
 ```
 
 Search Bags
@@ -164,7 +164,7 @@ No authorization required
 
 # **searchOrders**
 ```swift
-    open class func searchOrders(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, extended: Bool? = nil, body: SearchRequest? = nil, completion: @escaping (_ data: PageOrder?, _ error: Error?) -> Void)
+    open class func searchOrders(page: Int? = nil, size: Int? = nil, extended: Bool? = nil, body: SearchRequest? = nil, completion: @escaping (_ data: PageOrder?, _ error: Error?) -> Void)
 ```
 
 Search Orders

@@ -76,7 +76,7 @@ import Violet
 let cartId = 987 // Int64 | 
 
 // Get Available Shipping Methods
-CheckoutShippingAPI.getAvailableShippingMethods(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CheckoutShippingAPI.getAvailableShippingMethods(cartId: cartId) { (response, error) in
     guard error == nil else {
         print(error)
         return

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **createCart**
 ```swift
-    open class func createCart(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, applyCurrentUser: Bool? = nil, defaultPayment: Bool? = nil, appOrderId: String? = nil, baseCurrency: String? = nil, referralId: String? = nil, channel: Channel_createCart? = nil, async: Bool? = nil, body: CartInitializationRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func createCart(applyCurrentUser: Bool? = nil, defaultPayment: Bool? = nil, appOrderId: String? = nil, baseCurrency: String? = nil, referralId: String? = nil, channel: Channel_createCart? = nil, async: Bool? = nil, body: CartInitializationRequest? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Create Cart
@@ -90,7 +90,7 @@ import Violet
 let cartId = 987 // Int64 | 
 
 // Delete Cart
-CheckoutCartAPI.deleteCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CheckoutCartAPI.deleteCart(cartId: cartId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -141,7 +141,7 @@ import Violet
 let cartId = 987 // Int64 | 
 
 // Get Cart by ID
-CheckoutCartAPI.getCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CheckoutCartAPI.getCart(cartId: cartId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -192,7 +192,7 @@ import Violet
 let token = "token_example" // String | 
 
 // Get Cart by Token
-CheckoutCartAPI.getCartByToken(token: token, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CheckoutCartAPI.getCartByToken(token: token) { (response, error) in
     guard error == nil else {
         print(error)
         return

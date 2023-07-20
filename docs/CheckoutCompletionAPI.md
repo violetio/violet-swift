@@ -23,7 +23,7 @@ import Violet
 let cartId = 987 // Int64 | 
 
 // Price Cart
-CheckoutCompletionAPI.priceCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
+CheckoutCompletionAPI.priceCart(cartId: cartId) { (response, error) in
     guard error == nil else {
         print(error)
         return

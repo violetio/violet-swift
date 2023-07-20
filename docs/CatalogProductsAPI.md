@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **getProducts**
 ```swift
-    open class func getProducts(xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, excludeHidden: Bool? = nil, completion: @escaping (_ data: [Product]?, _ error: Error?) -> Void)
+    open class func getProducts(page: Int? = nil, size: Int? = nil, excludePublic: Bool? = nil, excludeHidden: Bool? = nil, completion: @escaping (_ data: [Product]?, _ error: Error?) -> Void)
 ```
 
 Get Products
