@@ -22,10 +22,10 @@ Get All Merchant Offers
 import Violet
 
 let merchantId = 987 // Int | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
-let xVioletApiFeatures = "xVioletApiFeatures_example" // String |  (optional)
+
+
+
+
 let since = 987 // Int64 |  (optional)
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
@@ -88,10 +88,10 @@ Get Offer by ID
 import Violet
 
 let offerId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
-let xVioletApiFeatures = "xVioletApiFeatures_example" // String |  (optional)
+
+
+
+
 let baseCurrency = "baseCurrency_example" // String |  (optional) (default to "USD")
 let exchangeRate = 987 // Double |  (optional)
 
@@ -149,9 +149,9 @@ Maximum size limit of 100 results.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Violet
 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
 let excludePublic = true // Bool |  (optional) (default to false)

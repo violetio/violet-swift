@@ -22,9 +22,9 @@ Set Shipping Methods
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 let priceCart = true // Bool |  (optional) (default to false)
 let body = [BagShippingMethod(bagId: 123, shippingMethodId: 123, shippingMethodLabel: "shippingMethodLabel_example")] // [BagShippingMethod] |  (optional)
 
@@ -80,9 +80,9 @@ Get Available Shipping Methods
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 
 // Get Available Shipping Methods
 CheckoutShippingAPI.getAvailableShippingMethods(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
@@ -135,9 +135,9 @@ import Violet
 
 let cartId = 987 // Int64 | 
 let shippingMethodId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 let priceCart = true // Bool |  (optional) (default to false)
 
 // Remove Shipping Method

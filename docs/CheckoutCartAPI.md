@@ -22,9 +22,9 @@ Create Cart
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Violet
 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 let applyCurrentUser = true // Bool |  (optional) (default to false)
 let defaultPayment = true // Bool |  (optional) (default to false)
 let appOrderId = "appOrderId_example" // String |  (optional)
@@ -91,9 +91,9 @@ Delete Cart
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 
 // Delete Cart
 CheckoutCartAPI.deleteCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
@@ -145,9 +145,9 @@ Get Cart by ID
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 
 // Get Cart by ID
 CheckoutCartAPI.getCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
@@ -199,9 +199,9 @@ Get Cart by Token
 import Violet
 
 let token = "token_example" // String | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 
 // Get Cart by Token
 CheckoutCartAPI.getCartByToken(token: token, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in

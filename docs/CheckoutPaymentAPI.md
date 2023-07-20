@@ -20,9 +20,9 @@ Apply Payment Method
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 let priceCart = true // Bool |  (optional) (default to false)
 let body = PaymentMethodRequest(appOrderId: "appOrderId_example", cardCvc: 123, cardExpMonth: 123, cardExpYear: 123, cardNumber: "cardNumber_example", cardPostalCode: "cardPostalCode_example", completeCheckout: false, intentBasedCapture: false, token: "token_example") // PaymentMethodRequest |  (optional)
 

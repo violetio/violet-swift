@@ -21,9 +21,9 @@ Add Discount to Cart
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 let priceCart = true // Bool |  (optional) (default to false)
 let body = DiscountRequest(code: "code_example", merchantId: 123) // DiscountRequest |  (optional)
 
@@ -80,9 +80,9 @@ import Violet
 
 let cartId = 987 // Int64 | 
 let discountId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 let priceCart = true // Bool |  (optional) (default to false)
 
 // Remove Discount from Cart

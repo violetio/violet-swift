@@ -20,9 +20,9 @@ Get Sku by ID
 import Violet
 
 let skuId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 let baseCurrency = "baseCurrency_example" // String |  (optional) (default to "USD")
 
 // Get Sku by ID

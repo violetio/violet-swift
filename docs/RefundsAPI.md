@@ -23,9 +23,9 @@ import Violet
 
 let orderId = 987 // Int64 | 
 let bagId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 
 // Get Bag Refunds
 RefundsAPI.getBagRefunds(orderId: orderId, bagId: bagId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
@@ -79,9 +79,9 @@ import Violet
 
 let orderId = 987 // Int64 | 
 let refundId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 
 // Get Order Refund by ID
 RefundsAPI.getOrderRefundById(orderId: orderId, refundId: refundId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
@@ -134,9 +134,9 @@ Get Order Refunds
 import Violet
 
 let orderId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
+
+
+
 
 // Get Order Refunds
 RefundsAPI.getOrderRefunds(orderId: orderId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
