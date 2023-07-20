@@ -23,6 +23,7 @@ public struct OrderShippingMethod: Codable, JSONEncodable, Hashable {
     public enum ModelType: String, Codable, CaseIterable {
         case variable = "VARIABLE"
         case flatRate = "FLAT_RATE"
+        case flatRatePrice = "FLAT_RATE_PRICE"
     }
     public var carrier: Carrier?
     /** ID of the Bag the Shipping Method applies to */
