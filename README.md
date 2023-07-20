@@ -10,6 +10,11 @@ See [Violet Docs](https://docs.violet.io) for complete API Documentation.
 In Xcode, add `https://github.com/violetio/violet-swift`, Release: `1.0.0`
 to your Project within the `Package Dependencies` Configuration section.
 
+## Violet Express Proxy Server
+
+Run the Proxy Server: [violetio/violet-proxy-server](https://github.com/violetio/violet-proxy-server)
+The APIs below will be proxied to the Violet API. 
+
 ## Documentation for API Endpoints
 
 All URIs are relative to *http://localhost:8020/api*
