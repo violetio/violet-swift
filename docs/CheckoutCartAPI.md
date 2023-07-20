@@ -22,9 +22,6 @@ Create Cart
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Violet
 
-
-
-
 let applyCurrentUser = true // Bool |  (optional) (default to false)
 let defaultPayment = true // Bool |  (optional) (default to false)
 let appOrderId = "appOrderId_example" // String |  (optional)
@@ -92,9 +89,6 @@ import Violet
 
 let cartId = 987 // Int64 | 
 
-
-
-
 // Delete Cart
 CheckoutCartAPI.deleteCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
     guard error == nil else {
@@ -146,9 +140,6 @@ import Violet
 
 let cartId = 987 // Int64 | 
 
-
-
-
 // Get Cart by ID
 CheckoutCartAPI.getCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
     guard error == nil else {
@@ -199,9 +190,6 @@ Get Cart by Token
 import Violet
 
 let token = "token_example" // String | 
-
-
-
 
 // Get Cart by Token
 CheckoutCartAPI.getCartByToken(token: token, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in

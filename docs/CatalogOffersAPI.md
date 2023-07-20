@@ -22,10 +22,6 @@ Get All Merchant Offers
 import Violet
 
 let merchantId = 987 // Int | 
-
-
-
-
 let since = 987 // Int64 |  (optional)
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
@@ -33,7 +29,7 @@ let mapVariants = true // Bool |  (optional) (default to true)
 let baseCurrency = "baseCurrency_example" // String |  (optional)
 
 // Get All Merchant Offers
-CatalogOffersAPI.getMerchantOffers(merchantId: merchantId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, xVioletApiFeatures: xVioletApiFeatures, since: since, page: page, size: size, mapVariants: mapVariants, baseCurrency: baseCurrency) { (response, error) in
+CatalogOffersAPI.getMerchantOffers(merchantId: merchantId, since: since, page: page, size: size, mapVariants: mapVariants, baseCurrency: baseCurrency) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -88,15 +84,11 @@ Get Offer by ID
 import Violet
 
 let offerId = 987 // Int64 | 
-
-
-
-
 let baseCurrency = "baseCurrency_example" // String |  (optional) (default to "USD")
 let exchangeRate = 987 // Double |  (optional)
 
 // Get Offer by ID
-CatalogOffersAPI.getOfferById(offerId: offerId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, xVioletApiFeatures: xVioletApiFeatures, baseCurrency: baseCurrency, exchangeRate: exchangeRate) { (response, error) in
+CatalogOffersAPI.getOfferById(offerId: offerId,  baseCurrency: baseCurrency, exchangeRate: exchangeRate) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -148,9 +140,6 @@ Maximum size limit of 100 results.
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Violet
-
-
-
 
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)

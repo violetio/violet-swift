@@ -21,9 +21,6 @@ Products will be wrapped in a Page container.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Violet
 
-
-
-
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
 let excludePublic = true // Bool |  (optional) (default to false)

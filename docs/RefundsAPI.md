@@ -24,9 +24,6 @@ import Violet
 let orderId = 987 // Int64 | 
 let bagId = 987 // Int64 | 
 
-
-
-
 // Get Bag Refunds
 RefundsAPI.getBagRefunds(orderId: orderId, bagId: bagId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
     guard error == nil else {
@@ -80,9 +77,6 @@ import Violet
 let orderId = 987 // Int64 | 
 let refundId = 987 // Int64 | 
 
-
-
-
 // Get Order Refund by ID
 RefundsAPI.getOrderRefundById(orderId: orderId, refundId: refundId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
     guard error == nil else {
@@ -134,9 +128,6 @@ Get Order Refunds
 import Violet
 
 let orderId = 987 // Int64 | 
-
-
-
 
 // Get Order Refunds
 RefundsAPI.getOrderRefunds(orderId: orderId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in

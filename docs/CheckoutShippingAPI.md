@@ -22,9 +22,6 @@ Set Shipping Methods
 import Violet
 
 let cartId = 987 // Int64 | 
-
-
-
 let priceCart = true // Bool |  (optional) (default to false)
 let body = [BagShippingMethod(bagId: 123, shippingMethodId: 123, shippingMethodLabel: "shippingMethodLabel_example")] // [BagShippingMethod] |  (optional)
 
@@ -81,9 +78,6 @@ import Violet
 
 let cartId = 987 // Int64 | 
 
-
-
-
 // Get Available Shipping Methods
 CheckoutShippingAPI.getAvailableShippingMethods(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
     guard error == nil else {
@@ -135,9 +129,6 @@ import Violet
 
 let cartId = 987 // Int64 | 
 let shippingMethodId = 987 // Int64 | 
-
-
-
 let priceCart = true // Bool |  (optional) (default to false)
 
 // Remove Shipping Method

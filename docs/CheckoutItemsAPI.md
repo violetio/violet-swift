@@ -22,9 +22,6 @@ Add SKU to Cart
 import Violet
 
 let cartId = 987 // Int64 | 
-
-
-
 let priceCart = true // Bool |  (optional) (default to false)
 let async = true // Bool |  (optional) (default to true)
 let body = OrderSku(appId: 123, available: false, brand: "brand_example", externalId: "externalId_example", height: 123, id: 123, length: 123, linePrice: 123, merchantId: 123, name: "name_example", orderSkuRates: [OrderSkuRate(amount: 123, decimalRate: 123, dollarAmount: 123, name: "name_example", orderSkuId: 123, rate: 123, type: "type_example")], price: 123, productId: "productId_example", productType: "productType_example", quantity: 123, quantityFulfilled: 123, skuId: 123, status: "status_example", thumbnail: "thumbnail_example", transientExternalProductId: "transientExternalProductId_example", weight: 123, width: 123) // OrderSku |  (optional)
@@ -83,9 +80,6 @@ import Violet
 
 let cartId = 987 // Int64 | 
 let orderSkuId = 987 // Int64 | 
-
-
-
 let priceCart = true // Bool |  (optional) (default to false)
 let async = true // Bool |  (optional) (default to false)
 
@@ -143,9 +137,6 @@ import Violet
 
 let cartId = 987 // Int64 | 
 let orderSkuId = 987 // Int64 | 
-
-
-
 let priceCart = true // Bool |  (optional) (default to false)
 let async = true // Bool |  (optional) (default to true)
 let body = OrderSku(appId: 123, available: false, brand: "brand_example", externalId: "externalId_example", height: 123, id: 123, length: 123, linePrice: 123, merchantId: 123, name: "name_example", orderSkuRates: [OrderSkuRate(amount: 123, decimalRate: 123, dollarAmount: 123, name: "name_example", orderSkuId: 123, rate: 123, type: "type_example")], price: 123, productId: "productId_example", productType: "productType_example", quantity: 123, quantityFulfilled: 123, skuId: 123, status: "status_example", thumbnail: "thumbnail_example", transientExternalProductId: "transientExternalProductId_example", weight: 123, width: 123) // OrderSku |  (optional)

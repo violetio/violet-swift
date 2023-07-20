@@ -20,9 +20,6 @@ Get Sku by ID
 import Violet
 
 let skuId = 987 // Int64 | 
-
-
-
 let baseCurrency = "baseCurrency_example" // String |  (optional) (default to "USD")
 
 // Get Sku by ID

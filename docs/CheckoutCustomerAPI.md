@@ -24,9 +24,6 @@ Set Billing Address
 import Violet
 
 let cartId = 987 // Int64 | 
-
-
-
 let priceCart = true // Bool |  (optional) (default to false)
 let body = OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example") // OrderAddress |  (optional)
 
@@ -82,9 +79,6 @@ Apply Guest Customer to Cart
 import Violet
 
 let cartId = 987 // Int64 | 
-
-
-
 let async = true // Bool |  (optional) (default to false)
 let body = OrderCustomer(billingAddress: OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example"), email: "email_example", externalId: "externalId_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", sameAddress: false, shippingAddress: nil, userId: 123) // OrderCustomer |  (optional)
 
@@ -140,9 +134,6 @@ Set Shipping Address
 import Violet
 
 let cartId = 987 // Int64 | 
-
-
-
 let priceCart = true // Bool |  (optional) (default to false)
 let body = OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example") // OrderAddress |  (optional)
 
@@ -198,9 +189,6 @@ Update Billing Address
 import Violet
 
 let cartId = 987 // Int64 | 
-
-
-
 let priceCart = true // Bool |  (optional) (default to false)
 let body = OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example") // OrderAddress |  (optional)
 
@@ -256,9 +244,6 @@ Update Shipping Address
 import Violet
 
 let cartId = 987 // Int64 | 
-
-
-
 let priceCart = true // Bool |  (optional) (default to false)
 let body = OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example") // OrderAddress |  (optional)
 
