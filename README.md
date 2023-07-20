@@ -16,7 +16,6 @@ All URIs are relative to *http://localhost:8020/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-
 *CatalogOffersAPI* | [**getMerchantOffers**](docs/CatalogOffersAPI.md#getmerchantoffers) | **GET** /catalog/offers/merchants/{merchant_id} | Get All Merchant Offers
 *CatalogOffersAPI* | [**getOfferById**](docs/CatalogOffersAPI.md#getofferbyid) | **GET** /catalog/offers/{offer_id} | Get Offer by ID
 *CatalogOffersAPI* | [**searchOffers**](docs/CatalogOffersAPI.md#searchoffers) | **POST** /catalog/offers/search | Search Offers
