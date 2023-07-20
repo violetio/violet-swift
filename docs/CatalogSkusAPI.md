@@ -6,10 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getSkuById**](CatalogSkusAPI.md#getskubyid) | **GET** /catalog/skus/{sku_id} | Get Sku by ID
 
-
 # **getSkuById**
 ```swift
-    open class func getSkuById(skuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, baseCurrency: String? = nil, completion: @escaping (_ data: Sku?, _ error: Error?) -> Void)
+    open class func getSkuById(skuId: Int64, baseCurrency: String? = nil, completion: @escaping (_ data: Sku?, _ error: Error?) -> Void)
 ```
 
 Get Sku by ID
@@ -20,13 +19,10 @@ Get Sku by ID
 import Violet
 
 let skuId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let baseCurrency = "baseCurrency_example" // String |  (optional) (default to "USD")
 
 // Get Sku by ID
-CatalogSkusAPI.getSkuById(skuId: skuId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, baseCurrency: baseCurrency) { (response, error) in
+CatalogSkusAPI.getSkuById(skuId: skuId, baseCurrency: baseCurrency) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -43,9 +39,7 @@ CatalogSkusAPI.getSkuById(skuId: skuId, xVioletToken: xVioletToken, xVioletAppSe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **skuId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
  **baseCurrency** | **String** |  | [optional] [default to &quot;USD&quot;]
 
 ### Return type

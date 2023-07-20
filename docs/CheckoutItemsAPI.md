@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **addSkuToCart**
 ```swift
-    open class func addSkuToCart(cartId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func addSkuToCart(cartId: Int64, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Add SKU to Cart
@@ -22,15 +22,12 @@ Add SKU to Cart
 import Violet
 
 let cartId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let priceCart = true // Bool |  (optional) (default to false)
 let async = true // Bool |  (optional) (default to true)
 let body = OrderSku(appId: 123, available: false, brand: "brand_example", externalId: "externalId_example", height: 123, id: 123, length: 123, linePrice: 123, merchantId: 123, name: "name_example", orderSkuRates: [OrderSkuRate(amount: 123, decimalRate: 123, dollarAmount: 123, name: "name_example", orderSkuId: 123, rate: 123, type: "type_example")], price: 123, productId: "productId_example", productType: "productType_example", quantity: 123, quantityFulfilled: 123, skuId: 123, status: "status_example", thumbnail: "thumbnail_example", transientExternalProductId: "transientExternalProductId_example", weight: 123, width: 123) // OrderSku |  (optional)
 
 // Add SKU to Cart
-CheckoutItemsAPI.addSkuToCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, async: async, body: body) { (response, error) in
+CheckoutItemsAPI.addSkuToCart(cartId: cartId, priceCart: priceCart, async: async, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -47,9 +44,9 @@ CheckoutItemsAPI.addSkuToCart(cartId: cartId, xVioletToken: xVioletToken, xViole
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **async** | **Bool** |  | [optional] [default to true]
  **body** | [**OrderSku**](OrderSku.md) |  | [optional] 
@@ -71,7 +68,7 @@ No authorization required
 
 # **removeSkuFromCart**
 ```swift
-    open class func removeSkuFromCart(cartId: Int64, orderSkuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, async: Bool? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func removeSkuFromCart(cartId: Int64, orderSkuId: Int64, priceCart: Bool? = nil, async: Bool? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Remove SKU from Cart
@@ -83,14 +80,11 @@ import Violet
 
 let cartId = 987 // Int64 | 
 let orderSkuId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let priceCart = true // Bool |  (optional) (default to false)
 let async = true // Bool |  (optional) (default to false)
 
 // Remove SKU from Cart
-CheckoutItemsAPI.removeSkuFromCart(cartId: cartId, orderSkuId: orderSkuId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, async: async) { (response, error) in
+CheckoutItemsAPI.removeSkuFromCart(cartId: cartId, orderSkuId: orderSkuId, priceCart: priceCart, async: async) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -108,9 +102,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
  **orderSkuId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **async** | **Bool** |  | [optional] [default to false]
 
@@ -131,7 +125,7 @@ No authorization required
 
 # **updateSkuInCart**
 ```swift
-    open class func updateSkuInCart(cartId: Int64, orderSkuId: Int64, xVioletToken: String? = nil, xVioletAppSecret: String? = nil, xVioletAppId: Int? = nil, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
+    open class func updateSkuInCart(cartId: Int64, orderSkuId: Int64, priceCart: Bool? = nil, async: Bool? = nil, body: OrderSku? = nil, completion: @escaping (_ data: Order?, _ error: Error?) -> Void)
 ```
 
 Update SKU in Cart
@@ -143,15 +137,12 @@ import Violet
 
 let cartId = 987 // Int64 | 
 let orderSkuId = 987 // Int64 | 
-let xVioletToken = "xVioletToken_example" // String |  (optional)
-let xVioletAppSecret = "xVioletAppSecret_example" // String |  (optional)
-let xVioletAppId = 987 // Int |  (optional)
 let priceCart = true // Bool |  (optional) (default to false)
 let async = true // Bool |  (optional) (default to true)
 let body = OrderSku(appId: 123, available: false, brand: "brand_example", externalId: "externalId_example", height: 123, id: 123, length: 123, linePrice: 123, merchantId: 123, name: "name_example", orderSkuRates: [OrderSkuRate(amount: 123, decimalRate: 123, dollarAmount: 123, name: "name_example", orderSkuId: 123, rate: 123, type: "type_example")], price: 123, productId: "productId_example", productType: "productType_example", quantity: 123, quantityFulfilled: 123, skuId: 123, status: "status_example", thumbnail: "thumbnail_example", transientExternalProductId: "transientExternalProductId_example", weight: 123, width: 123) // OrderSku |  (optional)
 
 // Update SKU in Cart
-CheckoutItemsAPI.updateSkuInCart(cartId: cartId, orderSkuId: orderSkuId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, async: async, body: body) { (response, error) in
+CheckoutItemsAPI.updateSkuInCart(cartId: cartId, orderSkuId: orderSkuId, priceCart: priceCart, async: async, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -169,9 +160,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
  **orderSkuId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **async** | **Bool** |  | [optional] [default to true]
  **body** | [**OrderSku**](OrderSku.md) |  | [optional] 
