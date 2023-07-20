@@ -24,7 +24,7 @@ let priceCart = true // Bool |  (optional) (default to false)
 let body = PaymentMethodRequest(appOrderId: "appOrderId_example", cardCvc: 123, cardExpMonth: 123, cardExpYear: 123, cardNumber: "cardNumber_example", cardPostalCode: "cardPostalCode_example", completeCheckout: false, intentBasedCapture: false, token: "token_example") // PaymentMethodRequest |  (optional)
 
 // Apply Payment Method
-CheckoutPaymentAPI.applyPaymentMethod(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutPaymentAPI.applyPaymentMethod(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return

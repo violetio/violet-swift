@@ -27,7 +27,7 @@ let excludePublic = true // Bool |  (optional) (default to false)
 let excludeHidden = true // Bool |  (optional) (default to true)
 
 // Get Products
-CatalogProductsAPI.getProducts(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, excludePublic: excludePublic, excludeHidden: excludeHidden) { (response, error) in
+CatalogProductsAPI.getProducts(page: page, size: size, excludePublic: excludePublic, excludeHidden: excludeHidden) { (response, error) in
     guard error == nil else {
         print(error)
         return

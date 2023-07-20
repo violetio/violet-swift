@@ -28,7 +28,7 @@ let priceCart = true // Bool |  (optional) (default to false)
 let body = OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example") // OrderAddress |  (optional)
 
 // Set Billing Address
-CheckoutCustomerAPI.applyBillingAddress(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutCustomerAPI.applyBillingAddress(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -83,7 +83,7 @@ let async = true // Bool |  (optional) (default to false)
 let body = OrderCustomer(billingAddress: OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example"), email: "email_example", externalId: "externalId_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", sameAddress: false, shippingAddress: nil, userId: 123) // OrderCustomer |  (optional)
 
 // Apply Guest Customer to Cart
-CheckoutCustomerAPI.applyGuestCustomerToCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, async: async, body: body) { (response, error) in
+CheckoutCustomerAPI.applyGuestCustomerToCart(cartId: cartId, async: async, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -138,7 +138,7 @@ let priceCart = true // Bool |  (optional) (default to false)
 let body = OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example") // OrderAddress |  (optional)
 
 // Set Shipping Address
-CheckoutCustomerAPI.applyShippingAddress(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutCustomerAPI.applyShippingAddress(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -193,7 +193,7 @@ let priceCart = true // Bool |  (optional) (default to false)
 let body = OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example") // OrderAddress |  (optional)
 
 // Update Billing Address
-CheckoutCustomerAPI.updateBillingAddress(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutCustomerAPI.updateBillingAddress(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -248,7 +248,7 @@ let priceCart = true // Bool |  (optional) (default to false)
 let body = OrderAddress(address1: "address1_example", address2: "address2_example", city: "city_example", country: "country_example", email: "email_example", firstName: "firstName_example", lastName: "lastName_example", name: "name_example", phone: "phone_example", postalCode: "postalCode_example", state: "state_example", type: "type_example") // OrderAddress |  (optional)
 
 // Update Shipping Address
-CheckoutCustomerAPI.updateShippingAddress(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutCustomerAPI.updateShippingAddress(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return

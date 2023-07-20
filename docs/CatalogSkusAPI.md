@@ -22,7 +22,7 @@ let skuId = 987 // Int64 |
 let baseCurrency = "baseCurrency_example" // String |  (optional) (default to "USD")
 
 // Get Sku by ID
-CatalogSkusAPI.getSkuById(skuId: skuId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, baseCurrency: baseCurrency) { (response, error) in
+CatalogSkusAPI.getSkuById(skuId: skuId, baseCurrency: baseCurrency) { (response, error) in
     guard error == nil else {
         print(error)
         return

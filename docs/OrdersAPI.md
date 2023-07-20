@@ -26,7 +26,7 @@ let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
 
 // Get Orders
-OrdersAPI.getAllOrders(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size) { (response, error) in
+OrdersAPI.getAllOrders(page: page, size: size) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -126,7 +126,7 @@ let extended = true // Bool |  (optional) (default to false)
 let body = SearchRequest(appOrderId: "appOrderId_example", bagId: 123, externalOrderId: "externalOrderId_example", orderId: 123, referralId: "referralId_example", userId: 123) // SearchRequest |  (optional)
 
 // Search Bags
-OrdersAPI.searchBags(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, extended: extended, body: body) { (response, error) in
+OrdersAPI.searchBags(page: page, size: size, extended: extended, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -180,7 +180,7 @@ let extended = true // Bool |  (optional) (default to false)
 let body = SearchRequest(appOrderId: "appOrderId_example", bagId: 123, externalOrderId: "externalOrderId_example", orderId: 123, referralId: "referralId_example", userId: 123) // SearchRequest |  (optional)
 
 // Search Orders
-OrdersAPI.searchOrders(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, extended: extended, body: body) { (response, error) in
+OrdersAPI.searchOrders(page: page, size: size, extended: extended, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return

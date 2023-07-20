@@ -26,7 +26,7 @@ let priceCart = true // Bool |  (optional) (default to false)
 let body = [BagShippingMethod(bagId: 123, shippingMethodId: 123, shippingMethodLabel: "shippingMethodLabel_example")] // [BagShippingMethod] |  (optional)
 
 // Set Shipping Methods
-CheckoutShippingAPI.applyShippingMethods(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutShippingAPI.applyShippingMethods(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -126,7 +126,7 @@ let shippingMethodId = 987 // Int64 |
 let priceCart = true // Bool |  (optional) (default to false)
 
 // Remove Shipping Method
-CheckoutShippingAPI.removeShippingMethod(cartId: cartId, shippingMethodId: shippingMethodId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart) { (response, error) in
+CheckoutShippingAPI.removeShippingMethod(cartId: cartId, shippingMethodId: shippingMethodId, priceCart: priceCart) { (response, error) in
     guard error == nil else {
         print(error)
         return

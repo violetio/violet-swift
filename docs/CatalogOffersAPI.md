@@ -140,7 +140,7 @@ let excludeHidden = true // Bool |  (optional) (default to true)
 let body = OfferSearchRequest(externalId: "externalId_example", id: 123, maxPrice: 123, merchantId: 123, minPrice: 123, name: "name_example", productId: "productId_example", publishingStatus: "publishingStatus_example", seller: "seller_example", sortBy: "sortBy_example", sortDirection: "sortDirection_example", subscriptionStatus: "subscriptionStatus_example", vendor: "vendor_example") // OfferSearchRequest |  (optional)
 
 // Search Offers
-CatalogOffersAPI.searchOffers(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, page: page, size: size, excludePublic: excludePublic, excludeHidden: excludeHidden, body: body) { (response, error) in
+CatalogOffersAPI.searchOffers(page: page, size: size, excludePublic: excludePublic, excludeHidden: excludeHidden, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return

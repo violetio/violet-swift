@@ -25,7 +25,7 @@ let priceCart = true // Bool |  (optional) (default to false)
 let body = DiscountRequest(code: "code_example", merchantId: 123) // DiscountRequest |  (optional)
 
 // Add Discount to Cart
-CheckoutDiscountsAPI.addDiscountToCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart, body: body) { (response, error) in
+CheckoutDiscountsAPI.addDiscountToCart(cartId: cartId, priceCart: priceCart, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -80,7 +80,7 @@ let discountId = 987 // Int64 |
 let priceCart = true // Bool |  (optional) (default to false)
 
 // Remove Discount from Cart
-CheckoutDiscountsAPI.removeDiscountFromCart(cartId: cartId, discountId: discountId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId, priceCart: priceCart) { (response, error) in
+CheckoutDiscountsAPI.removeDiscountFromCart(cartId: cartId, discountId: discountId, priceCart: priceCart) { (response, error) in
     guard error == nil else {
         print(error)
         return
