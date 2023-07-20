@@ -40,9 +40,9 @@ CheckoutCompletionAPI.priceCart(cartId: cartId, xVioletToken: xVioletToken, xVio
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
 
 ### Return type
 
@@ -92,9 +92,9 @@ CheckoutCompletionAPI.submitCheckout(cartId: cartId, xVioletToken: xVioletToken,
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **body** | [**CartSubmissionRequest**](CartSubmissionRequest.md) |  | [optional] 
 
 ### Return type

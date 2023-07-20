@@ -46,10 +46,6 @@ CatalogOffersAPI.getMerchantOffers(merchantId: merchantId, since: since, page: p
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **merchantId** | **Int** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
- **xVioletApiFeatures** | **String** |  | [optional] 
  **since** | **Int64** |  | [optional] 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
@@ -105,10 +101,6 @@ CatalogOffersAPI.getOfferById(offerId: offerId,  baseCurrency: baseCurrency, exc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **offerId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
- **xVioletApiFeatures** | **String** |  | [optional] 
  **baseCurrency** | **String** |  | [optional] [default to &quot;USD&quot;]
  **exchangeRate** | **Double** |  | [optional] 
 
@@ -164,9 +156,6 @@ CatalogOffersAPI.searchOffers(xVioletToken: xVioletToken, xVioletAppSecret: xVio
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
  **excludePublic** | **Bool** |  | [optional] [default to false]

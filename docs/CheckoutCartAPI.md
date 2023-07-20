@@ -48,9 +48,9 @@ CheckoutCartAPI.createCart(xVioletToken: xVioletToken, xVioletAppSecret: xViolet
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **applyCurrentUser** | **Bool** |  | [optional] [default to false]
  **defaultPayment** | **Bool** |  | [optional] [default to false]
  **appOrderId** | **String** |  | [optional] 
@@ -107,9 +107,9 @@ CheckoutCartAPI.deleteCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAp
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
 
 ### Return type
 
@@ -158,9 +158,9 @@ CheckoutCartAPI.getCart(cartId: cartId, xVioletToken: xVioletToken, xVioletAppSe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
 
 ### Return type
 
@@ -209,9 +209,9 @@ CheckoutCartAPI.getCartByToken(token: token, xVioletToken: xVioletToken, xViolet
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **String** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
 
 ### Return type
 

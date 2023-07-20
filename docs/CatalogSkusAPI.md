@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getSkuById**](CatalogSkusAPI.md#getskubyid) | **GET** /catalog/skus/{sku_id} | Get Sku by ID
 
-
 # **getSkuById**
 ```swift
     open class func getSkuById(skuId: Int64, baseCurrency: String? = nil, completion: @escaping (_ data: Sku?, _ error: Error?) -> Void)
@@ -40,9 +39,7 @@ CatalogSkusAPI.getSkuById(skuId: skuId, xVioletToken: xVioletToken, xVioletAppSe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **skuId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
  **baseCurrency** | **String** |  | [optional] [default to &quot;USD&quot;]
 
 ### Return type

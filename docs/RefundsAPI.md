@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**getOrderRefundById**](RefundsAPI.md#getorderrefundbyid) | **GET** /orders/{order_id}/refunds/{refund_id} | Get Order Refund by ID
 [**getOrderRefunds**](RefundsAPI.md#getorderrefunds) | **GET** /orders/{order_id}/refunds | Get Order Refunds
 
-
 # **getBagRefunds**
 ```swift
     open class func getBagRefunds(orderId: Int64, bagId: Int64, completion: @escaping (_ data: [Refund]?, _ error: Error?) -> Void)
@@ -43,10 +42,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **Int64** |  | 
  **bagId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
-
+ 
 ### Return type
 
 [**[Refund]**](Refund.md)
@@ -96,10 +92,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **Int64** |  | 
  **refundId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
-
+ 
 ### Return type
 
 [**Refund**](Refund.md)
@@ -147,10 +140,7 @@ RefundsAPI.getOrderRefunds(orderId: orderId, xVioletToken: xVioletToken, xViolet
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
-
+ 
 ### Return type
 
 [**[Refund]**](Refund.md)

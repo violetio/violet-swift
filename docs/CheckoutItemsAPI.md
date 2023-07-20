@@ -44,9 +44,9 @@ CheckoutItemsAPI.addSkuToCart(cartId: cartId, xVioletToken: xVioletToken, xViole
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **async** | **Bool** |  | [optional] [default to true]
  **body** | [**OrderSku**](OrderSku.md) |  | [optional] 
@@ -102,9 +102,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
  **orderSkuId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **async** | **Bool** |  | [optional] [default to false]
 
@@ -160,9 +160,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
  **orderSkuId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **async** | **Bool** |  | [optional] [default to true]
  **body** | [**OrderSku**](OrderSku.md) |  | [optional] 

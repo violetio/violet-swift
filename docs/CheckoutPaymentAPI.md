@@ -41,9 +41,9 @@ CheckoutPaymentAPI.applyPaymentMethod(cartId: cartId, xVioletToken: xVioletToken
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **body** | [**PaymentMethodRequest**](PaymentMethodRequest.md) |  | [optional] 
 

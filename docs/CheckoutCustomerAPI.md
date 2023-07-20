@@ -45,9 +45,9 @@ CheckoutCustomerAPI.applyBillingAddress(cartId: cartId, xVioletToken: xVioletTok
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **body** | [**OrderAddress**](OrderAddress.md) |  | [optional] 
 
@@ -100,9 +100,9 @@ CheckoutCustomerAPI.applyGuestCustomerToCart(cartId: cartId, xVioletToken: xViol
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **async** | **Bool** |  | [optional] [default to false]
  **body** | [**OrderCustomer**](OrderCustomer.md) |  | [optional] 
 
@@ -155,9 +155,9 @@ CheckoutCustomerAPI.applyShippingAddress(cartId: cartId, xVioletToken: xVioletTo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **body** | [**OrderAddress**](OrderAddress.md) |  | [optional] 
 
@@ -210,9 +210,9 @@ CheckoutCustomerAPI.updateBillingAddress(cartId: cartId, xVioletToken: xVioletTo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **body** | [**OrderAddress**](OrderAddress.md) |  | [optional] 
 
@@ -265,9 +265,6 @@ CheckoutCustomerAPI.updateShippingAddress(cartId: cartId, xVioletToken: xVioletT
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **body** | [**OrderAddress**](OrderAddress.md) |  | [optional] 
 

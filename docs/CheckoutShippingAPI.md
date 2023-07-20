@@ -43,9 +43,6 @@ CheckoutShippingAPI.applyShippingMethods(cartId: cartId, xVioletToken: xVioletTo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
  **priceCart** | **Bool** |  | [optional] [default to false]
  **body** | [**[BagShippingMethod]**](BagShippingMethod.md) |  | [optional] 
 
@@ -96,10 +93,7 @@ CheckoutShippingAPI.getAvailableShippingMethods(cartId: cartId, xVioletToken: xV
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
-
+ 
 ### Return type
 
 [**[OrderShippingMethodWrapper]**](OrderShippingMethodWrapper.md)
@@ -150,9 +144,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cartId** | **Int64** |  | 
  **shippingMethodId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
  **priceCart** | **Bool** |  | [optional] [default to false]
 
 ### Return type

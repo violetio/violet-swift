@@ -22,9 +22,6 @@ Get Orders
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Violet
 
-
-
-
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
 
@@ -45,9 +42,6 @@ OrdersAPI.getAllOrders(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppS
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
 
@@ -80,9 +74,6 @@ import Violet
 
 let orderId = 987 // Int64 | 
 
-
-
-
 // Get Order by ID
 OrdersAPI.getOrderById(orderId: orderId, xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSecret, xVioletAppId: xVioletAppId) { (response, error) in
     guard error == nil else {
@@ -101,10 +92,7 @@ OrdersAPI.getOrderById(orderId: orderId, xVioletToken: xVioletToken, xVioletAppS
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderId** | **Int64** |  | 
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
-
+ 
 ### Return type
 
 [**Order**](Order.md)
@@ -132,9 +120,6 @@ Search Bags
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Violet
 
-
-
-
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
 let extended = true // Bool |  (optional) (default to false)
@@ -157,9 +142,6 @@ OrdersAPI.searchBags(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppSec
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
  **extended** | **Bool** |  | [optional] [default to false]
@@ -192,9 +174,6 @@ Search Orders
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Violet
 
-
-
-
 let page = 987 // Int |  (optional) (default to 1)
 let size = 987 // Int |  (optional) (default to 20)
 let extended = true // Bool |  (optional) (default to false)
@@ -217,9 +196,6 @@ OrdersAPI.searchOrders(xVioletToken: xVioletToken, xVioletAppSecret: xVioletAppS
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
  **extended** | **Bool** |  | [optional] [default to false]

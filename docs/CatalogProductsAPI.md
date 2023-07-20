@@ -43,9 +43,9 @@ CatalogProductsAPI.getProducts(xVioletToken: xVioletToken, xVioletAppSecret: xVi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVioletToken** | **String** |  | [optional] 
- **xVioletAppSecret** | **String** |  | [optional] 
- **xVioletAppId** | **Int** |  | [optional] 
+ 
+ 
+ 
  **page** | **Int** |  | [optional] [default to 1]
  **size** | **Int** |  | [optional] [default to 20]
  **excludePublic** | **Bool** |  | [optional] [default to false]
