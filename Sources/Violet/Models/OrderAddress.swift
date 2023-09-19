@@ -61,8 +61,8 @@ public struct OrderAddress: Codable, JSONEncodable, Hashable {
         case city
         case country
         case email
-        case firstName
-        case lastName
+        case firstName = "first_name"
+        case lastName = "last_name"
         case name
         case phone
         case postalCode = "postal_code"
